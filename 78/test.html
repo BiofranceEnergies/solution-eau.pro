@@ -32,29 +32,32 @@
       --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
     }
     *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      color:var(--text);
-      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
+   html,body{
+  margin:0;
+  padding:0;
+  color:var(--text);
+  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
 
-      /* 🔹 Dégradé + vague sans voile */
-    background:
-  radial-gradient(1200px 600px at 50% -8%, #e0f2fe 0%, #f6f8fb 55%, #f6f8fb 100%),
-  url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/main/fond%20vague%20lp%20adou%203.webp');
-background-repeat:no-repeat,no-repeat;
-background-position:center top, center bottom;
-background-size:120% 100%, cover;
-background-attachment:scroll, fixed;
+  /* Dégradé semi-transparent AU-DESSUS + vague en dessous visible */
+  background-image:
+    linear-gradient(180deg,
+      rgba(246,248,251,0) 0%,      /* transparent en haut */
+      rgba(234,242,254,0.65) 55%,  /* léger voile */
+      rgba(246,248,251,0.90) 100%  /* adoucit seulement le bas */
+    ),
+    url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/main/fond%20vague%20lp%20adou%203.webp');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center bottom;
+  background-size: 100% 100%, cover;
+  background-attachment: scroll, fixed; /* effet de profondeur sans voile */
+}
 
-    }
+@media (max-width:768px){
+  html,body{
+    background-attachment: scroll, scroll; /* évite les glitchs mobiles */
+  }
+}
 
-    @media(max-width:768px){
-      html,body{
-        background-attachment:scroll, scroll;
-        background-position:center top, center bottom;
-      }
-    }
 
     .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
 
