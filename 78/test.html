@@ -37,22 +37,22 @@
       padding:0;
       color:var(--text);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
-      background:#f6f8fb;
-      /* 🔹 Image de fond premium */
-      background-image:url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/8acf6dfa77e3e71051c58f0845d3b149ad48d61d/fonc%20%20vague%20lp%20adou%203.webp');
-      background-repeat:no-repeat;
-      background-position:center bottom;
-      background-size:cover;
-      background-attachment:fixed;
+
+      /* 🔹 Dégradé + vague sans voile */
+      background:
+        radial-gradient(1200px 600px at 50% -8%, #e0f2fe 0%, #f6f8fb 55%, #f6f8fb 100%),
+        url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/8acf6dfa77e3e71051c58f0845d3b149ad48d61d/fonc%20%20vague%20lp%20adou%203.webp');
+      background-repeat:no-repeat,no-repeat;
+      background-position:center top, center bottom;
+      background-size:120% 100%, cover;
+      background-attachment:scroll, fixed;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      background:radial-gradient(1200px 600px at 50% -8%, #e0f2fe 0%, #f6f8fb 55%, #f6f8fb 100%);
-      opacity:.8;
+    @media(max-width:768px){
+      html,body{
+        background-attachment:scroll, scroll;
+        background-position:center top, center bottom;
+      }
     }
 
     .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
@@ -95,11 +95,7 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- Contenu inchangé -->
-    <!-- ... (tout le reste de ton contenu LP comme avant) ... -->
-  </div>
-</body>
-</html>
+
 
 
     <!-- Bandeau logos -->
