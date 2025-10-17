@@ -48,13 +48,14 @@
 }
 
 /* 📱 Version mobile : on remonte la vague et on évite le fixed */
-@media (max-width: 768px) {
-  html, body {
-    background-attachment: scroll;
-    background-position: center 85%; /* <- vague plus haute (remontée de 25 %) */
-    background-size: cover;
+@media (max-width:768px){
+  html,body{
+    background-attachment:scroll;          /* pas de fixed sur mobile */
+    background-size:180% auto;             /* zoom ~1.8x */
+    background-position:center 62%;        /* remonte la vague */
   }
 }
+
 
 
 
