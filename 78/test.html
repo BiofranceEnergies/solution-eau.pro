@@ -35,26 +35,23 @@
    html,body{
   margin:0;
   padding:0;
-  color:var(--text);
+  color:#0f172a;
   font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
 
-  /* Dégradé semi-transparent AU-DESSUS + vague en dessous visible */
-  background-image:
-    linear-gradient(180deg,
-      rgba(246,248,251,0) 0%,      /* transparent en haut */
-      rgba(234,242,254,0.65) 55%,  /* léger voile */
-      rgba(246,248,251,0.90) 100%  /* adoucit seulement le bas */
-    ),
-    url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/main/fond%20vague%20lp%20adou%203.webp');
-  background-repeat: no-repeat, no-repeat;
-  background-position: center top, center bottom;
-  background-size: 100% 100%, cover;
-  background-attachment: scroll, fixed; /* effet de profondeur sans voile */
+  /* Fond clair + vague pure */
+  background-color:#f6f8fb; /* couleur d’ambiance */
+  background-image: url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/main/fond%20vague%20lp%20adou%203.webp');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed; /* effet léger de profondeur */
 }
 
-@media (max-width:768px){
+/* Mobile : évite les bugs du fixed */
+@media(max-width:768px){
   html,body{
-    background-attachment: scroll, scroll; /* évite les glitchs mobiles */
+    background-attachment: scroll;
+    background-position: center bottom;
   }
 }
 
