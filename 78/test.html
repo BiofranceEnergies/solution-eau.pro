@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
-  <!-- Google tag (remplace AW-XXXX) -->
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -32,9 +32,29 @@
       --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto}
-    body::before{content:"";position:fixed;inset:0;z-index:0;background:
-      radial-gradient(1200px 600px at 50% -8%, #e0f2fe 0%, #f6f8fb 55%, #f6f8fb 100%)}
+    html,body{
+      margin:0;
+      padding:0;
+      color:var(--text);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
+      background:#f6f8fb;
+      /* 🔹 Image de fond premium */
+      background-image:url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/8acf6dfa77e3e71051c58f0845d3b149ad48d61d/fonc%20%20vague%20lp%20adou%203.webp');
+      background-repeat:no-repeat;
+      background-position:center bottom;
+      background-size:cover;
+      background-attachment:fixed;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background:radial-gradient(1200px 600px at 50% -8%, #e0f2fe 0%, #f6f8fb 55%, #f6f8fb 100%);
+      opacity:.8;
+    }
+
     .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
 
     h1{font-size:clamp(30px,3.2vw,46px);font-weight:900;text-align:center;margin:4px 0 10px}
@@ -75,6 +95,12 @@
 </head>
 <body>
   <div class="wrap">
+    <!-- Contenu inchangé -->
+    <!-- ... (tout le reste de ton contenu LP comme avant) ... -->
+  </div>
+</body>
+</html>
+
 
     <!-- Bandeau logos -->
     <div class="header-logos">
