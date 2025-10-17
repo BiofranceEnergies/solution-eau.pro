@@ -25,82 +25,92 @@
     function gtag_report_conversion(){ try{ gtag('event','conversion',{ send_to:'AW-XXXX/FORM_EAU' }); }catch(e){} return true; }
   </script>
 
-  <style>
-    :root{
-      --bg:#f6f8fb; --card:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
-      --accent:#0891b2; --accent-2:#06b6d4; --accent-soft:#e0f2fe; --ok:#16a34a;
-      --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
-    }
-    *{box-sizing:border-box}
-/* ----- Desktop par défaut ----- */
-body{
-  margin:0;
-  color:#0f172a;
-  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
-
-  background-color:#f6f8fb;
-  background-image:url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp');
-  background-repeat:no-repeat;
-  background-position:center bottom;
-  background-size:cover;
-  background-attachment:fixed;
-  min-height:100svh; /* stabilise le viewport mobile */
-}
-
-/* ----- Mobile : remonter + zoomer, sans fixed ----- */
-@media (max-width: 768px){
-  body{
-    background-attachment:scroll !important;
-    background-size:200% auto !important;          /* zoom ~2x */
-    background-position:center calc(100% - 140px) !important; /* remonte la vague */
+ <style>
+  :root{
+    --bg:#f6f8fb; --card:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
+    --accent:#0891b2; --accent-2:#06b6d4; --accent-soft:#e0f2fe; --ok:#16a34a;
+    --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
   }
-}
+  *{box-sizing:border-box}
 
-/* (option iOS très ancien) */
-@supports (-webkit-touch-callout: none){
-  body{ min-height:-webkit-fill-available; }
-}
+  /* Corps : pas d’image de fond, seulement la couleur */
+  body{
+    margin:0;
+    color:#0f172a;
+    font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
+    background-color:#f6f8fb;
+    min-height:100svh;
+  }
 
-    .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
+  /* Calque vague en fond (image unique, aucun voile) */
+  .bg-wave{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    height:65vh; /* desktop */
+    background:
+      url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp')
+      center bottom / cover no-repeat;
+    z-index:-1;          /* derrière tout */
+    pointer-events:none; /* ne bloque aucun clic */
+  }
 
-    h1{font-size:clamp(30px,3.2vw,46px);font-weight:900;text-align:center;margin:4px 0 10px}
-    h1 em{color:var(--accent);font-style:normal}
-    h2{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0 0 10px;color:#0b1324;text-align:center}
-    p.lead{color:#334155;text-align:center;max-width:820px;margin:8px auto 18px}
+  /* Mobile : vague plus haute et cadrage remonté */
+  @media (max-width:768px){
+    .bg-wave{
+      height:85vh;
+      background-position:center 62%;
+    }
+  }
 
-    .header-logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:6px}
-    .logo-main{height:40px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}
-    .logo-side{height:34px;width:auto;opacity:.95}
+  /* iOS anciens : stabilise la hauteur du viewport */
+  @supports (-webkit-touch-callout: none){
+    body{ min-height:-webkit-fill-available; }
+  }
 
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin:0 auto 18px}
-    .content-card{max-width:var(--content-w);margin-left:auto;margin-right:auto}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
 
-    input,select,button,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;font-size:17px}
-    input::placeholder,textarea::placeholder{color:#94a3b8}
-    button.primary{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#042033;border:0;font-weight:900;cursor:pointer;box-shadow:0 8px 22px rgba(6,182,212,.25)}
-    button.primary:hover{filter:brightness(1.03)}
+  h1{font-size:clamp(30px,3.2vw,46px);font-weight:900;text-align:center;margin:4px 0 10px}
+  h1 em{color:var(--accent);font-style:normal}
+  h2{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin:0 0 10px;color:#0b1324;text-align:center}
+  p.lead{color:#334155;text-align:center;max-width:820px;margin:8px auto 18px}
 
-    .kpi{display:grid;gap:10px}
-    .kpi .box{padding:12px 14px;border-radius:12px;background:#ecfeff;border:1px solid #bae6fd}
-    .kpi .emph{background:#ecfdf5;border-color:#a7f3d0}
-    .note{display:block;text-align:center;margin:8px 0;color:#075985;background:#e0f2fe;border:1px solid #bae6fd;padding:9px 12px;border-radius:10px;font-weight:700}
+  .header-logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:6px}
+  .logo-main{height:40px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}
+  .logo-side{height:34px;width:auto;opacity:.95}
 
-    .stars{--rating:4.7;position:relative;display:inline-block;font-size:18px;line-height:1;letter-spacing:1px}
-    .stars::before{content:"★★★★★";color:#e5e7eb}
-    .stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:calc(var(--rating)/5*100%);overflow:hidden;color:#0891b2}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin:0 auto 18px}
+  .content-card{max-width:var(--content-w);margin-left:auto;margin-right:auto}
 
-    /* Section verrouillée */
-    #lockedSection{max-width:var(--content-w);position:relative;border:5px solid var(--accent);border-radius:18px;padding:20px}
-    .lockedContent{filter:blur(7px);user-select:none;pointer-events:none}
-    .veil{position:absolute;inset:0;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.98));backdrop-filter:blur(2px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:50px 18px;border:1px solid var(--border)}
-    .unlock{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;width:100%}
-    @media(max-width:560px){.unlock{grid-template-columns:1fr}}
-    .consent{display:flex;gap:8px;align-items:flex-start;color:#374151;font-size:13px;text-align:left}
-    .sep{border:none;border-top:2px solid var(--border);margin:24px 0 8px}
-  </style>
+  input,select,button,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;font-size:17px}
+  input::placeholder,textarea::placeholder{color:#94a3b8}
+  button.primary{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#042033;border:0;font-weight:900;cursor:pointer;box-shadow:0 8px 22px rgba(6,182,212,.25)}
+  button.primary:hover{filter:brightness(1.03)}
+
+  .kpi{display:grid;gap:10px}
+  .kpi .box{padding:12px 14px;border-radius:12px;background:#ecfeff;border:1px solid #bae6fd}
+  .kpi .emph{background:#ecfdf5;border-color:#a7f3d0}
+  .note{display:block;text-align:center;margin:8px 0;color:#075985;background:#e0f2fe;border:1px solid #bae6fd;padding:9px 12px;border-radius:10px;font-weight:700}
+
+  .stars{--rating:4.7;position:relative;display:inline-block;font-size:18px;line-height:1;letter-spacing:1px}
+  .stars::before{content:"★★★★★";color:#e5e7eb}
+  .stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:calc(var(--rating)/5*100%);overflow:hidden;color:#0891b2}
+
+  /* Section verrouillée */
+  #lockedSection{max-width:var(--content-w);position:relative;border:5px solid var(--accent);border-radius:18px;padding:20px}
+  .lockedContent{filter:blur(7px);user-select:none;pointer-events:none}
+  .veil{position:absolute;inset:0;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.98));backdrop-filter:blur(2px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:50px 18px;border:1px solid var(--border)}
+  .unlock{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;width:100%}
+  @media(max-width:560px){.unlock{grid-template-columns:1fr}}
+  .consent{display:flex;gap:8px;align-items:flex-start;color:#374151;font-size:13px;text-align:left}
+  .sep{border:none;border-top:2px solid var(--border);margin:24px 0 8px}
+</style>
+
 </head>
 <body>
+  <div class="bg-wave" aria-hidden="true"></div>
+
   <div class="wrap">
+
 
 
 
