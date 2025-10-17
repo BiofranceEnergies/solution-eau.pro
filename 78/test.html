@@ -38,7 +38,7 @@
   color: #0f172a;
   font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto;
 
-  /* Fond clair + vague pure sans voile */
+  /* Fond clair + vague pure */
   background-color: #f6f8fb; /* couleur d’ambiance */
   background-image: url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp');
   background-repeat: no-repeat;
@@ -47,11 +47,12 @@
   background-attachment: fixed; /* effet de profondeur */
 }
 
-/* Mobile : évite les bugs du fixed */
+/* 📱 Version mobile : on remonte la vague et on évite le fixed */
 @media (max-width: 768px) {
   html, body {
     background-attachment: scroll;
-    background-position: center bottom;
+    background-position: center 85%; /* <- vague plus haute (remontée de 25 %) */
+    background-size: cover;
   }
 }
 
