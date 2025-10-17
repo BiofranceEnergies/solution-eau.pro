@@ -32,32 +32,34 @@
       --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
     }
     *{box-sizing:border-box}
-  html, body {
-  margin: 0;
-  padding: 0;
-  color: #0f172a;
-  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto;
+/* ----- Desktop par défaut ----- */
+body{
+  margin:0;
+  color:#0f172a;
+  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
 
-  /* Fond clair + vague pure */
-  background-color: #f6f8fb; /* couleur d’ambiance */
-  background-image: url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: cover;
-  background-attachment: fixed; /* effet de profondeur */
+  background-color:#f6f8fb;
+  background-image:url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:cover;
+  background-attachment:fixed;
+  min-height:100svh; /* stabilise le viewport mobile */
 }
 
-/* 📱 Version mobile : on remonte la vague et on évite le fixed */
-@media (max-width:768px){
-  html,body{
-    background-attachment:scroll;          /* pas de fixed sur mobile */
-    background-size:180% auto;             /* zoom ~1.8x */
-    background-position:center 62%;        /* remonte la vague */
+/* ----- Mobile : remonter + zoomer, sans fixed ----- */
+@media (max-width: 768px){
+  body{
+    background-attachment:scroll !important;
+    background-size:200% auto !important;          /* zoom ~2x */
+    background-position:center calc(100% - 140px) !important; /* remonte la vague */
   }
 }
 
-
-
+/* (option iOS très ancien) */
+@supports (-webkit-touch-callout: none){
+  body{ min-height:-webkit-fill-available; }
+}
 
     .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
 
