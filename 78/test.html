@@ -24,6 +24,7 @@
     gtag('config','AW-XXXX');
     function gtag_report_conversion(){ try{ gtag('event','conversion',{ send_to:'AW-XXXX/FORM_EAU' }); }catch(e){} return true; }
   </script>
+  
 
  <style>
   :root{
@@ -125,6 +126,16 @@ h1{ margin:8px 0 10px !important; }
   @media(max-width:560px){.unlock{grid-template-columns:1fr}}
   .consent{display:flex;gap:8px;align-items:flex-start;color:#374151;font-size:13px;text-align:left}
   .sep{border:none;border-top:2px solid var(--border);margin:24px 0 8px}
+
+   /* Baseline sous le H1 : lisible sur la vague */
+p.lead{
+  color:#0b1324;                 /* un ton plus foncé */
+  font-weight:600;               /* un peu plus de tenue */
+  margin:8px auto 12px;
+  max-width:820px;
+  text-shadow:0 1px 0 rgba(255,255,255,.65); /* liseré clair anti-fond */
+}
+
 </style>
 
 </head>
