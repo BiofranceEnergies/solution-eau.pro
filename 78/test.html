@@ -32,28 +32,29 @@
       --radius:16px; --shadow:0 14px 36px rgba(2,6,23,.10); --content-w:760px;
     }
     *{box-sizing:border-box}
-   html,body{
-  margin:0;
-  padding:0;
-  color:#0f172a;
-  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto;
+  html, body {
+  margin: 0;
+  padding: 0;
+  color: #0f172a;
+  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto;
 
-  /* Fond clair + vague pure */
-  background-color:#f6f8fb; /* couleur d’ambiance */
-  background-image: url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/main/fond%20vague%20lp%20adou%203.webp');
+  /* Fond clair + vague pure sans voile */
+  background-color: #f6f8fb; /* couleur d’ambiance */
+  background-image: url('https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/77041181b8e957253cb8ae3cf238802d30202d07/fond%20%20vague%20lp%20adou%203.webp');
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
-  background-attachment: fixed; /* effet léger de profondeur */
+  background-attachment: fixed; /* effet de profondeur */
 }
 
 /* Mobile : évite les bugs du fixed */
-@media(max-width:768px){
-  html,body{
+@media (max-width: 768px) {
+  html, body {
     background-attachment: scroll;
     background-position: center bottom;
   }
 }
+
 
 
     .wrap{max-width:1040px;margin:0 auto;padding:30px 14px;position:relative;z-index:1}
