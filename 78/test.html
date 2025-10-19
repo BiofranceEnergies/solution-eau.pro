@@ -183,18 +183,23 @@ p.lead{
 .why-text{color:#374151;line-height:1.55;font-size:15px;margin:0}
 .small-note{font-size:12px;color:#64748b;margin-top:6px}
 
-/* Incrustation d’une mini-vignette dans la vignette principale — fix mobile */
+/* Incrustation d’une mini-vignette dans la vignette principale — position corrigée */
 .why-mini{
   position:absolute;
-  right:-6px;         /* ancre à droite */
-  left:auto;          /* neutralise l'ancre gauche */
-  bottom:-6px;
-  width:46px; height:46px; border-radius:999px;
-  border:2px solid #fff; object-fit:cover;
+  right:6px;         /* on la rentre à l'intérieur */
+  bottom:6px;        /* idem pour le bas */
+  width:46px; height:46px;
+  border-radius:999px;
+  border:2px solid #fff;
+  object-fit:cover;
   box-shadow:0 6px 16px rgba(2,6,23,.18);
 }
 @media (max-width:560px){
-  .why-mini{ right:-4px; bottom:-4px; width:40px; height:40px; }
+  .why-mini{
+    right:4px;
+    bottom:4px;
+    width:40px; height:40px;
+  }
 }
 
    
