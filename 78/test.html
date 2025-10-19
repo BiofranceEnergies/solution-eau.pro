@@ -121,6 +121,24 @@
   .why-title{font-weight:800;font-size:18px;margin:0 0 4px;color:#0b1324}
   .why-text{color:#374151;line-height:1.55;font-size:15px;margin:0}
   .small-note{font-size:12px;color:#64748b;margin-top:6px;text-align:center}
+ /* Duo de vignettes (peau + cheveux) */
+.why-duo{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-start;
+}
+.why-duo .why-thumb-wrap{
+  --thumb: clamp(96px, 14vw, 130px);
+  position: relative;
+}
+@media (max-width:560px){
+  .why-duo{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+}
 
   .note{display:block;text-align:center;margin:8px 0;color:#075985;background:#e0f2fe;border:1px solid #bae6fd;padding:9px 12px;border-radius:10px;font-weight:700}
 
@@ -253,6 +271,45 @@
       </p>
       <div class="small-note">
         Confort quotidien : moins de sécheresse cutanée, cuir chevelu apaisé, fibre capillaire moins cassante.
+      </div>
+    </div>
+  </div>
+
+  <!-- Poste 4 — Peau & cheveux -->
+  <div class="why-item" aria-label="Peau & cheveux : le calcaire assèche et rend rêches">
+    <span class="why-duo">
+      <!-- Peau -->
+      <span class="why-thumb-wrap">
+        <img
+          class="why-thumb"
+          src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/8da67e1015fce30bd167eebe2806727a325fa298/peau%20calcaire.webp"
+          alt="Peau irritée par le calcaire"
+          loading="lazy" decoding="async">
+        <span class="why-badge">Confort retrouvé</span>
+      </span>
+
+      <!-- Cheveux -->
+      <span class="why-thumb-wrap">
+        <img
+          class="why-thumb"
+          src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/8da67e1015fce30bd167eebe2806727a325fa298/cheveux%20reche.webp"
+          alt="Cheveux rêches à cause du calcaire"
+          loading="lazy" decoding="async">
+      </span>
+    </span>
+
+    <div>
+      <div class="why-title">Peau & cheveux</div>
+      <p class="why-text">
+        Le <strong>calcaire</strong> assèche la <strong>peau</strong> (tiraillements, démangeaisons) et rend les
+        <strong>cheveux</strong> <strong>secs</strong>, <strong>ternes</strong> et <strong>rêches</strong>.
+        Chez les personnes sensibles, cela conduit souvent à l’achat de <strong>soins dermatologiques</strong> et
+        capillaires <strong>coûteux</strong> (pharmacie, parapharmacie).
+        Avec une <strong>eau adoucie</strong>, la peau retrouve sa <strong>souplesse</strong>, les irritations diminuent
+        et les cheveux sont <strong>plus doux</strong> et <strong>faciles à coiffer</strong>.
+      </p>
+      <div class="small-note">
+        Confort quotidien : peau hydratée, cuir chevelu apaisé, fibre capillaire moins cassante.
       </div>
     </div>
   </div>
