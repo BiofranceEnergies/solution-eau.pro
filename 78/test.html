@@ -75,11 +75,11 @@
   .why-thumb-wrap{position:relative;display:inline-block;--thumb:clamp(110px,18vw,150px);}
   .why-thumb{width:var(--thumb);height:var(--thumb);border-radius:999px;object-fit:cover;background:#fff;border:2px solid var(--border);box-shadow:0 8px 22px rgba(2,6,23,.10);}
 
-    /* BADGE (pilule noir) — haut-gauche, ne recouvre plus la mini */
+   /* BADGE (pilule noir) — en bas, dégagé de la mini-vignette */
 .why-badge{
   position:absolute;
   left:8px;
-  top:8px;
+  bottom:8px;                      /* reste en bas, mais à gauche */
   background:#0b1324;
   color:#fff;
   border-radius:999px;
@@ -92,10 +92,10 @@
   z-index:1;
 }
 
-/* Mini-vignette — plus grande, en bas-droite, au-dessus du badge */
+/* Mini-vignette — plus grande, bien visible, à droite */
 .why-mini{
   position:absolute;
-  width: calc(var(--thumb) * 0.44);
+  width: calc(var(--thumb) * 0.44);     /* taille augmentée */
   height: calc(var(--thumb) * 0.44);
   right: calc(var(--thumb) * 0.06);
   bottom: calc(var(--thumb) * 0.06);
@@ -103,7 +103,7 @@
   border:2px solid #fff;
   object-fit:cover;
   box-shadow:0 6px 16px rgba(2,6,23,.18);
-  z-index:2;
+  z-index:2;                            /* passe au-dessus */
 }
 
 /* Mobile : mini encore un peu plus grande */
@@ -114,6 +114,7 @@
     height: calc(var(--thumb) * 0.48);
   }
 }
+
 
 
   .why-title{font-weight:800;font-size:18px;margin:0 0 4px;color:#0b1324}
