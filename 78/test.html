@@ -164,54 +164,56 @@ p.lead{
   font-weight: 700;
 }
 
-/* Vignette + texte — Produits & budget */
-.why-item{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;max-width:680px;margin:0 auto}
-@media (max-width:560px){.why-item{grid-template-columns:1fr;text-align:center}}
-/* Taille proportionnelle via variable --thumb */
-.why-thumb-wrap{
-  position: relative;
-  display: inline-block;
-  /* diamètre par défaut ; ajustez si besoin */
-  --thumb: clamp(110px, 18vw, 150px);
+/* ====== Blocs "Pourquoi traiter son eau" ====== */
+.why-item{
+  display:grid; grid-template-columns:auto 1fr;
+  gap:16px; align-items:center; max-width:680px; margin:0 auto;
+}
+.why-item + .why-item{ margin-top:20px; }
+@media (max-width:560px){
+  .why-item{ grid-template-columns:1fr; text-align:center; }
 }
 
+/* Vignette principale avec taille proportionnelle */
+.why-thumb-wrap{
+  position: relative; display: inline-block;
+  --thumb: clamp(110px, 18vw, 150px);   /* diamètre du rond principal */
+}
 .why-thumb{
-  width: var(--thumb);
-  height: var(--thumb);
-  border-radius: 999px;
-  object-fit: cover;
-  background:#fff; 
-  border:2px solid var(--border);
+  width: var(--thumb); height: var(--thumb);
+  border-radius: 999px; object-fit: cover;
+  background:#fff; border:2px solid var(--border);
   box-shadow:0 8px 22px rgba(2,6,23,.10);
 }
 
-/* Mini-vignette proportionnelle et calée à l’intérieur en bas-droite */
+/* BADGE (pilule noir) — remis ici */
+.why-badge{
+  position:absolute; right:8px; bottom:8px;
+  background:#0b1324; color:#fff; border-radius:999px;
+  padding:4px 10px; font-weight:800; font-size:12px; letter-spacing:.2px;
+  white-space:nowrap; box-shadow:0 4px 12px rgba(2,6,23,.16);
+}
+
+/* Mini-vignette proportionnelle (robinet) */
 .why-mini{
   position:absolute;
   width: calc(var(--thumb) * 0.34);
   height: calc(var(--thumb) * 0.34);
   right: calc(var(--thumb) * 0.06);
   bottom: calc(var(--thumb) * 0.06);
-  border-radius:999px;
-  border:2px solid #fff;
-  object-fit:cover;
+  border-radius:999px; border:2px solid #fff; object-fit:cover;
   box-shadow:0 6px 16px rgba(2,6,23,.18);
 }
 
-/* Optionnel : mini un peu plus grande sur mobile étroit */
+/* Mobile : mini un peu plus grande, même ancrage */
 @media (max-width: 560px){
   .why-thumb-wrap{ --thumb: clamp(110px, 36vw, 150px); }
   .why-mini{
     width: calc(var(--thumb) * 0.38);
     height: calc(var(--thumb) * 0.38);
-    right: calc(var(--thumb) * 0.06);
-    bottom: calc(var(--thumb) * 0.06);
   }
 }
 
-   
-
-</style>
 
    
 
