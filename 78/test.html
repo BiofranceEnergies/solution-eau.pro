@@ -75,11 +75,11 @@
   .why-thumb-wrap{position:relative;display:inline-block;--thumb:clamp(110px,18vw,150px);}
   .why-thumb{width:var(--thumb);height:var(--thumb);border-radius:999px;object-fit:cover;background:#fff;border:2px solid var(--border);box-shadow:0 8px 22px rgba(2,6,23,.10);}
 
-   /* BADGE (pilule noir) — en bas, dégagé de la mini-vignette */
+/* BADGE (pilule noir) — bas-gauche, au-dessus de la mini, un peu plus bas */
 .why-badge{
   position:absolute;
-  left:8px;
-  bottom:8px;                      /* reste en bas, mais à gauche */
+  left:10px;
+  bottom:4px;                  /* ↓ descend légèrement le badge */
   background:#0b1324;
   color:#fff;
   border-radius:999px;
@@ -89,8 +89,9 @@
   letter-spacing:.2px;
   white-space:nowrap;
   box-shadow:0 4px 12px rgba(2,6,23,.16);
-  z-index:1;
+  z-index:3;                   /* ↑ passe AU-DESSUS de .why-mini (qui est à 2) */
 }
+
 
 /* Mini-vignette — plus grande, bien visible, à droite */
 .why-mini{
