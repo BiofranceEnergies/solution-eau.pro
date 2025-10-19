@@ -74,9 +74,47 @@
 
   .why-thumb-wrap{position:relative;display:inline-block;--thumb:clamp(110px,18vw,150px);}
   .why-thumb{width:var(--thumb);height:var(--thumb);border-radius:999px;object-fit:cover;background:#fff;border:2px solid var(--border);box-shadow:0 8px 22px rgba(2,6,23,.10);}
-  .why-badge{position:absolute;right:8px;bottom:8px;background:#0b1324;color:#fff;border-radius:999px;padding:4px 10px;font-weight:800;font-size:12px;white-space:nowrap;box-shadow:0 4px 12px rgba(2,6,23,.16);}
-  .why-mini{position:absolute;width:calc(var(--thumb)*0.34);height:calc(var(--thumb)*0.34);right:calc(var(--thumb)*0.06);bottom:calc(var(--thumb)*0.06);border-radius:999px;border:2px solid #fff;object-fit:cover;box-shadow:0 6px 16px rgba(2,6,23,.18);}
-  @media (max-width:560px){.why-thumb-wrap{--thumb:clamp(110px,36vw,150px)}.why-mini{width:calc(var(--thumb)*0.38);height:calc(var(--thumb)*0.38)}}
+
+    /* BADGE (pilule noir) — haut-gauche, ne recouvre plus la mini */
+.why-badge{
+  position:absolute;
+  left:8px;
+  top:8px;
+  background:#0b1324;
+  color:#fff;
+  border-radius:999px;
+  padding:4px 10px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  box-shadow:0 4px 12px rgba(2,6,23,.16);
+  z-index:1;
+}
+
+/* Mini-vignette — plus grande, en bas-droite, au-dessus du badge */
+.why-mini{
+  position:absolute;
+  width: calc(var(--thumb) * 0.44);
+  height: calc(var(--thumb) * 0.44);
+  right: calc(var(--thumb) * 0.06);
+  bottom: calc(var(--thumb) * 0.06);
+  border-radius:999px;
+  border:2px solid #fff;
+  object-fit:cover;
+  box-shadow:0 6px 16px rgba(2,6,23,.18);
+  z-index:2;
+}
+
+/* Mobile : mini encore un peu plus grande */
+@media (max-width:560px){
+  .why-thumb-wrap{ --thumb: clamp(110px, 36vw, 150px); }
+  .why-mini{
+    width: calc(var(--thumb) * 0.48);
+    height: calc(var(--thumb) * 0.48);
+  }
+}
+
 
   .why-title{font-weight:800;font-size:18px;margin:0 0 4px;color:#0b1324}
   .why-text{color:#374151;line-height:1.55;font-size:15px;margin:0}
