@@ -424,46 +424,82 @@
         // DÉTAIL (verrouillé tant que pas de tel) — inchangé
         const TH_EX_78=32, gParM3_78=TH_EX_78*10;
         const locked=document.getElementById('lockedContent');
-        locked.innerHTML = `
-          <h2>Détail complet</h2>
-          <div style="margin:10px 0 12px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #e5e7eb">
-            <strong>Explication :</strong>
-            <div style="margin-top:4px;line-height:1.55">
-              Dépense produits (sans adoucisseur) : <b>${baseProduits.toLocaleString('fr-FR')} € / an</b>.
-              Réduction appliquée : <b>${Math.round(TAUX_ECO_PROD*100)} %</b> → <b>${euro(sProd)}</b> d’économies.
-            </div>
-          </div>
+       // Remplace tout le bloc locked.innerHTML existant par ceci :
+locked.innerHTML = `
+  <h2>Résultats détaillés</h2>
 
-          <div class="kpi">
-            <div class="box">
-              <strong>Produits ménagers & lessives (an) :</strong> <b>${euro(sProd)}</b>
-              <div style="font-size:13px;color:#334155;margin-top:4px">
-                Le <b>TH</b> élevé neutralise une partie des tensioactifs. Exemple 78 : <b>${TH_EX_78}°f ≈ ${gParM3_78} g/m³</b>.
-                En eau adoucie : dosage “eau douce” (jusqu’à <b>÷2 à ÷3</b>).
-              </div>
-            </div>
-            <div class="box">
-              <strong>Énergie eau chaude (an) :</strong> <b>${euro(sEnergie)}</b>
-              <div style="font-size:13px;color:#334155;margin-top:4px">Le <b>tartre isole la résistance</b> : ~<b>10 %</b> de surconsommation.</div>
-            </div>
-            <div class="box">
-              <strong>Entretien & matériel (an) :</strong> <b>${euro(sMateriel)}</b>
-              <div style="font-size:13px;color:#334155;margin-top:4px">Moins de <b>détartrages</b>, moins de <b>pannes</b>, moins d’anti-calcaire.</div>
-            </div>
-            <div class="box emph"><strong>Total estimé (an) :</strong> <b>${euro(total)}</b></div>
-            <div class="box"><strong>Projection 10 ans (+5 %/an énergie) :</strong> <b>${euro(total10)}</b></div>
-            <div style="font-size:12px;color:#64748b">
-              Hypothèses : produits = <b>220 €/pers/an</b> (économie <b>${Math.round(TAUX_ECO_PROD*100)} %</b>) • Énergie ECS : <b>800 kWh/pers/an</b> × <b>10 %</b> • Matériel : <b>50 €/foyer/an</b>.
-            </div>
-          </div>
+  <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
+    <h3 style="margin:0 0 6px">🧴 Produits ménagers & lessives — <b>${euro(sProd)}</b> / an économisés</h3>
+    <p style="margin:0;line-height:1.6;color:#334155">
+      Avec une eau calcaire, un foyer dépense environ <b>${euro(baseProduits)}</b> par an en lessives, gels douche, shampoings,
+      produits d’entretien et anticalcaires. Le calcaire neutralise une partie des agents lavants, ce qui oblige à
+      <b>augmenter les doses</b>. Avec une <b>eau adoucie</b>, on réduit les doses d’environ <b>${Math.round(TAUX_ECO_PROD*100)} %</b>
+      → <b>${euro(sProd)}</b> économisés chaque année.
+    </p>
+  </section>
 
-          <div style="margin-top:12px;padding:12px;border:1px dashed #bae6fd;border-radius:12px;background:#f0f9ff">
-            <strong>Prix indicatif installé :</strong>
-            <span style="display:inline-block;background:#0f172a;color:#fff;padding:2px 10px;border-radius:999px;font-weight:800">à partir de 1 200 € TTC</span>
-            <div style="font-size:12px;color:#64748b;margin-top:4px">Prix exact après visite (marque, capacité, bypass, évacuation).</div>
-          </div>
-        `;
+  <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
+    <h3 style="margin:0 0 6px">🔥 Énergie pour l’eau chaude — <b>${euro(sEnergie)}</b> / an économisés</h3>
+    <p style="margin:0;line-height:1.6;color:#334155">
+      Le calcaire se dépose sur <b>tous les appareils qui chauffent l’eau</b> (résistance de chauffe-eau, <b>échangeur de ballon
+      thermodynamique</b>, machine à laver, bouilloire, cafetière, etc.). Dès <b>1&nbsp;mm</b> de tartre, la consommation d’énergie
+      <b>augmente d’environ 18&nbsp;%</b> car la résistance chauffe à travers la couche. Avec une <b>eau adoucie</b>, ces dépôts
+      disparaissent : la chauffe reste efficace → <b>${euro(sEnergie)}</b> économisés par an.
+    </p>
+  </section>
 
+  <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
+    <h3 style="margin:0 0 6px">⚙️ Entretien & matériel — <b>${euro(sMateriel)}</b> / an économisés</h3>
+    <p style="margin:0;line-height:1.6;color:#334155">
+      Le tartre use prématurément les <b>robinets, douchettes, résistances, électroménagers et circuits d’eau chaude</b>.
+      Une eau douce <b>prolonge la durée de vie</b> des équipements, limite les <b>détartrages</b> et les interventions.
+      Économie moyenne retenue : <b>${euro(sMateriel)}</b> par an.
+    </p>
+  </section>
+
+  <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
+    <h3 style="margin:0 0 6px">🌿 Peau & confort (bonus bien-être)</h3>
+    <p style="margin:0;line-height:1.6;color:#334155">
+      Le calcaire <b>assèche la peau</b> et rend les cheveux <b>rêches et ternes</b>. Les personnes sensibles achètent souvent
+      des <b>crèmes hydratantes</b> ou des <b>shampoings spécifiques</b> ; avec une eau douce, la peau reste souple, les cheveux plus doux,
+      et ces dépenses diminuent naturellement.
+    </p>
+  </section>
+
+  <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
+    <h3 style="margin:0 0 6px">🧽 Confort d’entretien & gain de temps</h3>
+    <p style="margin:0;line-height:1.6;color:#334155">
+      Moins de calcaire = <b>moins de traces</b> et <b>moins de corvées</b> : parois de douche, robinetterie, évier et carrelage
+      restent propres plus longtemps. Résultat : <b>moins de produits à frotter</b>, <b>moins de temps perdu</b>, une maison plus facile à entretenir.
+    </p>
+  </section>
+
+  <div class="kpi" style="margin-top:12px">
+    <div class="box emph" style="border:1px solid #e5e7eb;border-radius:12px;background:#ecfeff;padding:12px;text-align:center">
+      <strong>Total estimé (an) :</strong> <b style="font-size:18px">${euro(total)}</b>
+      <div style="font-size:12px;color:#64748b;margin-top:6px">
+        Chiffres indicatifs recalculés selon votre foyer (taille et options).
+      </div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:10px">
+    Les économies réalisées chaque année couvrent naturellement le coût d’un adoucisseur en quelques années.
+  </div>
+
+  <div style="margin-top:12px;padding:12px;border:1px dashed #bae6fd;border-radius:12px;background:#f0f9ff">
+    <strong>🧾 Prix indicatif installé :</strong>
+    <span style="display:inline-block;background:#0f172a;color:#fff;padding:2px 10px;border-radius:999px;font-weight:800">à partir de 1 200 € TTC</span>
+    <div style="font-size:12px;color:#64748b;margin-top:4px">
+      Inclut fourniture + pose standard (hors évacuation spécifique ou bypass particulier). Prix exact confirmé après visite technique.
+    </div>
+  </div>
+
+  <div style="font-size:12px;color:#64748b;margin-top:10px">
+    Hypothèses : produits = <b>220 €/pers/an</b> (économie <b>${Math.round(TAUX_ECO_PROD*100)} %</b>) • Énergie ECS :
+    <b>800 kWh/pers/an</b> × <b>10 %</b> • Matériel : <b>50 € / foyer / an</b>.
+  </div>
+`;
         const section=document.getElementById('lockedSection');
         section.style.display='block';
         section.style.visibility='visible';
