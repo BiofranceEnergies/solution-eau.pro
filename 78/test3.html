@@ -381,16 +381,21 @@
       const r=1.05, years=10, sommeGeo=(Math.pow(r,years)-1)/(r-1);
       const total10 = Math.round(sProd*10 + sMateriel*10 + sEnergie*sommeGeo);
 
-      // APERÇU
-      const recap=document.getElementById('recap');
-      recap.innerHTML = `
-        <h2>Votre aperçu</h2>
-        <div class="kpi">
-          <div class="box emph">
-            <strong>Total estimé (an) :</strong> <b style="color:#065f46">${euro(total)}</b>
-            <div style="font-size:13px;color:#334155;margin-top:4px">Estimation selon <b>${n}</b> personne(s). Le détail complet est juste en dessous.</div>
-          </div>
-        </div>`;
+  // APERÇU (nouvelle version claire)
+const recap=document.getElementById('recap');
+recap.innerHTML = `
+  <h2>Votre estimation</h2>
+  <div class="kpi">
+    <div class="box emph" style="text-align:center">
+      <strong style="font-size:18px;color:#0b1324">💧 Économies estimées :</strong><br>
+      <b style="color:#065f46;font-size:24px;display:inline-block;margin-top:6px">≈ ${euro(total)} / an</b>
+      <div style="font-size:13px;color:#334155;margin-top:6px;line-height:1.5">
+        Pour <b>${n}</b> personne(s) et une <b>eau dure classique</b>.<br>
+        Le détail complet des postes d’économies est disponible ci-dessous.
+      </div>
+    </div>
+  </div>`;
+
       recap.style.display='block'; recap.style.visibility='visible'; recap.style.height='auto';
 
       // DÉTAIL (verrouillé tant que pas de tel)
