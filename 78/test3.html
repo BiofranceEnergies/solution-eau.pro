@@ -134,7 +134,17 @@
     
  /* Mentions légales (mini-modal) */
 #mentions-legales-container{width:100%;text-align:center;margin:26px 0 8px;display:block}
-#mentions-legales-link{color:#0b61d8;text-decoration:underline;cursor:pointer}
+#mentions-legales-link{
+  color:#94a3b8; /* gris clair */
+  text-decoration:none;
+  cursor:pointer;
+  font-size:13px;
+}
+#mentions-legales-link:hover{
+  color:#64748b; /* gris plus soutenu au survol */
+  text-decoration:underline;
+}
+
 #mentions-popup{
   display:none;position:fixed;bottom:60px;left:50%;transform:translateX(-50%);
   width:340px;max-width:95vw;background:#fff;color:#111827;border-radius:13px;
