@@ -425,7 +425,8 @@
         const TH_EX_78=32, gParM3_78=TH_EX_78*10;
         const locked=document.getElementById('lockedContent');
        // Remplace tout le bloc locked.innerHTML existant par ceci :
-locked.innerHTML = `
+
+        locked.innerHTML = `
   <h2>Résultats détaillés</h2>
 
   <section style="margin:12px 0 10px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff">
@@ -470,7 +471,8 @@ locked.innerHTML = `
     <h3 style="margin:0 0 6px">🧽 Confort d’entretien & gain de temps</h3>
     <p style="margin:0;line-height:1.6;color:#334155">
       Moins de calcaire = <b>moins de traces</b> et <b>moins de corvées</b> : parois de douche, robinetterie, évier et carrelage
-      restent propres plus longtemps. Résultat : <b>moins de produits à frotter</b>, <b>moins de temps perdu</b>, une maison plus facile à entretenir.
+      restent propres plus longtemps. Résultat : <b>moins de produits à frotter</b>, <b>moins de temps perdu</b>,
+      une maison plus facile à entretenir.
     </p>
   </section>
 
@@ -484,7 +486,7 @@ locked.innerHTML = `
   </div>
 
   <div class="note" style="margin-top:10px">
-    Les économies réalisées chaque année couvrent naturellement le coût d’un adoucisseur en quelques années.
+    💡 Les économies réalisées chaque année, ajoutées au <b>temps gagné sur l’entretien</b>, couvrent naturellement le coût d’un adoucisseur en quelques années.
   </div>
 
   <div style="margin-top:12px;padding:12px;border:1px dashed #bae6fd;border-radius:12px;background:#f0f9ff">
@@ -500,6 +502,7 @@ locked.innerHTML = `
     <b>800 kWh/pers/an</b> × <b>10 %</b> • Matériel : <b>50 € / foyer / an</b>.
   </div>
 `;
+
         const section=document.getElementById('lockedSection');
         section.style.display='block';
         section.style.visibility='visible';
