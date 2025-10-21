@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Installateur panneaux solaires (28) – Estimation claire & immédiate</title>
+  <meta name="description" content="Estimez votre production et vos économies en 1 minute. Étude claire, gratuite et sans engagement. Intégration CRM & tracking conversions." />  <!-- Fonts -->  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">  <style>
+    /* ========= THEME ========= */
+    :root{
+      --bg:#0b1220;           /* fond */
+      --bg2:#0e1528;          /* dégradé bas */
+      --panel:#0f172a;        /* cartes */
+      --panel2:#111827;       /* cartes secondaires */
+      --fg:#e5e7eb;           /* texte principal */
+      --muted:#9ca3af;        /* texte secondaire */
+      --accent:#22c55e;       /* CTA */
+      --accent-ink:#052e16;   /* texte sur CTA */
+      --border:rgba(255,255,255,.08);
+      --bad:#ef4444; --good:#10b981;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    /* ========= RESET ========= */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg) 50%,var(--bg2));color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.5}
+    img{max-width:100%;display:block}
+
+    /* ========= LAYOUT ========= */
+    .container{max-width:1120px;margin:0 auto;padding:0 16px}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.75);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid var(--border)}
+    .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo span{font-weight:800;background:linear-gradient(90deg,#22c55e,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent}
+    nav a{color:var(--muted);text-decoration:none;margin-left:16px}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center;padding:36px 0 26px}
+    .badge{display:inline-block;font-size:12px;color:var(--accent-ink);background:linear-gradient(90deg,#86efac,#bbf7d0);padding:6px 10px;border-radius:999px;font-weight:700}
+    .hero h1{font-size:36px;line-height:1.15;margin:10px 0 8px}
+    .lead{color:var(--muted);margin:0 0 14px}
+    .pill{border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px}
+
+    .section{padding:26px 0}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+    .card.secondary{background:var(--panel2)}
+    .cta{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:800}
+    .muted{color:var(--muted)}
+    .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .input{width:100%;padding:12px;border:1px solid var(--border);background:#0b1220;color:var(--fg);border-radius:10px}
+    .disclaimer{font-size:12px;color:var(--muted)}
+    .stars{--rating:4.7;display:inline-block;font-size:18px}
+    .stars::before{content:"★★★★★";letter-spacing:3px;background:linear-gradient(90deg,#fde68a calc(var(--rating)/5*100%),#1f2937 0);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);margin-top:26px}
+    @media (max-width:960px){.hero{grid-template-columns:1fr}}
+  </style>  <!-- Placeholders tracking (à remplacer) -->  <script>
+    // Renseigner vos vrais IDs avant mise en prod
+    const META_PIXEL_ID = "REPLACE_ME";   // ex: 1234567890
+    const GTAG_ID = "G-REPLACE";         // ex: G-XXXXXXX
+    const APP_SCRIPT_URL = "https://script.google.com/macros/s/REPLACE/exec"; // Web App Apps Script (POST)
+
+    // Événements démo (à câbler réellement si besoin)
+    function track(eventName, data={}){
+      console.log("track:", eventName, data);
+      // fbq('trackCustom', eventName, data);
+      // gtag('event', eventName, data);
+    }
+  </script></head>
+<body>
+  <header>
+    <div class="container bar">
+      <div class="logo">⚡ <span>Solution‑Solaire.pro</span></div>
+      <nav>
+        <a href="#simu">Simulateur</a>
+        <a href="#avis">Avis</a>
+        <a href="#faq">FAQ</a>
+        <a href="#devis">Devis</a>
+      </nav>
+    </div>
+  </header>  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="badge">Installateur local RGE — Eure‑et‑Loir (28)</span>
+        <h1>Estimez votre production & vos économies en 1 minute</h1>
+        <p class="lead">Étude claire, gratuite et sans engagement. Résultat immédiat + envoi par email. Intégration CRM & suivi des conversions.</p>
+        <div style="display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap">
+          <span class="pill">Garantie panneaux 25 ans</span>
+          <span class="pill">+ de 300 installations</span>
+          <span class="pill">Intervention 100% 28</span>
+        </div>
+        <a class="cta" href="#simu">Lancer la simulation</a>
+      </div>
+      <div class="card">
+        <strong>Pourquoi chez nous ?</strong>
+        <ul class="muted">
+          <li>Étude personnalisée selon votre conso & toiture</li>
+          <li>Matériel haut rendement, pose par équipe RGE</li>
+          <li>Accompagnement administratif complet</li>
+        </ul>
+        <div class="disclaimer">Pas de promesses irréalistes : résultats basés sur vos données.</div>
+      </div>
+    </section><!-- SIMULATEUR (simplifié) -->
+<section id="simu" class="section">
+  <h2>Simulateur rapide</h2>
+  <form class="card" onsubmit="event.preventDefault(); calculer(); track('SimulateurUtilise');">
+    <div class="row">
+      <label>Consommation annuelle (kWh)<br><input id="kwh" class="input" type="number" inputmode="numeric" min="500" step="50" required></label>
+      <label>Facture annuelle (€)<br><input id="bill" class="input" type="number" inputmode="numeric" min="100" step="10" required></label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label>Code postal<br><input id="cp" class="input" type="text" pattern="\d{5}" required placeholder="28000"></label>
+      <label>Email (pour recevoir l’estimation)<br><input id="email" class="input" type="email" placeholder="exemple@mail.fr"></label>
+    </div>
+    <button class="cta" style="margin-top:12px" type="submit">Calculer mon estimation</button>
+    <p class="disclaimer" style="margin-top:8px">Vos données restent confidentielles. Vous pouvez demander la suppression à tout moment.</p>
+  </form>
+
+  <div id="result" class="card" style="margin-top:12px;display:none">
+    <strong>Votre estimation</strong>
+    <div class="grid3" style="margin-top:10px">
+      <div><div class="muted">Puissance conseillée</div><div id="resPower" style="font-weight:800">—</div></div>
+      <div><div class="muted">Production annuelle</div><div id="resProd" style="font-weight:800">—</div></div>
+      <div><div class="muted">Économie estimée</div><div id="resSave" style="font-weight:800">—</div></div>
+    </div>
+    <div class="disclaimer" style="margin-top:8px">Estimation indicative. À confirmer après visite technique.</div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="cta" id="sendLead">Recevoir mon estimation</button>
+      <a class="pill" href="#devis">Je préfère être rappelé</a>
+    </div>
+    <div id="sendStatus" class="disclaimer"></div>
+  </div>
+</section>
+
+<!-- RASSURANCE / AVIS -->
+<section id="avis" class="section">
+  <h2>Ils nous recommandent</h2>
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px"><span class="stars" style="--rating:4.7"></span><strong>4,7 / 5</strong><span class="muted">— 148 avis vérifiés</span></div>
+    <div class="row" style="margin-top:12px">
+      <div class="card secondary">
+        <strong>Michel L. (Chartres)</strong>
+        <p class="muted">“Étude claire, pose rapide. Je suis l’autoproduction sur l’appli, conforme à l’estimation.”</p>
+      </div>
+      <div class="card secondary">
+        <strong>Sophie G. (Dreux)</strong>
+        <p class="muted">“Bon suivi administratif. Explications pédagogiques sur l’autoconsommation.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <h2>FAQ</h2>
+  <div class="card">
+    <details open><summary>La revente à 0,04 € est‑elle intéressante ?</summary><p class="muted">Nous privilégions l’autoconsommation (batterie virtuelle) car la revente seule est rarement rentable.</p></details>
+    <details><summary>Quel délai pour une installation ?</summary><p class="muted">En général 4 à 8 semaines selon la planification et l’administratif.</p></details>
+    <details><summary>Fournissez‑vous une estimation écrite ?</summary><p class="muted">Oui, envoyée par email après simulation puis confirmée sur visite.</p></details>
+  </div>
+</section>
+
+<!-- FORMULAIRE FINAL -->
+<section id="devis" class="section">
+  <h2>Recevoir une étude détaillée</h2>
+  <form class="card" onsubmit="event.preventDefault(); envoyerLeadFinal(); track('LeadDevis');">
+    <div class="row">
+      <label>Nom<br><input id="nom" class="input" required></label>
+      <label>Téléphone<br><input id="tel" class="input" inputmode="tel" placeholder="+33" required></label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label>Adresse<br><input id="adr" class="input"></label>
+      <label>Ville<br><input id="ville" class="input"></label>
+    </div>
+    <button class="cta" style="margin-top:12px">Être rappelé</button>
+    <p class="disclaimer">En envoyant ce formulaire, vous acceptez d’être contacté pour finaliser votre étude.</p>
+  </form>
+</section>
+
+  </main>  <footer>
+    <div class="container">© 2025 Solution‑Solaire.pro — Eure‑et‑Loir (28) • Mentions légales</div>
+  </footer>  <script>
+    // ====== LOGIQUE SIMU (simplifiée, prudente) ======
+    function calculer(){
+      const kwh = +document.getElementById('kwh').value || 0;
+      const bill = +document.getElementById('bill').value || 0;
+      const price = bill && kwh ? bill / kwh : 0.25; // €/kWh supposé
+      const targetSelf = 0.45;                        // taux autoconsommation
+      const prod = Math.round(kwh * targetSelf * 1.05); // production utile estimée
+      const power = Math.max(3, Math.min(9, Math.round(prod / 1200))); // 1200 kWh/kWc
+      const save = Math.round(prod * price);
+
+      document.getElementById('resPower').textContent = power + " kWc";
+      document.getElementById('resProd').textContent  = prod.toLocaleString('fr-FR') + " kWh/an";
+      document.getElementById('resSave').textContent  = save.toLocaleString('fr-FR') + " €/an";
+      document.getElementById('result').style.display = 'block';
+    }
+
+    // ====== ENVOI LEAD SIMU -> Apps Script (POST FormData) ======
+    document.getElementById('sendLead').addEventListener('click', async () => {
+      const fd = new FormData();
+      fd.append('kwh', document.getElementById('kwh').value);
+      fd.append('bill', document.getElementById('bill').value);
+      fd.append('cp',   document.getElementById('cp').value);
+      fd.append('email',document.getElementById('email').value);
+      fd.append('resPower',document.getElementById('resPower').textContent);
+      fd.append('resProd', document.getElementById('resProd').textContent);
+      fd.append('resSave', document.getElementById('resSave').textContent);
+      fd.append('event', 'SimulateurUtilise');
+
+      try{
+        if(APP_SCRIPT_URL.includes('REPLACE')) throw new Error('Configurez APP_SCRIPT_URL');
+        const r = await fetch(APP_SCRIPT_URL, {method:'POST', body:fd});
+        const txt = await r.text();
+        document.getElementById('sendStatus').textContent = 'Estimation envoyée.';
+        track('EstimationEnvoyee');
+        console.log('Sheets response:', txt);
+      }catch(e){
+        document.getElementById('sendStatus').textContent = 'Démo locale : configurez APP_SCRIPT_URL pour activer l’envoi.';
+        console.warn(e);
+      }
+    });
+
+    // ====== ENVOI LEAD FINAL ======
+    async function envoyerLeadFinal(){
+      const fd = new FormData();
+      fd.append('nom',  document.getElementById('nom').value);
+      fd.append('tel',  document.getElementById('tel').value);
+      fd.append('adr',  document.getElementById('adr').value);
+      fd.append('ville',document.getElementById('ville').value);
+      fd.append('event','LeadDevis');
+
+      try{
+        if(APP_SCRIPT_URL.includes('REPLACE')) throw new Error('Configurez APP_SCRIPT_URL');
+        const r = await fetch(APP_SCRIPT_URL, {method:'POST', body:fd});
+        const txt = await r.text();
+        alert('Merci ! Un conseiller vous rappelle rapidement.');
+        track('LeadDevisEnvoye');
+        console.log('Sheets response:', txt);
+      }catch(e){
+        alert('Démo locale : configurez APP_SCRIPT_URL pour activer l’envoi.');
+        console.warn(e);
+      }
+    }
+  </script></body>
+</html>
