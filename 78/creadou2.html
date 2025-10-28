@@ -28,14 +28,15 @@
 
   /  /* Léger overlay bleu pour effet eau */
   .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(14,165,233,0.18); /* bleu eau clair */
-    mix-blend-mode:overlay;
-    z-index:1;
-    pointer-events:none;
-  }
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(14,165,233,0.25); /* bleu plus présent */
+  mix-blend-mode:soft-light;        /* rendu plus doux et visible */
+  z-index:1;
+  pointer-events:none;
+}
+
  
 * Optionnel : léger fondu noir en bas pour la transition */
   .hero::after{
