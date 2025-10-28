@@ -26,7 +26,18 @@
     transform:scale(1.05);  /* zoom arrière visuel sans déformation */
   }
 
-  /* Optionnel : léger fondu noir en bas pour la transition */
+  /  /* Léger overlay bleu pour effet eau */
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(14,165,233,0.18); /* bleu eau clair */
+    mix-blend-mode:overlay;
+    z-index:1;
+    pointer-events:none;
+  }
+ 
+* Optionnel : léger fondu noir en bas pour la transition */
   .hero::after{
     content:"";
     position:absolute;
