@@ -134,6 +134,25 @@
     .field{flex-direction:column;align-items:stretch;}
     .field label{min-width:unset;}
   }
+
+.hero__copy{
+  position: relative;
+  z-index: 1; /* garantit que le texte reste au-dessus */
+}
+
+.hero__copy::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  top:auto;                /* on ne couvre pas tout le bloc */
+  height:200px;            /* zone du voile */
+  background:linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%);
+  filter:blur(12px);
+  border-radius:8px;
+  z-index:-1;              /* en dessous du texte */
+  pointer-events:none;
+}
+
 </style>
 </head>
 <body>
