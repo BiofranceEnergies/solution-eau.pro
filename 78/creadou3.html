@@ -10,6 +10,19 @@
     --maxw: 1200px;
     --hero-h-desktop: 88vh;
     --hero-h-mobile: 92vh;
+.logo-header {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+}
+@media (max-width: 900px) {
+  .logo-header {
+    top: 16px;
+    left: 16px;
+    height:40px; /* ou ajuster */
+  }
+}
 
     /* Couleurs */
     --ink:#f1f5f9;
@@ -163,6 +176,12 @@
 <body>
 
 <header class="hero" aria-label="Haut de page adoucisseur d’eau">
+  <a href="/" class="logo-header">
+  <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/LOGO%20SEP2.webp"
+       alt="Solution Eau Pro"
+       style="height:48px; width:auto; display:block;">
+</a>
+
   <img
     class="hero__img"
     src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp"
