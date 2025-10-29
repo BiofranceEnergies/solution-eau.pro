@@ -94,7 +94,7 @@
     .card{ margin:0 auto; max-width:92vw; }
   }
 
-  /* Bandeau supérieur détaché subtilement, centré sur 2 lignes */
+  /* Bandeau supérieur centré sur 2 lignes */
   .card__head{
     text-align:center;
     padding:18px 16px 14px;
@@ -112,7 +112,11 @@
 
   /* Champs compacts & premium */
   .field{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
-  .field label{ font-weight:700; min-width:140px; }
+  .field > label:first-child{
+    font-weight:700;
+    min-width:140px;
+  }
+
   .sel{
     flex:1; min-height:44px; padding:10px 12px;
     background: rgba(255,255,255,.06); color:var(--ink);
@@ -129,16 +133,21 @@
     box-shadow: 0 0 0 3px rgba(59,130,246,.35);
   }
 
-  .chk{
-    display:flex; align-items:center; gap:10px; color:var(--ink);
+  /* Correction du label interne (case à cocher) */
+  .field .chk{
+    min-width:unset;
     font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--ink);
   }
   .chk input{ width:18px; height:18px; }
 
   /* Ligne Confort alignée proprement */
   .field.is-inline{
     justify-content:flex-start;
-    gap:24px;
+    gap:16px;
   }
 
   /* CTA contrasté */
