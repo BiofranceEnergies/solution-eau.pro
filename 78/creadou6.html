@@ -220,6 +220,47 @@
     .field{ flex-direction:column; align-items:stretch; }
     .field label{ min-width:unset; }
   }
+
+  /* === OVERRIDES pour avoir la languette comme la 2ᵉ image === */
+.cardwrap{ position:relative; display:inline-block; }
+
+/* Languette large, centrée, fusion parfaite */
+.cardwrap__tab{
+  position:absolute;
+  left:50%;
+  bottom:calc(100% - 1px);        /* colle visuellement à la carte */
+  transform:translateX(-50%);
+  width:calc(100% - 36px);        /* ~marges de 18px de chaque côté */
+  padding:12px 18px;
+  text-align:center;
+  font-weight:800;
+  font-size:18px;                 /* taille proche de ton visuel */
+  line-height:1.1;
+  color:var(--cta-text,#fff);
+  background:linear-gradient(180deg,var(--cta-grad-top,#0b4fbf),var(--cta-grad-bot,#0a2e70));
+  border:1px solid var(--border,rgba(255,255,255,.22));
+  border-bottom:0;                /* on “soude” avec la carte */
+  border-top-left-radius:14px;
+  border-top-right-radius:14px;
+  box-shadow:0 14px 34px rgba(11,63,145,.30), inset 0 -1px 0 rgba(255,255,255,.20);
+  pointer-events:none;
+  z-index:2;                      /* au-dessus du fond, sous rien d’autre */
+}
+
+/* La carte perd juste sa bordure haute pour éviter toute couture */
+.cardwrap > .card{ border-top:0; }
+
+/* Responsive : garder le ratio visuel */
+@media (max-width:900px){
+  .cardwrap__tab{
+    width:calc(100% - 24px);
+    font-size:16px;
+    padding:10px 14px;
+    border-top-left-radius:12px;
+    border-top-right-radius:12px;
+  }
+}
+
 </style>
 </head>
 <body>
