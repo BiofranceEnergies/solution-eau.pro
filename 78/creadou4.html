@@ -89,6 +89,16 @@
 
   /* Zone gauche texte */
   .hero__copy{ max-width:680px; }
+
+  .hero__intro{
+  font-size:clamp(16px, 1.6vw, 20px);
+  color:#e0f2fe;
+  font-weight:600;
+  margin-bottom:10px;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);
+  text-wrap:balance;
+}
+
   .hero__copy h1{
     font-size:clamp(28px,4.4vw,44px);
     line-height:1.1; font-weight:900; margin-bottom:10px; text-wrap:balance;
@@ -222,11 +232,13 @@
 
   <div class="hero__inner">
     <!-- Texte gauche -->
-    <div class="hero__copy">
-      <h1>Votre adoucisseur d’eau installé</h1>
-      <p>Équipez votre maison d’un système de traitement de l’eau performant.
-      Estimez vos économies en quelques secondes.</p>
-    </div>
+  <div class="hero__copy">
+  <p class="hero__intro">Dites adieu au calcaire. Redécouvrez une eau pure et douce.</p>
+  <h1>Votre adoucisseur d’eau installé</h1>
+  <p>Équipez votre maison d’un système de traitement de l’eau performant.
+  Estimez vos économies en quelques secondes.</p>
+</div>
+
 
     <!-- Formulaire -->
     <aside class="card" aria-label="Formulaire d’estimation">
