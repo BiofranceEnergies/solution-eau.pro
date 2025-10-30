@@ -1100,31 +1100,61 @@ legend{
 <script>
 // ========= FAQ TOGGLE ROBUSTE =========
 (function(){
-  function setPanelHeight(panel){
-    if(!panel) return;
-    panel.style.maxHeight = 'none';
-    const h = panel.scrollHeight;
+ // -- remplace ces trois fonctions à l'intérieur de ton (function(){ ... }) --
+function setPanelHeight(panel){
+  if(!panel) return;
+
+  // Démarre à 0 pour garantir l'animation
+  panel.style.maxHeight = '0px';
+
+  // Laisse le temps au style "ouvert" (padding, etc.) de s'appliquer
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const h = panel.scrollHeight;          // hauteur réelle (contenu + padding)
     panel.style.maxHeight = h + 'px';
+
+    // En fin de transition, retire la limite pour éviter toute coupe
+    const onEnd = (e)=>{
+      if(e.propertyName !== 'max-height') return;
+      panel.style.maxHeight = 'none';
+      panel.removeEventListener('transitionend', onEnd);
+    };
+    panel.addEventListener('transitionend', onEnd);
+  }));
+}
+
+function closePanel(panel){
+  if(!panel) return;
+
+  // Si on était en 'none', fixe d'abord la hauteur courante pour fermer proprement
+  if (getComputedStyle(panel).maxHeight === 'none'){
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+    void panel.offsetHeight; // force reflow
   }
-  function closePanel(panel){
-    if(!panel) return;
-    panel.style.maxHeight = '0px';
-  }
-  function openItem(btn){
-    const panel = btn.nextElementSibling;
-    document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
-      if(b !== btn){
-        b.setAttribute('aria-expanded','false');
-        closePanel(b.nextElementSibling);
-        const it = b.closest('.faq__item');
-        if (it) it.classList.remove('is-open');
-      }
-    });
-    btn.setAttribute('aria-expanded','true');
-    const it = btn.closest('.faq__item');
-    if (it) it.classList.add('is-open');
-    setPanelHeight(panel);
-  }
+  panel.style.maxHeight = '0px';
+}
+
+function openItem(btn){
+  const panel = btn.nextElementSibling;
+
+  // Ferme les autres
+  document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
+    if(b !== btn){
+      b.setAttribute('aria-expanded','false');
+      const p = b.nextElementSibling;
+      closePanel(p);
+      const it = b.closest('.faq__item');
+      if (it) it.classList.remove('is-open');
+    }
+  });
+
+  // Ouvre l'item courant
+  btn.setAttribute('aria-expanded','true');
+  const it = btn.closest('.faq__item');
+  if (it) it.classList.add('is-open');
+
+  setPanelHeight(panel);
+}
+// -- fin remplacement --
 
   document.addEventListener('click', function(e){
     const btn = e.target.closest('.faq__btn');
