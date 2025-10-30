@@ -706,25 +706,36 @@ legend{
   <div class="testi__inner">
     <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
 
-    <div class="testi__rating" aria-label="Note moyenne">
-      <span class="testi__stars" aria-hidden="true">
-       <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-<svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-<svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-<svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-<!-- dernière étoile partielle -->
-<svg viewBox="0 0 24 24" fill="none">
-  <defs>
-    <linearGradient id="halfStar" x1="0" x2="100%" y1="0" y2="0">
-      <stop offset="75%" stop-color="var(--cta-grad-top)" />
-      <stop offset="75%" stop-color="transparent" />
-    </linearGradient>
-  </defs>
-  <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z" fill="url(#halfStar)" />
-</svg>
-      </span>
-      <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
-    </div>
+   <div class="testi__rating" aria-label="Note moyenne">
+  <span class="testi__stars" aria-hidden="true">
+    <!-- 4 étoiles pleines -->
+    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+    </svg>
+    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+    </svg>
+    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+    </svg>
+    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+    </svg>
+
+    <!-- 5e étoile partielle -->
+    <svg viewBox="0 0 24 24">
+      <defs>
+        <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="75%" stop-color="var(--cta-grad-top)" />
+          <stop offset="75%" stop-color="transparent" />
+        </linearGradient>
+      </defs>
+      <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+    </svg>
+  </span>
+
+  <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
+</div>
 
     <div class="testi__grid">
       <!-- [[AVIS #1]] -->
