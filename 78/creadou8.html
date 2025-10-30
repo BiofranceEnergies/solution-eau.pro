@@ -414,6 +414,123 @@ legend{
   .hero__copy{ padding-top: 72px; }
 }
 
+/* =========================================================
+   [[REPERE: FAQ / QUESTIONS FREQUENTES]]
+   ========================================================= */
+:root{
+  /* bleu de marque pour la FAQ ; reprend ton CTA */
+  --brand: var(--cta-grad-top, #0b4fbf);
+  --brand-ink:#0f172a;
+}
+
+.faq{
+  background:#f8fbff;
+  border-top:1px solid #eef2f7;
+  padding:80px 20px;
+  color:#0f172a;
+}
+.faq__inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+.faq header{
+  text-align:center;
+  margin-bottom:28px;
+}
+.faq h2{
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.15;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.faq .subtitle{
+  color:#64748b;
+}
+
+.faq__list{
+  display:grid;
+  gap:14px;
+  max-width:920px;
+  margin:26px auto 0;
+}
+
+.faq__item{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(2,6,23,.06), 0 1px 4px rgba(2,6,23,.04);
+  overflow:hidden;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.faq__item.is-open{
+  border-color:rgba(11,79,191,.35); /* bleu adouci */
+  box-shadow:0 8px 20px rgba(11,79,191,.10), 0 2px 6px rgba(2,6,23,.06);
+}
+
+.faq__btn{
+  width:100%;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 20px;
+  background:#fff;
+  border:0;
+  border-bottom:1px solid #e5e7eb; /* séparation header/panel */
+  font-weight:800;
+  font-size:1.05rem;
+  cursor:pointer;
+  color:var(--brand-ink);
+}
+.faq__btn:focus-visible{
+  outline:2px solid #93c5fd;
+  outline-offset:2px;
+}
+
+/* Hover = texte en bleu */
+.faq__btn:hover{
+  color:var(--brand);
+  background:linear-gradient(180deg,#f9fbff,#ffffff);
+}
+
+/* État ouvert = texte bleu + fond éclairci */
+.faq__btn[aria-expanded="true"]{
+  color:var(--brand);
+  background:linear-gradient(180deg,#f0f6ff,#ffffff);
+}
+
+.faq__chev{
+  flex:0 0 auto;
+  width:22px; height:22px;
+  transition:transform .2s ease, opacity .2s ease;
+  opacity:.75;
+}
+.faq__btn[aria-expanded="true"] .faq__chev{
+  transform:rotate(180deg);
+  opacity:1;
+}
+.faq__chev path{ stroke: currentColor; }
+
+.faq__panel{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
+  will-change:max-height;
+  background:linear-gradient(180deg,#ffffff,#f9fbff);
+}
+.faq__content{
+  padding:16px 20px 20px;
+  color:#475569;
+  line-height:1.55;
+}
+.faq__content p + p{ margin-top:10px; }
+
+@media (max-width:720px){
+  .faq{ padding:60px 16px; }
+  .faq__btn{ padding:16px; font-size:1rem; }
+  .faq__content{ padding:14px 16px 18px; }
+}
     
   </style>
 </head>
@@ -816,10 +933,165 @@ legend{
     </div>
   </div>
 </section>
+<!-- ================== SECTION FAQ ================== -->
+<!-- [[REPERE: FAQ]] -->
+<section id="faq" class="faq" aria-labelledby="faqTitle">
+  <div class="faq__inner">
+    <header>
+      <h2 id="faqTitle">Questions fréquentes</h2>
+      <p class="subtitle">Tout ce qu’il faut savoir avant d’installer un adoucisseur d’eau</p>
+    </header>
 
+    <div class="faq__list" role="list">
+      <!-- Q1 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq1">
+          <span>Comment est calculée mon estimation&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq1" class="faq__panel" role="region" aria-labelledby="faq1">
+          <div class="faq__content">
+            <p>Nous combinons la taille du foyer, la dureté d’eau locale et vos usages (ECS, linge, électroménager) pour estimer économies de produits, énergie évitée (moins de tartre) et coûts d’entretien.</p>
+          </div>
+        </div>
+      </article>
 
-    
+      <!-- Q2 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq2">
+          <span>Quel modèle d’adoucisseur pour mon foyer&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq2" class="faq__panel" role="region" aria-labelledby="faq2">
+          <div class="faq__content">
+            <p>Le dimensionnement (litres de résine) dépend du nombre d’occupants, du TH (°f) et des débits. Objectif&nbsp;: limiter les régénérations et garantir un débit confortable.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q3 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq3">
+          <span>Quelles économies puis-je espérer&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq3" class="faq__panel" role="region" aria-labelledby="faq3">
+          <div class="faq__content">
+            <p>Moins de détergents (jusqu’à −40&nbsp;%), baisse d’énergie sur la production d’eau chaude (moins de tartre), et appareils qui durent plus longtemps. ROI observé&nbsp;: 3 à 5 ans selon l’usage.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q4 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq4">
+          <span>Combien de temps pour l’installation&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq4" class="faq__panel" role="region" aria-labelledby="faq4">
+          <div class="faq__content">
+            <p>Pose près de l’arrivée d’eau avec évacuation de régénération et alimentation électrique. Durée typique&nbsp;: 1/2 à 1 journée selon accessibilité.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q5 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq5">
+          <span>Entretien&nbsp;: sel, réglages, coût d’usage&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq5" class="faq__panel" role="region" aria-labelledby="faq5">
+          <div class="faq__content">
+            <p>Quelques sacs de sel par an selon la consommation et un contrôle annuel conseillé. Les économies compensent généralement ces frais.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q6 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq6">
+          <span>L’eau adoucie est-elle potable&nbsp;? Et pour cuisiner&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq6" class="faq__panel" role="region" aria-labelledby="faq6">
+          <div class="faq__content">
+            <p>Oui si l’appareil est correctement réglé et entretenu. On peut conserver un point d’eau non adouci si souhaité.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q7 -->
+      <article class="faq__item" role="listitem">
+        <button class="faq__btn" aria-expanded="false" aria-controls="faq7">
+          <span>Et en cas de déménagement&nbsp;?</span>
+          <svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq7" class="faq__panel" role="region" aria-labelledby="faq7">
+          <div class="faq__content">
+            <p>L’adoucisseur peut être déposé et réinstallé dans votre nouveau logement. Prestation de dépose/repose possible.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+   
   </main>
+<script>
+<script>
+  // =========================================================
+  // [[REPERE: FAQ TOGGLE]]
+  // Accordéon accessible : un seul item ouvert à la fois
+  // =========================================================
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.faq__btn');
+    if(!btn) return;
+
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    const panel = btn.nextElementSibling;
+
+    // Ferme les autres
+    document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
+      if(b!==btn){
+        b.setAttribute('aria-expanded','false');
+        const p = b.nextElementSibling;
+        if(p) p.style.maxHeight = 0;
+        const it = b.closest('.faq__item');
+        if (it) it.classList.remove('is-open');
+      }
+    });
+
+    // Toggle courant
+    btn.setAttribute('aria-expanded', String(!expanded));
+    const item = btn.closest('.faq__item');
+    if (item) item.classList.toggle('is-open', !expanded);
+
+    if(panel){
+      panel.style.maxHeight = expanded ? 0 : (panel.scrollHeight + 'px');
+    }
+  });
+
+  // Ouvre le premier item au chargement (optionnel)
+  window.addEventListener('load', ()=>{
+    const first = document.querySelector('.faq__btn');
+    if(first) first.click();
+  });
+</script>
 
   <!-- =========================================================
        [[REPERE: FOOTER]]
