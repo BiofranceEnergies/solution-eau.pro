@@ -276,7 +276,81 @@
     .mvalue{ font-size:clamp(28px,4vw,44px); font-weight:900; color:#0b84ee; line-height:1; margin:6px 0 4px; }
     .mcard h3{ font-size:18px; font-weight:800; color:#0f172a; margin-bottom:6px; }
     .mcard p{ color:#64748b; }
-    
+
+    /* =========================================================
+   [[REPERE: TEMOIGNAGES / AVIS CLIENTS]]
+   ========================================================= */
+.testi{
+  background:#f8fbff;
+  border-top:1px solid #eef2f7;
+  padding:80px 20px;
+  color:#0f172a;
+}
+.testi__inner{
+  max-width:1100px;
+  margin:0 auto;
+  text-align:center;
+}
+.testi h2{
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.15;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.testi__rating{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:28px;
+  color:#64748b;
+  font-weight:700;
+}
+.testi__stars{
+  display:inline-flex; gap:4px; align-items:center;
+}
+.testi__stars svg{ width:18px; height:18px; }
+
+.testi__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  align-items:stretch;
+}
+@media (max-width:980px){
+  .testi__grid{ grid-template-columns:1fr; }
+}
+
+/* Carte d’avis */
+.tcard{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
+  padding:24px 22px;
+  text-align:left;
+}
+.tcard__top{
+  display:flex; align-items:center; gap:14px; margin-bottom:8px;
+}
+.avatar{
+  width:56px; height:56px; border-radius:50%;
+  background:#ffe9cc;
+  color:#111827;
+  font-weight:800; font-size:18px;
+  display:grid; place-items:center;
+}
+.tcard__name{ font-weight:800; color:#0f172a; }
+.tcard__loc{ color:#64748b; font-size:.95rem; }
+
+.tcard__stars{ margin:8px 0 10px; display:flex; gap:4px; }
+.tcard__quote{
+  color:#0f172a;
+  font-size:1.02rem;
+  line-height:1.5;
+}
+.tcard__quote em{ font-style:normal; color:#334155; }
+
       /* enleve leontour blanc*/
     fieldset{
   border:0;
@@ -602,6 +676,87 @@ legend{
         </div>
       </div>
     </section>
+<!-- ================== SECTION AVIS CLIENTS ================== -->
+<section id="testi" class="testi" aria-labelledby="testiTitle">
+  <div class="testi__inner">
+    <h2 id="testiTitle">Ils ont installé un adoucisseur avec nous</h2>
+
+    <div class="testi__rating" aria-label="Note moyenne">
+      <span class="testi__stars" aria-hidden="true">
+        <!-- 4,7/5 visuel -->
+        <svg viewBox="0 0 24 24" fill="#f59e0b" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#f59e0b" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#f59e0b" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#f59e0b" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#f59e0b" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+      </span>
+      <span><strong>4,7 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
+    </div>
+
+    <div class="testi__grid">
+      <!-- [[REPERE: AVIS #1]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">AL</div>
+          <div>
+            <div class="tcard__name">Agnès L.</div>
+            <div class="tcard__loc">Montfort-l’Amaury (78) · 05/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 5 étoiles -->
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        </div>
+        <p class="tcard__quote">“Eau plus douce, <em>linge sans traces</em> et finie la peau sèche. Explications claires et pose propre.”</p>
+      </article>
+
+      <!-- [[REPERE: AVIS #2]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">PD</div>
+          <div>
+            <div class="tcard__name">Pierre D.</div>
+            <div class="tcard__loc">Houdan (78) · 06/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 4 étoiles -->
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        </div>
+        <p class="tcard__quote">“Devis clair, <em>dimensionnement cohérent</em> et conso de sel raisonnable. Bon accompagnement.”</p>
+      </article>
+
+      <!-- [[REPERE: AVIS #3]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">SM</div>
+          <div>
+            <div class="tcard__name">Sonia M.</div>
+            <div class="tcard__loc">Les Essarts-le-Roi (78) · 04/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 5 étoiles -->
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        </div>
+        <p class="tcard__quote">“Le <em>coût et l’entretien</em> sont bien expliqués. Eau agréable, plus de traces sur la robinetterie.”</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+    
   </main>
 
   <!-- =========================================================
