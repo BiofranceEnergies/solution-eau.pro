@@ -349,6 +349,22 @@
   font-size:1.02rem;
   line-height:1.5;
 }
+/* Taille cohérente des étoiles dans les cartes */
+.tcard__stars svg{
+  width:18px;
+  height:18px;
+  display:block;
+  flex:0 0 18px;
+}
+
+@media (max-width:980px){
+  .tcard__stars svg{
+    width:16px;
+    height:16px;
+  }
+}
+
+    
 .tcard__quote em{ font-style:normal; color:#334155; }
 
       /* enleve leontour blanc*/
