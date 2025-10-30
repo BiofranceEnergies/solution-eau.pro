@@ -296,6 +296,25 @@ legend{
   white-space:nowrap; border:0;
 }
 
+    /* === MOBILE : logo + dégagement du texte === */
+@media (max-width: 560px){
+  .logo-header{
+    top: calc(8px + env(safe-area-inset-top));
+    left: 12px;
+  }
+  .logo-header img{
+    height: 36px;   /* était 48px */
+  }
+  .hero__copy{
+    padding-top: 64px; /* crée l’espace pour éviter tout chevauchement */
+  }
+}
+
+/* Option si écran très petit en hauteur (petits iPhone, split-screen) */
+@media (max-height: 680px){
+  .hero__copy{ padding-top: 72px; }
+}
+
     
   </style>
 </head>
