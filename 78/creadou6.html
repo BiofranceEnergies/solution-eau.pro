@@ -370,6 +370,45 @@
     font-size:18px; font-weight:800; color:#0f172a; margin-bottom:6px;
   }
   .mcard p{ color:#64748b; }
+
+  /* 1) Décaler la zone sombre derrière la carte (si tu ne touches pas l'image) */
+.card::before{
+  background: radial-gradient(320px 260px at 62% 18%, rgba(0,0,0,.62), transparent 72%);
+}
+
+/* — ou — déplacer l’image si tu préfères (choisis l’un OU l’autre) */
+.hero__img{ object-position: 60% 50%; }
+
+/* 2) Header de carte plus “premium” */
+.card__head{
+  padding: 24px 22px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05); /* léger highlight interne */
+}
+.card__head .t1{ font-size: 1.34rem; }
+.card__head .t2{ font-size: 1.08rem; opacity: .98; }
+
+/* 3) Détasser le corps */
+.card__body{ padding-top: 24px; }
+.field{ margin-bottom: 18px; }
+.field.is-inline{ margin-bottom: 20px; }
+
+/* 4) Select plus lisible */
+.sel{
+  background: rgba(255,255,255,.08);
+  color: #f8fafc;
+}
+.sel:focus{
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 0 0 4px rgba(59,130,246,.38);
+}
+
+/* 5) Case à cocher calée */
+.chk input{ position: relative; top: 1px; }
+
+/* 6) Overlay gauche un peu plus haut */
+.hero__copy::after{ height: 380px; }
+
 </style>
 </head>
 <body>
