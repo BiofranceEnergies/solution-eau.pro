@@ -532,28 +532,28 @@ legend{
   .faq__content{ padding:14px 16px 18px; }
 }
 
-/* === Correctifs FAQ : centrage + marges internes homogènes === */
+/* === Correctif final : centrage + respiration du texte FAQ === */
 
-/* Centre le titre même sans balise <header> englobante */
+/* Centre le titre */
 .faq h2{
   text-align:center;
 }
 
-/* Aligne les espacements du bouton et du contenu */
+/* Aligne les espacements du bouton et du texte */
 .faq__btn{
-  padding:20px 24px;           /* au lieu de 18px 20px */
+  padding:20px 24px;
 }
 
-/* Donne plus d’air au texte du panneau (gauche/droite identiques) */
-.faq__content{
-  padding:18px 24px 22px 24px; /* au lieu de 16px 20px 20px */
+/* Ajoute du "souffle" dans les réponses */
+.faq__panel{
+  padding:16px 24px 20px;
 }
 
-/* Optionnel : un léger padding latéral du bloc liste pour éviter
-   l’effet “bord collé” sur certains écrans très larges */
+/* Optionnel : évite que le bloc colle sur les bords sur très grands écrans */
 .faq__list{
   padding:0 4px;
 }
+
 
     
   </style>
