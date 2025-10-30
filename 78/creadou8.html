@@ -532,27 +532,62 @@ legend{
   .faq__content{ padding:14px 16px 18px; }
 }
 
-/* === Correctif final : centrage + respiration du texte FAQ === */
+/* === FAQ : version finale complète === */
 
 /* Centre le titre */
 .faq h2{
   text-align:center;
 }
 
-/* Aligne les espacements du bouton et du texte */
+/* Bouton FAQ */
 .faq__btn{
-  padding:20px 24px;
+  position: relative;
+  padding: 20px 44px 20px 24px; /* marge droite pour la flèche */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-/* Ajoute du "souffle" dans les réponses */
+/* Flèche animée à droite */
+.faq__btn::after{
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 18px; height: 18px;
+  transform: translateY(-50%) rotate(0deg);
+  opacity: .65;
+  transition: transform .2s ease, opacity .2s ease;
+  background: no-repeat center / contain 
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M8 10l4 4 4-4' stroke='%230b4fbf' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+.faq__btn:hover::after{ opacity: 1; }
+.faq__btn[aria-expanded='true']::after{
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Panneaux : fermés par défaut */
 .faq__panel{
-  padding:16px 24px 20px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px; /* pas de padding vertical fermé */
+  transition: max-height .25s ease, padding .2s ease;
 }
 
-/* Optionnel : évite que le bloc colle sur les bords sur très grands écrans */
-.faq__list{
-  padding:0 4px;
+/* Ouverts */
+.faq__item.is-open .faq__panel{
+  padding: 16px 24px 20px;
 }
+
+/* Liste globale : petit souffle latéral */
+.faq__list{
+  padding: 0 4px;
+}
+
 
 
     
