@@ -706,83 +706,93 @@ legend{
   <div class="testi__inner">
     <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
 
-   <div class="testi__rating" aria-label="Note moyenne">
-  <span class="testi__stars" aria-hidden="true">
-    <!-- 4 étoiles pleines -->
-    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
-      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-    </svg>
-    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
-      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-    </svg>
-    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
-      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-    </svg>
-    <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
-      <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-    </svg>
+    <!-- Moyenne globale -->
+    <div class="testi__rating" aria-label="Note moyenne">
+      <span class="testi__stars" aria-hidden="true">
+        <!-- 4 étoiles pleines -->
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <!-- 5e étoile partielle -->
+        <svg viewBox="0 0 24 24">
+          <defs>
+            <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="75%" stop-color="var(--cta-grad-top)" />
+              <stop offset="75%" stop-color="transparent" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+      </span>
+      <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
+    </div>
 
-    <!-- 5e étoile partielle -->
-    <svg viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="75%" stop-color="var(--cta-grad-top)" />
-          <stop offset="75%" stop-color="transparent" />
-        </linearGradient>
-      </defs>
-      <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-    </svg>
-  </span>
-
-  <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
-</div>
-
+    <!-- Témoignages -->
     <div class="testi__grid">
-      <!-- [[AVIS #1]] -->
+
+      <!-- [[AVIS #1 : Claire R.]] -->
       <article class="tcard" aria-label="Avis client">
         <div class="tcard__top">
           <div class="avatar" aria-hidden="true">CR</div>
           <div>
-            <div class="tcard__name">Jérôme T.</div>
+            <div class="tcard__name">Claire R.</div>
             <div class="tcard__loc">Rambouillet (78) · 07/2025</div>
           </div>
         </div>
         <div class="tcard__stars" aria-hidden="true">
           <!-- 5 étoiles -->
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
         </div>
         <p class="tcard__quote">“J’ai fait la simulation un soir, <em>résultat immédiat</em> : économies et coût d’installation en 1 minute.  
         On a décidé de se lancer, et depuis l’eau est douce, plus aucune démangeaison pour mon fils sujet à l’eczéma.  
         Franchement, un vrai confort au quotidien.”</p>
       </article>
 
-      <!-- [[AVIS #2]] -->
+      <!-- [[AVIS #2 : Jérôme T.]] -->
       <article class="tcard" aria-label="Avis client">
         <div class="tcard__top">
           <div class="avatar" aria-hidden="true">JT</div>
           <div>
-            <div class="tcard__name">Claire R.</div>
+            <div class="tcard__name">Jérôme T.</div>
             <div class="tcard__loc">Maule (78) · 05/2025</div>
           </div>
         </div>
         <div class="tcard__stars" aria-hidden="true">
           <!-- 4,5 étoiles -->
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" opacity=".4"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <!-- 5e étoile demi -->
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="50%" stop-color="var(--cta-grad-top)" />
+                <stop offset="50%" stop-color="transparent" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+          </svg>
         </div>
         <p class="tcard__quote">“J’ai eu toutes les infos en quelques clics, sans démarchage.  
         Le devis était clair, et deux semaines plus tard <em>l’adoucisseur était posé</em>.  
-        Je vois la différence : moins de calcaire, linge plus souple et moins de produits d’entretien.”</p>
+        Je vois la différence : linge plus souple, moins de produits et plus d’économies.”</p>
       </article>
 
-      <!-- [[AVIS #3]] -->
+      <!-- [[AVIS #3 : Nadine V.]] -->
       <article class="tcard" aria-label="Avis client">
         <div class="tcard__top">
           <div class="avatar" aria-hidden="true">NV</div>
@@ -793,15 +803,16 @@ legend{
         </div>
         <div class="tcard__stars" aria-hidden="true">
           <!-- 4 étoiles -->
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1 3.1-6.2 3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
         </div>
         <p class="tcard__quote">“J’ai utilisé le simulateur par curiosité, et dès le lendemain un technicien est venu faire <em>l’analyse de mon eau</em>.  
         Résultat : je me suis équipée, et fini les traces de calcaire sur la paroi de douche.  
         L’eau est plus agréable, et la salle de bain reste propre plus longtemps.”</p>
       </article>
+
     </div>
   </div>
 </section>
