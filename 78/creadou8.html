@@ -588,6 +588,11 @@ legend{
   padding: 0 4px;
 }
 
+/* Sécurise le calcul de hauteur pendant l'animation */
+.faq__panel{
+  box-sizing: border-box;   /* que la hauteur tienne compte du padding */
+  overflow: hidden;
+}
 
 
     
@@ -1093,44 +1098,70 @@ legend{
   </main>
 
 <script>
-  // =========================================================
-  // [[REPERE: FAQ TOGGLE]]
-  // Accordéon accessible : un seul item ouvert à la fois
-  // =========================================================
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.faq__btn');
-    if(!btn) return;
-
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
+// ========= FAQ TOGGLE ROBUSTE =========
+(function(){
+  function setPanelHeight(panel){
+    if(!panel) return;
+    panel.style.maxHeight = 'none';
+    const h = panel.scrollHeight;
+    panel.style.maxHeight = h + 'px';
+  }
+  function closePanel(panel){
+    if(!panel) return;
+    panel.style.maxHeight = '0px';
+  }
+  function openItem(btn){
     const panel = btn.nextElementSibling;
-
-    // Ferme les autres
     document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
-      if(b!==btn){
+      if(b !== btn){
         b.setAttribute('aria-expanded','false');
-        const p = b.nextElementSibling;
-        if(p) p.style.maxHeight = 0;
+        closePanel(b.nextElementSibling);
         const it = b.closest('.faq__item');
         if (it) it.classList.remove('is-open');
       }
     });
+    btn.setAttribute('aria-expanded','true');
+    const it = btn.closest('.faq__item');
+    if (it) it.classList.add('is-open');
+    setPanelHeight(panel);
+  }
 
-    // Toggle courant
-    btn.setAttribute('aria-expanded', String(!expanded));
-    const item = btn.closest('.faq__item');
-    if (item) item.classList.toggle('is-open', !expanded);
-
-    if(panel){
-      panel.style.maxHeight = expanded ? 0 : (panel.scrollHeight + 'px');
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.faq__btn');
+    if(!btn) return;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    const panel = btn.nextElementSibling;
+    const it = btn.closest('.faq__item');
+    if(isOpen){
+      btn.setAttribute('aria-expanded','false');
+      if (it) it.classList.remove('is-open');
+      closePanel(panel);
+    }else{
+      openItem(btn);
     }
   });
 
-  // Ouvre le premier item au chargement (optionnel)
-  window.addEventListener('load', ()=>{
-    const first = document.querySelector('.faq__btn');
-    if(first) first.click();
+  window.addEventListener('load', function(){
+    const firstBtn = document.querySelector('.faq__btn');
+    if(firstBtn){ openItem(firstBtn); }
   });
+
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=>{
+      setPanelHeight(btn.nextElementSibling);
+    });
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function(){
+      document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=>{
+        setPanelHeight(btn.nextElementSibling);
+      });
+    });
+  }
+})();
 </script>
+
 
   <!-- =========================================================
        [[REPERE: FOOTER]]
