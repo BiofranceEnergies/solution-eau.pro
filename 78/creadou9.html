@@ -135,6 +135,8 @@
   text-wrap: balance;
   text-shadow: 0 2px 8px rgba(0,0,0,.35);
   max-width: 680px;
+  color: #f8fafc;
+   
 }
 .hero__copy h1 em{
   font-style: normal;
@@ -151,7 +153,8 @@
   color: #e2e8f0;           /* texte clair lisible sur le fond */
   font-weight: 600;
   text-shadow: 0 1px 3px rgba(0,0,0,.35);
-  margin-bottom: 14px;
+  margin-top: 14px;
+
 }
 
 
@@ -178,6 +181,21 @@
       overflow:hidden; z-index:2;
     }
     /* Vignette locale pour “éteindre” l’arrière-plan */
+    /* === Centrage vertical du panneau simulateur === */
+.card{
+  align-self: center;            /* aide le centrage dans le flex parent */
+  margin-top: 4vh;               /* descend légèrement le panneau sur grand écran */
+  transform: translateY(10px);   /* ajustement fin du centrage visuel */
+}
+
+/* Sur mobile : on annule ces décalages */
+@media (max-width: 900px){
+  .card{
+    margin-top: 0;
+    transform: none;
+  }
+}
+
     .card::before{
       content:""; position:absolute; inset:-48px; z-index:-1;
       background: radial-gradient(320px 260px at 62% 18%, rgba(0,0,0,.62), transparent 72%);
