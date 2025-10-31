@@ -126,12 +126,34 @@
       text-shadow:0 1px 3px rgba(0,0,0,.45);
       text-wrap:balance;
     }
-    .hero__copy h1{
-      font-size:clamp(32px,5vw,56px);
-      line-height:1.05; font-weight:900; margin-bottom:12px; text-wrap:balance;
-      text-shadow:0 2px 8px rgba(0,0,0,.35);
-    }
+   .hero__copy h1{
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.15;
+  font-weight: 800;
+  margin: 12px 0 14px;
+  letter-spacing: -0.3px;
+  text-wrap: balance;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  max-width: 680px;
+}
+.hero__copy h1 em{
+  font-style: normal;
+  color: var(--cta-grad-top, #0b4fbf);
+}
+
     .hero__copy p{ color:var(--muted); max-width:60ch; }
+
+    /* Uniformisation intro + lead (même taille/couleur/espacement) */
+.hero__intro,
+.hero__copy .lead{
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.5;
+  color: #e2e8f0;           /* texte clair lisible sur le fond */
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  margin-bottom: 14px;
+}
+
 
     /* Voile de lisibilité sous le texte */
     .hero__copy::after{
