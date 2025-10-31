@@ -690,6 +690,22 @@ legend{
   margin-top:10px;
   opacity:.9;
 }
+/* ===== Bas de footer (Mentions légales intégrées) ===== */
+.footer-legal{
+  text-align:center;
+  margin-top:32px;
+  font-size:13px;
+  color:rgba(255,255,255,.8);
+}
+.footer-legal span{
+  cursor:pointer;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.footer-legal span:hover{
+  color:#fff;
+  text-decoration:underline;
+}
 
 /* Mobile */
 @media(max-width:760px){
@@ -1202,12 +1218,7 @@ legend{
 </section>
 
  <!-- ===== Mentions légales (lien + séparateur) ===== -->
-<div class="content-card">
-  <div id="mentions-legales-container">
-    <span id="mentions-legales-link">Mentions légales</span>
-  </div>
-  <hr class="sep">
-</div>
+
 
 <!-- ===== Popup Mentions (unique) ===== -->
 <div id="mentions-popup" role="dialog" aria-modal="true" aria-labelledby="mentions-title">
@@ -1357,11 +1368,17 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="footer-cta__right">
       <h2 id="footerTitle">Un technicien local à votre service</h2>
       <p>Pose propre, mise en service incluse et garantie constructeur.</p>
-      <a href="#lead-form" class="cta">💧 Demander mon étude en ligne</a>
+      <a href="#lead-form" class="cta">💧 Je fais ma simulation</a>
       <div class="footer-cta__trust">Rappel sous 24 h – Pas de démarchage</div>
     </div>
   </div>
+
+  <!-- Lien Mentions légales intégré dans le même bandeau -->
+  <div class="footer-legal">
+    <span id="mentions-legales-link">Mentions légales</span>
+  </div>
 </footer>
+
 
 
 </body>
