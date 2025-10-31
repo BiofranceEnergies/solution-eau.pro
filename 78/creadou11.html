@@ -251,7 +251,10 @@
     }
     .sel:hover{ background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.36); }
     .sel:focus{ border-color:rgba(255,255,255,.55); box-shadow:0 0 0 4px rgba(59,130,246,.38); }
-
+    .sel option {
+     color: #0f172a;     /* Met le texte en noir/bleu foncé */
+     background: #ffffff; /* Force un fond blanc pour la liste */
+    }
     .chk{ display:flex; align-items:center; gap:8px; font-weight:600; color:var(--ink); }
     .chk input{ width:18px; height:18px; position:relative; top:1px; }
 
