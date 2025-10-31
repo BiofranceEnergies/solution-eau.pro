@@ -3,6 +3,9 @@
 <head>
   <!-- =========================================================
        [[REPERE: META/HEAD]]
+       - <title> : titre SEO
+       - <meta name="description"> : description
+       - <link rel="preload"> : images critiques à ajuster si tu changes le visuel
        ========================================================= -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -18,6 +21,7 @@
   <style>
     /* =================================================================
        [[REPERE: VARIABLES]]
+       - Palette, hauteurs, largeurs max
        ================================================================= */
     :root{
       --maxw: 1200px;
@@ -35,14 +39,6 @@
       --cta-grad-top:#0b4fbf;
       --cta-grad-bot:#0a2e70;
       --cta-text:#ffffff;
-
-      /* Résultats */
-      --card-bg:#0b1220;
-      --card-br:#1e293b;
-      --card-ink:#e5eefb;
-      --sub:#93a7c3;
-      --ok:#22c55e;
-      --ring:#93c5fd;
     }
 
     /* =================================================================
@@ -57,6 +53,7 @@
       text-rendering:optimizeLegibility;
     }
 
+    /* Skipper accessibilité */
     .skip-link{
       position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
@@ -67,6 +64,7 @@
 
     /* =================================================================
        [[REPERE: LOGO]]
+       - Change l’URL de l’image si besoin
        ================================================================= */
     .logo-header{
       position:absolute; top:24px; left:24px; z-index:10; display:block;
@@ -79,6 +77,9 @@
 
     /* =================================================================
        [[REPERE: HERO]]
+       - Image de fond : .hero__img (object-position si tu veux recadrer)
+       - Textes à gauche : .hero__copy
+       - Carte formulaire : .card
        ================================================================= */
     header.hero{
       position:relative; isolation:isolate; overflow:hidden;
@@ -116,6 +117,7 @@
     @media (max-width:1100px){ .hero__inner{ gap:24px; } }
     @media (max-width:900px){ .hero__inner{ grid-template-columns:1fr; gap:20px; } }
 
+    /* --- Texte gauche --- */
     .hero__copy{ max-width:680px; position:relative; z-index:1; }
     .hero__intro{
       font-size:clamp(16px,1.6vw,20px);
@@ -124,33 +126,39 @@
       text-shadow:0 1px 3px rgba(0,0,0,.45);
       text-wrap:balance;
     }
-    .hero__copy h1{
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.15;
-      font-weight: 800;
-      margin: 12px 0 14px;
-      letter-spacing: -0.3px;
-      text-wrap: balance;
-      text-shadow: 0 2px 8px rgba(0,0,0,.35);
-      max-width: 680px;
-      color: #f8fafc;
-    }
-    .hero__copy h1 em{
-      font-style: normal;
-      color: var(--cta-grad-top, #0b4fbf);
-    }
+   .hero__copy h1{
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.15;
+  font-weight: 800;
+  margin: 12px 0 14px;
+  letter-spacing: -0.3px;
+  text-wrap: balance;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  max-width: 680px;
+  color: #f8fafc;
+   
+}
+.hero__copy h1 em{
+  font-style: normal;
+  color: var(--cta-grad-top, #0b4fbf);
+}
+
     .hero__copy p{ color:var(--muted); max-width:60ch; }
 
-    .hero__intro,
-    .hero__copy .lead{
-      font-size: clamp(17px, 1.6vw, 20px);
-      line-height: 1.5;
-      color: #e2e8f0;
-      font-weight: 600;
-      text-shadow: 0 1px 3px rgba(0,0,0,.35);
-      margin-top: 14px;
-    }
+    /* Uniformisation intro + lead (même taille/couleur/espacement) */
+.hero__intro,
+.hero__copy .lead{
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.5;
+  color: #e2e8f0;           /* texte clair lisible sur le fond */
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  margin-top: 14px;
 
+}
+
+
+    /* Voile de lisibilité sous le texte */
     .hero__copy::after{
       content:"";
       position:absolute; left:-8px; right:-8px; top:-8px;
@@ -169,29 +177,71 @@
       border-radius:22px;
       backdrop-filter:blur(6px);
       -webkit-backdrop-filter:blur(6px);
-      box-shadow:
-        0 18px 60px rgba(0,0,0,.55),
-        0 6px 16px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.06);
+     box-shadow:
+  0 18px 60px rgba(0,0,0,.55),
+  0 6px 16px rgba(0,0,0,.35),
+  inset 0 1px 0 rgba(255,255,255,.06);
       overflow:hidden; z-index:2;
-      align-self:center;
-      margin-top: 4vh;
-      transform: translateY(10px);
     }
-    @media (max-width: 900px){
-      .card{ margin-top: 0; transform: none; }
+    /* Vignette locale pour “éteindre” l’arrière-plan */
+    /* === Centrage vertical du panneau simulateur === */
+.card{
+  align-self: center;            /* aide le centrage dans le flex parent */
+  margin-top: 4vh;               /* descend légèrement le panneau sur grand écran */
+  transform: translateY(10px);   /* ajustement fin du centrage visuel */
+}
+
+/* Sur mobile : on annule ces décalages */
+@media (max-width: 900px){
+  .card{
+    margin-top: 0;
+    transform: none;
+  }
+}
+.card__head h2,
+.card__head .t1{
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: #f3f6fa;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+  margin-bottom: 6px;
+}
+
+.card__head .t2{
+  color: rgba(255,255,255,.75);
+  font-size: 15px;
+  letter-spacing: .2px;
+}
+
+    .card::before{
+      content:""; position:absolute; inset:-48px; z-index:-1;
+      background: radial-gradient(320px 260px at 62% 18%, rgba(0,0,0,.62), transparent 72%);
+      pointer-events:none;
     }
+    @media (max-width:900px){
+      .card{ margin:0 auto; max-width:640px; width:100%; background:#0b1220; }
+      .card::before{ display:none; }
+    }
+
     .card__head{
-      text-align:center;
-      padding:24px 22px 18px;
-      background:linear-gradient(180deg, rgba(15,23,42,.98), rgba(11,18,32,.96));
-      border-bottom:1px solid rgba(255,255,255,.18);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  text-align:center;
+  padding:24px 22px 18px;
+  background:linear-gradient(180deg, rgba(15,23,42,.98), rgba(11,18,32,.96));
+  border-bottom:1px solid rgba(255,255,255,.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+    .card__head .t1{
+      display:block; font-weight:800; font-size:1.34rem; color:#fff; letter-spacing:.1px;
+      text-shadow:0 1px 2px rgba(0,0,0,.45);
     }
-    .card__head .t1{ display:block; font-weight:800; font-size:1.34rem; color:#fff; letter-spacing:.1px; text-shadow:0 1px 2px rgba(0,0,0,.45); }
-    .card__head .t2{ display:block; font-size:1.08rem; color:#fff; opacity:.98; margin-top:2px; }
+    .card__head .t2{
+      display:block; font-size:1.08rem; color:#fff; opacity:.98; margin-top:2px;
+    }
     .card__body{ padding:24px 20px 20px; }
 
+    /* Champs */
     .field{ display:flex; align-items:center; gap:12px; margin-bottom:18px; }
     .field label{ font-weight:700; color:var(--ink); font-size:15px; }
     .sel{
@@ -208,6 +258,7 @@
     .field.is-inline{ justify-content:flex-start; gap:10px; }
     .field.is-inline label:first-child{ min-width:auto; }
 
+    /* CTA */
     .cta{
       display:block; width:100%; margin-top:12px;
       height:56px; border-radius:18px;
@@ -220,7 +271,7 @@
     }
     .cta:hover{ filter:brightness(1.06); transform:translateY(-2px); }
     .cta:active{ transform:translateY(0); filter:brightness(1.02); }
-    .cta:focus-visible{ outline:2px solid var(--ring); outline-offset:3px; }
+    .cta:focus-visible{ outline:2px solid #93c5fd; outline-offset:3px; }
     @media (prefers-reduced-motion:reduce){ .cta{ transition:none; } }
 
     @media (max-width:520px){
@@ -229,76 +280,8 @@
     }
 
     /* =================================================================
-       [[REPERE: BLOC RESULTATS]]
-       - Lovable 2025: en-tête + 4 cartes
-       ================================================================= */
-    .results{
-      background: #0a1324;
-      border-top: 1px solid #0f1c33;
-      border-bottom: 1px solid #0f1c33;
-      padding: 60px 20px;
-    }
-    .results__inner{
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .results__title{
-      font-size: clamp(26px,4vw,40px);
-      font-weight: 900;
-      letter-spacing: -.2px;
-      color: #f1f5f9;
-      margin-bottom: 6px;
-      text-wrap: balance;
-    }
-    .results__subtitle{
-      color: #9fb7d8;
-      font-weight: 600;
-      letter-spacing: .2px;
-      margin-bottom: 22px;
-    }
-    .results__note{
-      color:#7b93b6; font-size:13px; margin-top:10px;
-    }
-    .rgrid{
-      display:grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 16px;
-      align-items: stretch;
-      margin-top: 18px;
-    }
-    @media (max-width: 1100px){ .rgrid{ grid-template-columns: repeat(2,1fr);} }
-    @media (max-width: 720px){ .rgrid{ grid-template-columns: 1fr; } }
-
-    .rcard{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 18px;
-      padding: 18px 16px 16px;
-      text-align: left;
-      box-shadow:
-        0 10px 28px rgba(0,0,0,.30),
-        inset 0 1px 0 rgba(255,255,255,.06);
-    }
-    .ricon{
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: linear-gradient(180deg, var(--cta-grad-top), var(--cta-grad-bot));
-      color:#fff;
-      box-shadow: 0 6px 16px rgba(11,79,191,.35);
-    }
-    .rlabel{
-      margin-top:10px; color:#cdd8ea; font-weight:800; letter-spacing:.2px; font-size:14px;
-    }
-    .rvalue{
-      margin-top:6px; color:#f8fbff; font-weight:900; font-size: clamp(22px,3.2vw,28px);
-      line-height:1; letter-spacing:.2px;
-    }
-    .rhelp{ margin-top:6px; color:#9fb7d8; font-size: 13px; line-height:1.45; }
-
-    /* =================================================================
        [[REPERE: SECTIONS]]
+       - Étapes, Bénéfices, Process, Métriques
        ================================================================= */
     .steps{ padding:80px 20px 40px; color:#0f172a; background:#fff; }
     .steps__inner{ max-width:1100px; margin:0 auto; text-align:center; }
@@ -354,121 +337,485 @@
     .mcard h3{ font-size:18px; font-weight:800; color:#0f172a; margin-bottom:6px; }
     .mcard p{ color:#64748b; }
 
-    /* ================== AVIS CLIENTS ================== */
-    .testi{ background:#ffffff; border-top:1px solid #eef2f7; padding:80px 20px; color:#0f172a; }
-    .testi__inner{ max-width:1100px; margin:0 auto; text-align:center; }
-    .testi h2{ font-size:clamp(28px,4.2vw,44px); line-height:1.15; font-weight:900; margin-bottom:8px; }
-    .testi__rating{ display:flex; gap:10px; align-items:center; justify-content:center; margin-bottom:28px; color:#64748b; font-weight:700; }
-    .testi__stars{ display:inline-flex; gap:4px; align-items:center; }
-    .testi__stars svg{ width:18px; height:18px; }
-    .testi__stars svg path{ fill:var(--cta-grad-top); }
-    .testi__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch; }
-    @media (max-width:980px){ .testi__grid{ grid-template-columns:1fr; } }
-    .tcard{ background:#fff; border:1px solid #e5e7eb; border-radius:18px; box-shadow:0 10px 28px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04); padding:24px 22px; text-align:left; }
-    .tcard__top{ display:flex; align-items:center; gap:14px; margin-bottom:8px; }
-    .avatar{ width:56px; height:56px; border-radius:50%; background:#ffe9cc; color:#111827; font-weight:800; font-size:18px; display:grid; place-items:center; }
-    .tcard__name{ font-weight:800; color:#0f172a; }
-    .tcard__loc{ color:#64748b; font-size:.95rem; }
-    .tcard__stars{ margin:8px 0 10px; display:flex; gap:4px; }
-    .tcard__quote{ color:#0f172a; font-size:1.02rem; line-height:1.5; }
-    .tcard__stars svg{ width:18px; height:18px; display:block; flex:0 0 18px; }
-    .tcard__stars svg path{ fill:var(--cta-grad-top); }
-    @media (max-width:980px){ .tcard__stars svg{ width:16px; height:16px; } }
-    .tcard__quote em{ font-style:normal; color:#334155; }
+    /* =========================================================
+   [[REPERE: TEMOIGNAGES / AVIS CLIENTS]]
+   ========================================================= */
+.testi{
+  background:#ffffff;   /* fond blanc pur */
+  border-top:1px solid #eef2f7;
+  padding:80px 20px;
+  color:#0f172a;
+}
+.testi__inner{
+  max-width:1100px;
+  margin:0 auto;
+  text-align:center;
+}
+.testi h2{
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.15;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.testi__rating{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:28px;
+  color:#64748b;
+  font-weight:700;
+}
+.testi__stars{
+  display:inline-flex; gap:4px; align-items:center;
+}
+.testi__stars svg{ width:18px; height:18px; }
 
-    /* Accessibilité / champs */
-    fieldset{ border:0; padding:0; margin:0; min-inline-size:unset; }
-    legend{ padding:0; margin:0; }
-    .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.testi__stars svg path{
+  fill:var(--cta-grad-top);
+}
+    
+.testi__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  align-items:stretch;
+}
+@media (max-width:980px){
+  .testi__grid{ grid-template-columns:1fr; }
+}
 
-    /* === MOBILE : logo + texte === */
-    @media (max-width: 560px){
-      .logo-header{ top: calc(8px + env(safe-area-inset-top)); left: 12px; }
-      .logo-header img{ height: 36px; }
-      .hero__copy{ padding-top: 64px; }
-    }
-    @media (max-height: 680px){ .hero__copy{ padding-top: 72px; } }
+/* Carte d’avis */
+.tcard{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
+  padding:24px 22px;
+  text-align:left;
+}
+.tcard__top{
+  display:flex; align-items:center; gap:14px; margin-bottom:8px;
+}
+.avatar{
+  width:56px; height:56px; border-radius:50%;
+  background:#ffe9cc;
+  color:#111827;
+  font-weight:800; font-size:18px;
+  display:grid; place-items:center;
+}
+.tcard__name{ font-weight:800; color:#0f172a; }
+.tcard__loc{ color:#64748b; font-size:.95rem; }
 
-    /* ================== FAQ ================== */
-    :root{
-      --brand: var(--cta-grad-top, #0b4fbf);
-      --brand-ink:#0f172a;
-    }
-    .faq{ background:#f8fbff; border-top:1px solid #eef2f7; padding:80px 20px; color:#0f172a; }
-    .faq__inner{ max-width:1100px; margin:0 auto; }
-    .faq header{ text-align:center; margin-bottom:28px; }
-    .faq h2{ font-size:clamp(28px,4.2vw,44px); line-height:1.15; font-weight:900; margin-bottom:6px; }
-    .faq .subtitle{ color:#64748b; }
-    .faq__list{ display:grid; gap:14px; max-width:920px; margin:26px auto 0; }
-    .faq__item{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; box-shadow:0 6px 18px rgba(2,6,23,.06), 0 1px 4px rgba(2,6,23,.04); overflow:hidden; transition:border-color .2s ease, box-shadow .2s ease; }
-    .faq__item.is-open{ border-color:rgba(11,79,191,.35); box-shadow:0 8px 20px rgba(11,79,191,.10), 0 2px 6px rgba(2,6,23,.06); }
-    .faq__btn{ width:100%; text-align:left; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 20px; background:#fff; border:0; border-bottom:1px solid #e5e7eb; font-weight:800; font-size:1.05rem; cursor:pointer; color:var(--brand-ink); position:relative; }
-    .faq__btn:focus-visible{ outline:2px solid #93c5fd; outline-offset:2px; }
-    .faq__btn:hover{ color:var(--brand); background:linear-gradient(180deg,#f9fbff,#ffffff); }
-    .faq__btn[aria-expanded="true"]{ color:var(--brand); background:linear-gradient(180deg,#f0f6ff,#ffffff); }
-    .faq__chev{ flex:0 0 auto; width:22px; height:22px; transition:transform .2s ease, opacity .2s ease; opacity:.75; }
-    .faq__btn[aria-expanded="true"] .faq__chev{ transform:rotate(180deg); opacity:1; }
-    .faq__chev path{ stroke: currentColor; }
-    .faq__panel{ max-height:0; overflow:hidden; transition:max-height .25s ease; will-change:max-height; background:linear-gradient(180deg,#ffffff,#f9fbff); box-sizing:border-box; padding:0 24px; }
-    .faq__content{ padding:16px 20px 20px; color:#475569; line-height:1.55; }
-    .faq__content p + p{ margin-top:10px; }
-    @media (max-width:720px){
-      .faq{ padding:60px 16px; }
-      .faq__btn{ padding:16px; font-size:1rem; }
-      .faq__content{ padding:14px 16px 18px; }
-    }
+.tcard__stars{ margin:8px 0 10px; display:flex; gap:4px; }
+.tcard__quote{
+  color:#0f172a;
+  font-size:1.02rem;
+  line-height:1.5;
+}
+/* Taille cohérente des étoiles dans les cartes */
+.tcard__stars svg{
+  width:18px;
+  height:18px;
+  display:block;
+  flex:0 0 18px;
+}
+/* Couleur bleue cohérente pour les étoiles */
+.tcard__stars svg path{
+  fill:var(--cta-grad-top);
+}
 
-    /* ===== Mentions légales ===== */
-    #mentions-legales-container{ width:100%; text-align:center; background:linear-gradient(180deg, #0b4fbf, #0a2e70); color:#fff; padding:18px 0 14px; margin:0; }
-    #mentions-legales-link{ color:#e0f2ff; text-decoration:none; cursor:pointer; font-size:14px; font-weight:500; letter-spacing:.3px; }
-    #mentions-legales-link:hover{ color:#ffffff; text-decoration:underline; }
-    #mentions-legales-link{color:#94a3b8;text-decoration:none;cursor:pointer;font-size:13px}
-    #mentions-legales-link:hover{color:#64748b;text-decoration:underline}
-    #mentions-popup{ display:none;position:fixed;bottom:60px;left:50%;transform:translateX(-50%); width:340px;max-width:95vw;background:#fff;color:#111827;border-radius:13px; box-shadow:0 8px 32px rgba(0,0,0,.15);padding:18px 20px 12px;z-index:10000; font-size:13px;line-height:1.7;border:1px solid #e5e7eb }
-    #close-mentions{ position:absolute;top:6px;right:12px;background:none;color:#111827;border:none; font-size:18px;font-weight:bold;cursor:pointer;padding:0 }
+    
+@media (max-width:980px){
+  .tcard__stars svg{
+    width:16px;
+    height:16px;
+  }
+}
 
-    /* ================== FOOTER PROMO ================== */
-    .footer-cta{ background:linear-gradient(180deg,#0b4fbf,#0a2e70); color:#fff; padding:48px 20px; }
-    .footer-cta__inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
-    .footer-cta__left{ flex:0 0 340px; display:flex; align-items:center; justify-content:center; }
-    .footer-cta__img{ max-width:100%; height:auto; display:block; filter:drop-shadow(0 6px 16px rgba(0,0,0,.25)); }
-    .footer-cta__right{ flex:1; min-width:260px; text-align:left; }
-    .footer-cta__right h2{ font-size:clamp(20px,2.6vw,28px); margin-bottom:10px; font-weight:800; }
-    .footer-cta__right p{ font-size:16px; margin-bottom:18px; line-height:1.55; }
-    .footer-cta__right .cta{ display:inline-block; background:linear-gradient(180deg,#0b4fbf,#0a2e70); color:#fff; font-weight:700; padding:14px 22px; border-radius:14px; text-decoration:none; box-shadow:0 8px 22px rgba(6,182,212,.25); transition:filter .25s ease; }
-    .footer-cta__right .cta:hover{ filter:brightness(1.1); }
-    .footer-cta__trust{ font-size:13px; margin-top:10px; opacity:.9; }
-    .footer-legal{ text-align:center; margin-top:32px; font-size:13px; color:rgba(255,255,255,.8); }
-    .footer-legal span{ cursor:pointer; text-decoration:none; transition:color .2s ease; }
-    .footer-legal span:hover{ color:#fff; text-decoration:underline; }
-    @media(max-width:760px){
-      .footer-cta__inner{ flex-direction:column; text-align:center; gap:24px; }
-      .footer-cta__left{flex:0 0 auto;}
-      .footer-cta__right{text-align:center;}
-    }
+    
+.tcard__quote em{ font-style:normal; color:#334155; }
+
+      /* enleve leontour blanc*/
+    fieldset{
+  border:0;
+  padding:0;
+  margin:0;
+  min-inline-size:unset;
+}
+legend{
+  padding:0;
+  margin:0;
+}
+.sr-only{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
+
+    /* === MOBILE : logo + dégagement du texte === */
+@media (max-width: 560px){
+  .logo-header{
+    top: calc(8px + env(safe-area-inset-top));
+    left: 12px;
+  }
+  .logo-header img{
+    height: 36px;   /* était 48px */
+  }
+  .hero__copy{
+    padding-top: 64px; /* crée l’espace pour éviter tout chevauchement */
+  }
+}
+
+/* Option si écran très petit en hauteur (petits iPhone, split-screen) */
+@media (max-height: 680px){
+  .hero__copy{ padding-top: 72px; }
+}
+
+/* =========================================================
+   [[REPERE: FAQ / QUESTIONS FREQUENTES]]
+   ========================================================= */
+:root{
+  /* bleu de marque pour la FAQ ; reprend ton CTA */
+  --brand: var(--cta-grad-top, #0b4fbf);
+  --brand-ink:#0f172a;
+}
+
+.faq{
+  background:#f8fbff;
+  border-top:1px solid #eef2f7;
+  padding:80px 20px;
+  color:#0f172a;
+}
+.faq__inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+.faq header{
+  text-align:center;
+  margin-bottom:28px;
+}
+.faq h2{
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.15;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.faq .subtitle{
+  color:#64748b;
+}
+
+.faq__list{
+  display:grid;
+  gap:14px;
+  max-width:920px;
+  margin:26px auto 0;
+}
+
+.faq__item{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(2,6,23,.06), 0 1px 4px rgba(2,6,23,.04);
+  overflow:hidden;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.faq__item.is-open{
+  border-color:rgba(11,79,191,.35); /* bleu adouci */
+  box-shadow:0 8px 20px rgba(11,79,191,.10), 0 2px 6px rgba(2,6,23,.06);
+}
+
+.faq__btn{
+  width:100%;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 20px;
+  background:#fff;
+  border:0;
+  border-bottom:1px solid #e5e7eb; /* séparation header/panel */
+  font-weight:800;
+  font-size:1.05rem;
+  cursor:pointer;
+  color:var(--brand-ink);
+}
+.faq__btn:focus-visible{
+  outline:2px solid #93c5fd;
+  outline-offset:2px;
+}
+
+/* Hover = texte en bleu */
+.faq__btn:hover{
+  color:var(--brand);
+  background:linear-gradient(180deg,#f9fbff,#ffffff);
+}
+
+/* État ouvert = texte bleu + fond éclairci */
+.faq__btn[aria-expanded="true"]{
+  color:var(--brand);
+  background:linear-gradient(180deg,#f0f6ff,#ffffff);
+}
+
+.faq__chev{
+  flex:0 0 auto;
+  width:22px; height:22px;
+  transition:transform .2s ease, opacity .2s ease;
+  opacity:.75;
+}
+.faq__btn[aria-expanded="true"] .faq__chev{
+  transform:rotate(180deg);
+  opacity:1;
+}
+.faq__chev path{ stroke: currentColor; }
+
+.faq__panel{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
+  will-change:max-height;
+  background:linear-gradient(180deg,#ffffff,#f9fbff);
+}
+.faq__content{
+  padding:16px 20px 20px;
+  color:#475569;
+  line-height:1.55;
+}
+.faq__content p + p{ margin-top:10px; }
+
+@media (max-width:720px){
+  .faq{ padding:60px 16px; }
+  .faq__btn{ padding:16px; font-size:1rem; }
+  .faq__content{ padding:14px 16px 18px; }
+}
+
+/* === FAQ : version finale complète === */
+
+/* Centre le titre */
+.faq h2{
+  text-align:center;
+}
+
+/* Bouton FAQ */
+.faq__btn{
+  position: relative;
+  padding: 20px 44px 20px 24px; /* marge droite pour la flèche */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Flèche animée à droite */
+.faq__btn::after{
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 18px; height: 18px;
+  transform: translateY(-50%) rotate(0deg);
+  opacity: .65;
+  transition: transform .2s ease, opacity .2s ease;
+  background: no-repeat center / contain 
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M8 10l4 4 4-4' stroke='%230b4fbf' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+.faq__btn:hover::after{ opacity: 1; }
+.faq__btn[aria-expanded='true']::after{
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Panneaux : fermés par défaut */
+.faq__panel{
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px; /* pas de padding vertical fermé */
+  transition: max-height .25s ease, padding .2s ease;
+}
+
+/* Ouverts */
+.faq__item.is-open .faq__panel{
+  padding: 16px 24px 20px;
+}
+
+/* Liste globale : petit souffle latéral */
+.faq__list{
+  padding: 0 4px;
+}
+
+/* Sécurise le calcul de hauteur pendant l'animation */
+.faq__panel{
+  box-sizing: border-box;   /* que la hauteur tienne compte du padding */
+  overflow: hidden;
+}
+
+/* ===== Mentions légales (styles) ===== */
+#mentions-legales-container{
+  width:100%;
+  text-align:center;
+  background:linear-gradient(180deg, #0b4fbf, #0a2e70);
+  color:#fff;
+  padding:18px 0 14px;
+  margin:0;
+}
+#mentions-legales-link{
+  color:#e0f2ff;
+  text-decoration:none;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.3px;
+}
+#mentions-legales-link:hover{
+  color:#ffffff;
+  text-decoration:underline;
+}
+
+#mentions-legales-link{color:#94a3b8;text-decoration:none;cursor:pointer;font-size:13px}
+#mentions-legales-link:hover{color:#64748b;text-decoration:underline}
+#mentions-popup{
+  display:none;position:fixed;bottom:60px;left:50%;transform:translateX(-50%);
+  width:340px;max-width:95vw;background:#fff;color:#111827;border-radius:13px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);padding:18px 20px 12px;z-index:10000;
+  font-size:13px;line-height:1.7;border:1px solid #e5e7eb
+}
+#close-mentions{
+  position:absolute;top:6px;right:12px;background:none;color:#111827;border:none;
+  font-size:18px;font-weight:bold;cursor:pointer;padding:0
+}
+
+ /* ================== FOOTER PROMO ================== */
+.footer-cta{
+  background:linear-gradient(180deg,#0b4fbf,#0a2e70);
+  color:#fff;
+  padding:48px 20px;
+}
+.footer-cta__inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.footer-cta__left{
+  flex:0 0 340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.footer-cta__img{
+  max-width:100%;
+  height:auto;
+  display:block;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.25));
+}
+.footer-cta__right{
+  flex:1;
+  min-width:260px;
+  text-align:left;
+}
+.footer-cta__right h2{
+  font-size:clamp(20px,2.6vw,28px);
+  margin-bottom:10px;
+  font-weight:800;
+}
+.footer-cta__right p{
+  font-size:16px;
+  margin-bottom:18px;
+  line-height:1.55;
+}
+.footer-cta__right .cta{
+  display:inline-block;
+  background:linear-gradient(180deg,#0b4fbf,#0a2e70);
+  color:#fff;
+  font-weight:700;
+  padding:14px 22px;
+  border-radius:14px;
+  text-decoration:none;
+  box-shadow:0 8px 22px rgba(6,182,212,.25);
+  transition:filter .25s ease;
+}
+.footer-cta__right .cta:hover{
+  filter:brightness(1.1);
+}
+.footer-cta__trust{
+  font-size:13px;
+  margin-top:10px;
+  opacity:.9;
+}
+/* ===== Bas de footer (Mentions légales intégrées) ===== */
+.footer-legal{
+  text-align:center;
+  margin-top:32px;
+  font-size:13px;
+  color:rgba(255,255,255,.8);
+}
+.footer-legal span{
+  cursor:pointer;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.footer-legal span:hover{
+  color:#fff;
+  text-decoration:underline;
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .footer-cta__inner{
+    flex-direction:column;
+    text-align:center;
+    gap:24px;
+  }
+  .footer-cta__left{flex:0 0 auto;}
+  .footer-cta__right{text-align:center;}
+}
+   
+    
   </style>
 </head>
 <body>
+  <!-- =========================================================
+       [[REPERE: SKIP LINK]]
+       ========================================================= -->
   <a href="#main" class="skip-link">Aller au contenu</a>
 
-  <!-- ================== HERO ================== -->
+  <!-- =========================================================
+       [[REPERE: HERO]]
+       - Textes héros gauche
+       - Formulaire (section + form)
+       ========================================================= -->
   <header id="hero" class="hero" aria-label="Haut de page adoucisseur d’eau">
-    <div class="logo-header" role="img" aria-label="Solution Eau Pro">
-      <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/LOGO%20SEP2.webp" alt="Solution Eau Pro">
-    </div>
+    <!-- Logo -->
+   <div class="logo-header" role="img" aria-label="Solution Eau Pro">
+  <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/LOGO%20SEP2.webp" alt="Solution Eau Pro">
+</div>
 
+
+    <!-- Image de fond -->
     <img class="hero__img"
          src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp"
          alt="" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" sizes="100vw" />
 
     <div class="hero__inner">
-      <div class="hero__copy">
-        <p class="hero__intro">Dites adieu au calcaire, redécouvrez une eau pure et douce.</p>
-        <h1><em>Adoucisseur d’eau</em> installé par un professionnel local</h1>
-        <p class="lead">Étude rapide, prix clair et installation garantie constructeur.</p>
-      </div>
+      <!-- [[REPERE: HERO COPY]] -->
+   <div class="hero__copy">
+  <p class="hero__intro">Dites adieu au calcaire, redécouvrez une eau pure et douce.</p>
+  <h1><em>Adoucisseur d’eau</em> installé par un professionnel local</h1>
+  <p class="lead">Étude rapide, prix clair et installation garantie constructeur.</p>
+</div>
 
-      <!-- FORMULAIRE -->
+
+
+
+      <!-- [[REPERE: FORMULAIRE]] -->
       <section id="lead-form" role="region" aria-labelledby="formTitle" class="card">
         <header class="card__head">
           <h2 id="formTitle" class="t1">Votre étude 100 % en ligne&nbsp;:</h2>
@@ -476,6 +823,7 @@
         </header>
 
         <div class="card__body">
+          <!-- [[REPERE: FORM]] -->
           <form id="form-estimation" action="" method="post" novalidate>
             <fieldset>
               <legend class="sr-only">Paramètres de votre foyer</legend>
@@ -502,61 +850,65 @@
             </fieldset>
 
             <button class="cta" type="submit">Calculer mon gain</button>
+            <!-- [[REPERE: MICRO-COPY CTA]] (optionnel)
+                 <small style="display:block;margin-top:8px;color:#9fb7d8;">Sans engagement · Réponse immédiate</small>
+            -->
           </form>
         </div>
       </section>
     </div>
   </header>
 
-  <!-- ================== BLOC RÉSULTATS (insertion ici) ================== -->
-  <section id="recap" class="results" style="display:none;visibility:hidden;height:0;overflow:hidden;" aria-live="polite">
-    <div class="results__inner" id="recap-inner"><!-- rempli en JS --></div>
-  </section>
-
-  <!-- ================== MAIN ================== -->
+  <!-- =========================================================
+       [[REPERE: MAIN]]
+       ========================================================= -->
   <main id="main" tabindex="-1">
-    <!-- ETAPES -->
+    <!-- ================== SECTION 3 ÉTAPES ================== -->
+    <!-- [[REPERE: ETAPES]] -->
     <section id="steps" class="steps" aria-labelledby="stepsTitle">
-      <div class="steps__inner">
-        <h2 id="stepsTitle">Simulation en ligne : rapide, fiable et sans engagement</h2>
-        <p class="subtitle">Des résultats clairs en 3 étapes</p>
+  <div class="steps__inner">
+    <h2 id="stepsTitle">Simulation en ligne : rapide, fiable et sans engagement</h2>
+    <p class="subtitle">Des résultats clairs en 3 étapes</p>
 
-        <div class="sgrid">
-          <article class="scard">
-            <div class="sbullet" aria-hidden="true">01</div>
-            <h3>Votre estimation sur mesure</h3>
-            <p>Quelques infos sur votre foyer et vos usages d’eau, rien de superflu.</p>
-          </article>
+    <div class="sgrid">
+      <article class="scard">
+        <div class="sbullet" aria-hidden="true">01</div>
+        <h3>Votre estimation sur mesure</h3>
+        <p>Quelques infos sur votre foyer et vos usages d’eau, rien de superflu.</p>
+      </article>
 
-          <article class="scard">
-            <div class="sbullet" aria-hidden="true">02</div>
-            <h3>Vos économies calculées</h3>
-            <p>Montant annuel estimé + projection à 10 ans, en toute transparence.</p>
-          </article>
+      <article class="scard">
+        <div class="sbullet" aria-hidden="true">02</div>
+        <h3>Vos économies calculées</h3>
+        <p>Montant annuel estimé + projection à 10 ans, en toute transparence.</p>
+      </article>
 
-          <article class="scard">
-            <div class="sbullet" aria-hidden="true">03</div>
-            <h3>Le coût de votre installation affiché</h3>
-            <p>Le type d'adoucisseur ainsi que son prix TTC installé.</p>
-          </article>
-        </div>
+      <article class="scard">
+        <div class="sbullet" aria-hidden="true">03</div>
+        <h3>Le coût de votre installation affiché</h3>
+        <p>Le type d'adoucisseur aisni que son prix ttc installé.</p>
+      </article>
+    </div>
 
-        <p class="steps__note">Vous obtenez l’essentiel : chiffrage, bénéfices, et conditions de pose.</p>
+    <p class="steps__note">Vous obtenez l’essentiel : chiffrage, bénéfices, et conditions de pose.</p>
 
-        <div class="steps__check" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <circle cx="12" cy="12" r="11" fill="#22c55e"></circle>
-            <path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </div>
-    </section>
+    <div class="steps__check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="11" fill="#22c55e"></circle>
+        <path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+</section>
 
-    <!-- BÉNÉFICES -->
+
+    <!-- ================== SECTION BÉNÉFICES ================== -->
+    <!-- [[REPERE: BENEFICES]] -->
     <section id="benefits" class="benefits" aria-labelledby="benefitsTitle">
       <div class="benefits__inner">
-        <h2 id="benefitsTitle">Des avantages visibles dès les premières semaines</h2>
-        <p class="lead" style="margin-bottom:24px">Réduisez le calcaire, protégez vos appareils et profitez du confort d’une eau douce au quotidien.</p>
+       <h2 id="benefitsTitle">Des avantages visibles dès les premières semaines</h2>
+<p class="lead" style="margin-bottom:24px">Réduisez le calcaire, protégez vos appareils et profitez du confort d’une eau douce au quotidien.</p>
+
 
         <div class="bgrid">
           <article class="bcard">
@@ -602,7 +954,8 @@
       </div>
     </section>
 
-    <!-- PROCESS -->
+    <!-- ================== SECTION PROCESS ================== -->
+    <!-- [[REPERE: PROCESS]] -->
     <section id="process" class="process" aria-labelledby="processTitle">
       <div class="process__inner">
         <h2 id="processTitle">Comment ça marche&nbsp;?</h2>
@@ -649,7 +1002,8 @@
       </div>
     </section>
 
-    <!-- METRICS -->
+    <!-- ================== SECTION MÉTRIQUES ================== -->
+    <!-- [[REPERE: METRICS]] -->
     <section id="metrics" class="metrics" aria-labelledby="metricsTitle">
       <div class="metrics__inner">
         <h2 id="metricsTitle">Des économies concrètes &amp; mesurables</h2>
@@ -715,358 +1069,382 @@
         </div>
       </div>
     </section>
+<!-- ================== SECTION AVIS CLIENTS ================== -->
+<section id="testi" class="testi" aria-labelledby="testiTitle">
+  <div class="testi__inner">
+    <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
 
-    <!-- AVIS CLIENTS -->
-    <section id="testi" class="testi" aria-labelledby="testiTitle">
-      <div class="testi__inner">
-        <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
-
-        <div class="testi__rating" aria-label="Note moyenne">
-          <span class="testi__stars" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            <svg viewBox="0 0 24 24">
-              <defs><linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0"><stop offset="75%" stop-color="var(--cta-grad-top)" /><stop offset="75%" stop-color="transparent" /></linearGradient></defs>
-              <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
-            </svg>
-          </span>
-          <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
-        </div>
-
-        <div class="testi__grid">
-          <article class="tcard" aria-label="Avis client">
-            <div class="tcard__top"><div class="avatar" aria-hidden="true">CR</div><div><div class="tcard__name">Jérôme T.</div><div class="tcard__loc">Rambouillet (78) · 07/2025</div></div></div>
-            <div class="tcard__stars" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            </div>
-            <p class="tcard__quote">“J’ai fait la simulation un soir, <em>résultat immédiat</em> : économies et coût d’installation en 1 minute. On a décidé de se lancer…”</p>
-          </article>
-
-          <article class="tcard" aria-label="Avis client">
-            <div class="tcard__top"><div class="avatar" aria-hidden="true">JT</div><div><div class="tcard__name">Claire R.</div><div class="tcard__loc">Maule (78) · 05/2025</div></div></div>
-            <div class="tcard__stars" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24"><defs><linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0"><stop offset="50%" stop-color="var(--cta-grad-top)" /><stop offset="50%" stop-color="transparent" /></linearGradient></defs><path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            </div>
-            <p class="tcard__quote">“J’ai eu toutes les infos en quelques clics, sans démarchage. Le devis était clair, et deux semaines plus tard <em>l’adoucisseur était posé</em>.”</p>
-          </article>
-
-          <article class="tcard" aria-label="Avis client">
-            <div class="tcard__top"><div class="avatar" aria-hidden="true">NV</div><div><div class="tcard__name">Nadine V.</div><div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div></div></div>
-            <div class="tcard__stars" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-            </div>
-            <p class="tcard__quote">“Analyse de l’eau le lendemain. Fini les traces sur la paroi de douche, la salle de bain reste propre plus longtemps.”</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq" aria-labelledby="faqTitle">
-      <div class="faq__inner">
-        <h2 id="faqTitle">Questions fréquentes</h2>
-
-        <div class="faq__list">
-          <article class="faq__item">
-            <button class="faq__btn" aria-expanded="false">Comment est calculée mon estimation ?</button>
-            <div class="faq__panel"><p>L’estimation repose sur la taille de votre foyer, la dureté d’eau moyenne observée dans votre secteur et vos usages…</p></div>
-          </article>
-
-          <article class="faq__item">
-            <button class="faq__btn" aria-expanded="false">Quel modèle ou quelle capacité pour mon foyer ?</button>
-            <div class="faq__panel"><p>Le choix dépend de la dureté de votre eau et du volume d’eau consommé entre chaque régénération…</p></div>
-          </article>
-
-          <!-- (les autres questions de ton code initial restent identiques) -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Popup Mentions -->
-    <div id="mentions-popup" role="dialog" aria-modal="true" aria-labelledby="mentions-title">
-      <button id="close-mentions" type="button" aria-label="Fermer">&times;</button>
-      <strong id="mentions-title">Mentions légales :</strong><br>
-      Solution Eau Pro webmaster marque de Biofrance Énergies<br>
-      SIRET : 422 231 928 00025<br>
-      Adresse : 4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>
-      Contact : solutioneaupro@gmail.com<br>
-      Hébergeur : GitHub Pages, 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>
-      Données personnelles : Les informations saisies sont utilisées uniquement pour traiter votre demande. Aucun démarchage ni revente.<br>
-      RGPD : Vous pouvez demander la suppression de vos données à tout moment par simple email.
+    <!-- Moyenne globale -->
+    <div class="testi__rating" aria-label="Note moyenne">
+      <span class="testi__stars" aria-hidden="true">
+        <!-- 4 étoiles pleines -->
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+          <path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+        <!-- 5e étoile partielle -->
+        <svg viewBox="0 0 24 24">
+          <defs>
+            <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="75%" stop-color="var(--cta-grad-top)" />
+              <stop offset="75%" stop-color="transparent" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+        </svg>
+      </span>
+      <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
     </div>
+
+    <!-- Témoignages -->
+    <div class="testi__grid">
+
+      <!-- [[AVIS #1 : Claire R.]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">CR</div>
+          <div>
+            <div class="tcard__name">Jérôme T.</div>
+            <div class="tcard__loc">Rambouillet (78) · 07/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 5 étoiles -->
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        </div>
+        <p class="tcard__quote">“J’ai fait la simulation un soir, <em>résultat immédiat</em> : économies et coût d’installation en 1 minute.  
+        On a décidé de se lancer, et depuis l’eau est douce, plus aucune démangeaison pour mon fils sujet à l’eczéma.  
+        Franchement, un vrai confort au quotidien.”</p>
+      </article>
+
+      <!-- [[AVIS #2 : Jérôme T.]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">JT</div>
+          <div>
+            <div class="tcard__name">Claire R.</div>
+            <div class="tcard__loc">Maule (78) · 05/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 4,5 étoiles -->
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <!-- 5e étoile demi -->
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="50%" stop-color="var(--cta-grad-top)" />
+                <stop offset="50%" stop-color="transparent" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+          </svg>
+        </div>
+        <p class="tcard__quote">“J’ai eu toutes les infos en quelques clics, sans démarchage.  
+        Le devis était clair, et deux semaines plus tard <em>l’adoucisseur était posé</em>.  
+        Je vois la différence : linge plus souple, moins de produits et plus d’économies.”</p>
+      </article>
+
+      <!-- [[AVIS #3 : Nadine V.]] -->
+      <article class="tcard" aria-label="Avis client">
+        <div class="tcard__top">
+          <div class="avatar" aria-hidden="true">NV</div>
+          <div>
+            <div class="tcard__name">Nadine V.</div>
+            <div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div>
+          </div>
+        </div>
+        <div class="tcard__stars" aria-hidden="true">
+          <!-- 4 étoiles -->
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+        </div>
+        <p class="tcard__quote">“J’ai utilisé le simulateur par curiosité, et dès le lendemain un technicien est venu faire <em>l’analyse de mon eau</em>.  
+        Résultat : je me suis équipée, et fini les traces de calcaire sur la paroi de douche.  
+        L’eau est plus agréable, et la salle de bain reste propre plus longtemps.”</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- ================== SECTION FAQ ================== -->
+<section id="faq" class="faq" aria-labelledby="faqTitle">
+  <div class="faq__inner">
+    <h2 id="faqTitle">Questions fréquentes</h2>
+
+    <div class="faq__list">
+      <!-- Q1 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Comment est calculée mon estimation ?</button>
+        <div class="faq__panel">
+          <p>L’estimation repose sur la taille de votre foyer, la dureté d’eau moyenne observée dans votre secteur et vos usages (eau chaude, linge, électroménager). Elle fournit une base réaliste, ensuite confirmée lors de l’étude personnalisée réalisée à votre domicile, avec l’analyse précise de votre eau.</p>
+        </div>
+      </article>
+
+      <!-- Q2 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Quel modèle ou quelle capacité pour mon foyer ?</button>
+        <div class="faq__panel">
+          <p>Le choix dépend de la dureté de votre eau et du volume d’eau consommé entre chaque régénération. L’objectif est de dimensionner l’appareil pour assurer confort, autonomie et économie de sel.</p>
+        </div>
+      </article>
+
+      <!-- Q3 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">L’eau adoucie est-elle potable ?</button>
+        <div class="faq__panel">
+          <p>C’est une idée reçue : l’eau adoucie ne devient pas « salée ». Elle reste parfaitement potable et conforme aux normes sanitaires en vigueur. Le procédé d’adoucissement consiste simplement à remplacer les ions calcium et magnésium — responsables du calcaire — par des ions sodium. Cette technique d’échange d’ions est reconnue par le Ministère de la Santé (circulaire DGS n° 2000-166 du 28 mars 2000) parmi les procédés autorisés pour le traitement des eaux destinées à la consommation humaine. La disparition du calcaire n’a aucune incidence nutritionnelle : une alimentation équilibrée couvre naturellement les besoins en calcium et en magnésium.</p>
+        </div>
+      </article>
+
+      <!-- Q4 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Vais-je consommer beaucoup de sel ?</button>
+        <div class="faq__panel">
+          <p>Non, la consommation de sel reste très faible. Elle dépend de la dureté de votre eau et du volume d’eau traité entre chaque régénération. Nos adoucisseurs sont équipés de <strong>vannes de dernière génération</strong>, capables d’optimiser chaque cycle de régénération. Résultat : <strong>moins d’eau utilisée, moins de sel consommé</strong>, tout en maintenant une efficacité maximale. Pour un foyer moyen, cela représente généralement <strong>3 à 6 sacs de 25 kg par an</strong>, soit un coût très modéré au regard du confort et des économies obtenues. C’est l’un des grands avantages des systèmes récents : ils sont <strong>bien plus économes et précis</strong> que les anciens modèles, souvent trop gourmands en eau et en sel.</p>
+        </div>
+      </article>
+
+      <!-- Q5 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Quel entretien prévoir ?</button>
+        <div class="faq__panel">
+          <p>Un adoucisseur demande très peu d’entretien. Un <strong>contrôle annuel</strong> suffit pour vérifier les réglages, nettoyer la cuve, désinfecter le circuit et remplacer les consommables si nécessaire. Cette visite permet de <strong>préserver la performance de la résine</strong> et d’assurer une eau parfaitement adoucie toute l’année. Nos techniciens agréés disposent d’un matériel de diagnostic précis et interviennent rapidement, sans immobiliser votre installation. Pour plus de sérénité, il est possible de souscrire un <strong>contrat d’entretien</strong> incluant la vérification complète et la maintenance préventive de votre appareil.</p>
+        </div>
+      </article>
+
+      <!-- Q6 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Où s’installe l’appareil ?</button>
+        <div class="faq__panel">
+          <p>L’adoucisseur s’installe <strong>au plus près de l’arrivée d’eau principale</strong>, généralement dans le garage, le cellier ou le local technique. Il nécessite simplement <strong>une évacuation</strong> pour la régénération et <strong>une alimentation électrique basse tension (24 V)</strong>. Sa consommation est <strong>quasi nulle</strong>, équivalente à quelques watts seulement. L’installation comprend un <strong>by-pass</strong> et un <strong>préfiltre</strong> pour protéger la résine et permettre un passage en eau dure si besoin (entretien ou dépannage). Nos techniciens déterminent avec vous <strong>l’emplacement le plus adapté</strong> afin de garantir un accès facile et une intégration propre dans votre réseau d’eau.</p>
+        </div>
+      </article>
+
+      <!-- Q7 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Combien de temps dure la pose ?</button>
+        <div class="faq__panel">
+          <p>L’installation d’un adoucisseur est rapide et propre. Elle prend en moyenne <strong>une demi-journée à une journée</strong>, selon la configuration de votre arrivée d’eau. Aucune modification lourde de plomberie n’est nécessaire : nos techniciens interviennent sur le réseau existant et mettent l’appareil en service immédiatement. La coupure d’eau pendant la pose est <strong>très courte</strong>, limitée au strict nécessaire pour le raccordement. Avant leur départ, ils réalisent <strong>le réglage de dureté</strong> et <strong>le contrôle complet du fonctionnement</strong> pour que tout soit opérationnel dès le premier jour.</p>
+        </div>
+      </article>
+
+      <!-- Q8 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Quels effets concrets vais-je constater au quotidien ?</button>
+        <div class="faq__panel">
+          <p>Les effets de l’adoucisseur sont visibles dès la mise en service. L’eau froide est adoucie immédiatement, tandis qu’il faut parfois <strong>quelques jours</strong> pour que l’eau calcaire du ballon d’eau chaude soit entièrement remplacée par l’eau douce. Dès le départ, il est recommandé de <strong>réduire d’environ deux à trois fois</strong> les doses de savon, shampooing, lessive ou produits ménagers : l’eau douce mousse davantage et se rince plus facilement. Vous remarquerez rapidement une <strong>peau plus douce, un linge plus souple, des surfaces sans traces</strong> et une nette diminution des dépôts de tartre. L’adoucisseur apporte ainsi un <strong>confort immédiat</strong>, une <strong>meilleure efficacité de vos produits</strong> et un <strong>entretien domestique considérablement simplifié</strong>. C’est souvent <strong>dès la première douche</strong> que les utilisateurs perçoivent la différence.</p>
+        </div>
+      </article>
+
+      <!-- Q9 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Quelle est la durée de vie d’un adoucisseur ?</button>
+        <div class="faq__panel">
+          <p>Un adoucisseur bien entretenu a une <strong>durée de vie moyenne de 15 à 20 ans</strong>. La longévité dépend surtout de la <strong>qualité de la résine</strong>, de la <strong>régularité de l’entretien</strong> et du <strong>type de vanne</strong> utilisée. Les modèles récents, équipés d’électronique basse tension et de cycles optimisés, conservent leurs performances beaucoup plus longtemps que les anciennes générations. Avec un entretien annuel, votre installation reste fiable et performante sur le long terme.</p>
+        </div>
+      </article>
+
+      <!-- Q10 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Quelles sont les garanties et le service après-vente ?</button>
+        <div class="faq__panel">
+          <p>Nos adoucisseurs bénéficient d’une <strong>garantie constructeur complète</strong>, couvrant les pièces principales et la cuve. La mise en service, le réglage de dureté et le contrôle du fonctionnement sont réalisés par un <strong>technicien agréé</strong> lors de l’installation. En cas de besoin, notre service après-vente assure un <strong>diagnostic rapide et une intervention sur site</strong>, avec la possibilité d’un <strong>contrat d’entretien annuel</strong> pour un suivi régulier. Votre installation reste ainsi performante, sûre et durable, sans immobilisation ni contrainte.</p>
+        </div>
+      </article>
+
+      <!-- Q11 -->
+      <article class="faq__item">
+        <button class="faq__btn" aria-expanded="false">Que se passe-t-il en cas de coupure d’eau ou de courant ?</button>
+        <div class="faq__panel">
+          <p>En cas de coupure d’eau, l’adoucisseur se met simplement en pause et redémarre automatiquement dès que l’alimentation est rétablie. Lors d’une coupure de courant, les réglages sont <strong>mémorisés électroniquement</strong>, il n’y a donc <strong>aucun risque de dérèglement</strong> ni de perte de programmation. Les modèles récents fonctionnent en basse tension (24 V) et reprennent leur cycle là où ils s’étaient arrêtés, sans intervention manuelle.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+ <!-- ===== Mentions légales (lien + séparateur) ===== -->
+
+
+<!-- ===== Popup Mentions (unique) ===== -->
+<div id="mentions-popup" role="dialog" aria-modal="true" aria-labelledby="mentions-title">
+  <button id="close-mentions" type="button" aria-label="Fermer">&times;</button>
+  <strong id="mentions-title">Mentions légales :</strong><br>
+  Solution Eau Pro webmaster marque de Biofrance Énergies<br>
+  SIRET : 422 231 928 00025<br>
+  Adresse : 4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>
+  Contact : solutioneaupro@gmail.com<br>
+  Hébergeur : GitHub Pages, 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>
+  Données personnelles : Les informations saisies sont utilisées uniquement pour traiter votre demande. Aucun démarchage ni revente.<br>
+  RGPD : Vous pouvez demander la suppression de vos données à tout moment par simple email.
+</div>
+   
+   
   </main>
 
-  <!-- ================== SCRIPTS ================== -->
-  <script>
-  /* ================================
-     CONFIG (paramétrable)
-  =================================== */
-  const CFG = {
-    PRIX_KWH: 0.27,          // €/kWh
-    ECS_KWH_PP: 800,         // kWh/personne/an (ECS)
-    TAUX_GAIN_ECS: 0.10,     // 10% d'énergie gagnée
-    TAUX_ECO_PROD_BASE: 0.40,// 40% produits par défaut
-    TAUX_ECO_PROD_PEAU: 0.45,// 45% si "Peau sèche"
-    DEPENSE_PROD_PP: 220,    // € de produits/pers/an (eau dure)
-    SAVE_MAT_FOYER: 50,      // € matériel/entretien/foyer/an
-    PROJECTION_YEARS: 10,    // projection
-    PROJECTION_TAUX_ENERGIE: 0.05 // +5%/an sur l'énergie uniquement
-  };
+<script>
+// ========= FAQ TOGGLE ROBUSTE =========
+(function(){
+ // -- remplace ces trois fonctions à l'intérieur de ton (function(){ ... }) --
+function setPanelHeight(panel){
+  if(!panel) return;
 
-  // Table foyer -> modèle conseillé
-  const MODELES_ADOUCISSEURS = [
-    { min:1, max:2, capacite:10, prix:1900 },
-    { min:3, max:4, capacite:15, prix:2200 },
-    { min:5, max:99, capacite:20, prix:2400 }
-  ];
+  // Démarre à 0 pour garantir l'animation
+  panel.style.maxHeight = '0px';
 
-  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-  function euro(n){ return n.toLocaleString('fr-FR') + ' €'; }
+  // Laisse le temps au style "ouvert" (padding, etc.) de s'appliquer
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const h = panel.scrollHeight;          // hauteur réelle (contenu + padding)
+    panel.style.maxHeight = h + 'px';
 
-  function pickModele(n){
-    for(const m of MODELES_ADOUCISSEURS){
-      if(n >= m.min && n <= m.max) return m;
+    // En fin de transition, retire la limite pour éviter toute coupe
+    const onEnd = (e)=>{
+      if(e.propertyName !== 'max-height') return;
+      panel.style.maxHeight = 'none';
+      panel.removeEventListener('transitionend', onEnd);
+    };
+    panel.addEventListener('transitionend', onEnd);
+  }));
+}
+
+function closePanel(panel){
+  if(!panel) return;
+
+  // Si on était en 'none', fixe d'abord la hauteur courante pour fermer proprement
+  if (getComputedStyle(panel).maxHeight === 'none'){
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+    void panel.offsetHeight; // force reflow
+  }
+  panel.style.maxHeight = '0px';
+}
+
+function openItem(btn){
+  const panel = btn.nextElementSibling;
+
+  // Ferme les autres
+  document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
+    if(b !== btn){
+      b.setAttribute('aria-expanded','false');
+      const p = b.nextElementSibling;
+      closePanel(p);
+      const it = b.closest('.faq__item');
+      if (it) it.classList.remove('is-open');
     }
-    return MODELES_ADOUCISSEURS[MODELES_ADOUCISSEURS.length-1];
-  }
+  });
 
-  function computeSavings(n, peau){
-    n = clamp(n, 1, 99);
-    const tauxProd = peau ? CFG.TAUX_ECO_PROD_PEAU : CFG.TAUX_ECO_PROD_BASE;
+  // Ouvre l'item courant
+  btn.setAttribute('aria-expanded','true');
+  const it = btn.closest('.faq__item');
+  if (it) it.classList.add('is-open');
 
-    const baseProduits = n * CFG.DEPENSE_PROD_PP;
-    const sProd = Math.round(baseProduits * tauxProd);
+  setPanelHeight(panel);
+}
+// -- fin remplacement --
 
-    const sEnergie = Math.round(n * CFG.ECS_KWH_PP * CFG.PRIX_KWH * CFG.TAUX_GAIN_ECS);
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.faq__btn');
+    if(!btn) return;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    const panel = btn.nextElementSibling;
+    const it = btn.closest('.faq__item');
+    if(isOpen){
+      btn.setAttribute('aria-expanded','false');
+      if (it) it.classList.remove('is-open');
+      closePanel(panel);
+    }else{
+      openItem(btn);
+    }
+  });
 
-    const sMateriel = CFG.SAVE_MAT_FOYER;
+  window.addEventListener('load', function(){
+    const firstBtn = document.querySelector('.faq__btn');
+    if(firstBtn){ openItem(firstBtn); }
+  });
 
-    const total = sProd + sEnergie + sMateriel;
-
-    // projection 10 ans : seule l'énergie grimpe à +5%/an
-    const r = 1 + CFG.PROJECTION_TAUX_ENERGIE;
-    const sommeGeo = (Math.pow(r, CFG.PROJECTION_YEARS) - 1) / (r - 1);
-    const total10 = Math.round(sProd * CFG.PROJECTION_YEARS + sMateriel * CFG.PROJECTION_YEARS + sEnergie * sommeGeo);
-
-    return { sProd, sEnergie, sMateriel, total, total10, tauxProd };
-  }
-
-  function renderResults({ total, total10, sProd, sEnergie, sMateriel, tauxProd }, modele){
-    const wrap = document.getElementById('recap');
-    const inner = document.getElementById('recap-inner');
-    if(!wrap || !inner) return;
-
-    inner.innerHTML = `
-      <h2 class="results__title">💧 Économies totales estimées : ${euro(total)} / an</h2>
-      <div class="results__subtitle">Soit environ <strong>${euro(total10)}</strong> sur 10 ans</div>
-
-      <div class="rgrid" role="list">
-        <!-- Produits -->
-        <article class="rcard" role="listitem">
-          <div class="ricon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 7h12m4 0-6 6-3-3-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="rlabel">Produits ménagers & lessiviels</div>
-          <div class="rvalue">${euro(sProd)} / an</div>
-          <div class="rhelp">Dosages “eau douce” (–${Math.round(tauxProd*100)} %) : lessive, entretien, gels douche…</div>
-        </article>
-
-        <!-- Énergie -->
-        <article class="rcard" role="listitem">
-          <div class="ricon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="rlabel">Énergie eau chaude</div>
-          <div class="rvalue">${euro(sEnergie)} / an</div>
-          <div class="rhelp">Le tartre isole la résistance (~10 % de surconsommation).</div>
-        </article>
-
-        <!-- Matériel -->
-        <article class="rcard" role="listitem">
-          <div class="ricon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/>
-              <path d="M7 12.5l3 3L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="rlabel">Entretien & matériel</div>
-          <div class="rvalue">${euro(sMateriel)} / an</div>
-          <div class="rhelp">Moins de détartrages et de pannes (robinetterie, résistances…).</div>
-        </article>
-
-        <!-- Appareil recommandé -->
-        <article class="rcard" role="listitem">
-          <div class="ricon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M20 7l-9 9-5-5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="rlabel">Appareil recommandé</div>
-          <div class="rvalue">Adoucisseur ${modele.capacite} L</div>
-          <div class="rhelp">Prix TTC installé&nbsp;: <strong>${euro(modele.prix)}</strong></div>
-        </article>
-      </div>
-
-      <div class="results__note">Projection 10 ans&nbsp;: seule l’énergie est escaladée à +5 %/an.</div>
-    `;
-
-    // Affiche le bloc et masque les sections intermédiaires
-    wrap.style.display='block'; wrap.style.visibility='visible'; wrap.style.height='auto';
-
-    // Masquage : garde haut de page (hero) et bas de page (footer)
-    ['steps','benefits','process','metrics','testi','faq'].forEach(id=>{
-      const s = document.getElementById(id);
-      if(s) s.style.display = 'none';
-    });
-
-    // Scroll vers les résultats
-    wrap.scrollIntoView({ behavior:'smooth', block:'start' });
-  }
-
-  // Soumission formulaire
-  document.addEventListener('DOMContentLoaded', function(){
-    const form = document.getElementById('form-estimation');
-    if(!form) return;
-
-    form.addEventListener('submit', function(ev){
-      ev.preventDefault();
-      const sel = document.getElementById('foyer');
-      const v = (sel && sel.value) ? sel.value : '';
-      if(!v){ alert('Sélectionnez la taille du foyer.'); return; }
-
-      const n = (v === '5+') ? 5 : parseInt(v,10);
-      const peau = !!document.getElementById('peau')?.checked;
-
-      const calc = computeSavings(n, peau);
-      const modele = pickModele(n);
-
-      renderResults(calc, modele);
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=>{
+      setPanelHeight(btn.nextElementSibling);
     });
   });
-  </script>
 
-  <!-- FAQ toggles -->
-  <script>
-  (function(){
-    function setPanelHeight(panel){
-      if(!panel) return;
-      panel.style.maxHeight = '0px';
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        const h = panel.scrollHeight;
-        panel.style.maxHeight = h + 'px';
-        const onEnd = (e)=>{
-          if(e.propertyName !== 'max-height') return;
-          panel.style.maxHeight = 'none';
-          panel.removeEventListener('transitionend', onEnd);
-        };
-        panel.addEventListener('transitionend', onEnd);
-      }));
-    }
-    function closePanel(panel){
-      if(!panel) return;
-      if (getComputedStyle(panel).maxHeight === 'none'){
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        void panel.offsetHeight;
-      }
-      panel.style.maxHeight = '0px';
-    }
-    function openItem(btn){
-      const panel = btn.nextElementSibling;
-      document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
-        if(b !== btn){
-          b.setAttribute('aria-expanded','false');
-          closePanel(b.nextElementSibling);
-          b.closest('.faq__item')?.classList.remove('is-open');
-        }
-      });
-      btn.setAttribute('aria-expanded','true');
-      btn.closest('.faq__item')?.classList.add('is-open');
-      setPanelHeight(panel);
-    }
-    document.addEventListener('click', function(e){
-      const btn = e.target.closest('.faq__btn');
-      if(!btn) return;
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      const panel = btn.nextElementSibling;
-      const it = btn.closest('.faq__item');
-      if(isOpen){
-        btn.setAttribute('aria-expanded','false');
-        it?.classList.remove('is-open');
-        closePanel(panel);
-      }else{
-        openItem(btn);
-      }
-    });
-    window.addEventListener('load', function(){
-      const firstBtn = document.querySelector('.faq__btn');
-      if(firstBtn){ openItem(firstBtn); }
-    });
-    window.addEventListener('resize', function(){
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function(){
       document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=>{
         setPanelHeight(btn.nextElementSibling);
       });
     });
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function(){
-        document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=>{
-          setPanelHeight(btn.nextElementSibling);
-        });
-      });
-    }
-  })();
-  </script>
+  }
+})();
+</script>
+<script>
+// ===== Mentions légales (ouverture/fermeture) =====
+document.addEventListener('DOMContentLoaded', function(){
+  const link = document.getElementById('mentions-legales-link');
+  const popup = document.getElementById('mentions-popup');
+  const close = document.getElementById('close-mentions');
+  if(!link || !popup || !close) return;
 
-  <!-- Mentions légales -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    const link = document.getElementById('mentions-legales-link');
-    const popup = document.getElementById('mentions-popup');
-    const close = document.getElementById('close-mentions');
-    if(!link || !popup || !close) return;
-    function openPopup(e){ if(e) e.preventDefault(); popup.style.display = 'block'; close.focus(); }
-    function closePopup(e){ if(e) e.preventDefault(); popup.style.display = 'none'; }
-    link.addEventListener('click', openPopup);
-    close.addEventListener('click', closePopup);
-    document.addEventListener('keydown', (ev)=>{ if(ev.key === 'Escape' && popup.style.display === 'block'){ closePopup(); }});
+  function openPopup(e){
+    if(e) e.preventDefault();
+    popup.style.display = 'block';
+    close.focus();
+  }
+  function closePopup(e){
+    if(e) e.preventDefault();
+    popup.style.display = 'none';
+  }
+  link.addEventListener('click', openPopup);
+  close.addEventListener('click', closePopup);
+
+  // Accessibilité : fermer avec Échap
+  document.addEventListener('keydown', (ev)=>{
+    if(ev.key === 'Escape' && popup.style.display === 'block'){ closePopup(); }
   });
-  </script>
+});
+</script>
 
-  <!-- ================== FOOTER PROMO ================== -->
-  <footer class="footer-cta" aria-labelledby="footerTitle">
-    <div class="footer-cta__inner">
-      <div class="footer-cta__left">
-        <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d7b8d505509e7dffe108d879ad5b25b19b1f39b1/camion%20%20poseur%20SEP.webp"
-             alt="Camion Solution Eau Pro avec technicien installateur"
-             class="footer-cta__img" loading="lazy">
-      </div>
-      <div class="footer-cta__right">
-        <h2 id="footerTitle">Un installateur proche de chez vous, prêt à intervenir</h2>
-        <p>Pose rapide, mise en service incluse et suivi client garanti.</p>
-        <a href="#lead-form" class="cta">💧 Je fais ma simulation</a>
-        <div class="footer-cta__trust">Simulation sans engagement – Réponse sous 24 h</div>
-      </div>
+<!-- ================== FOOTER PROMO ================== -->
+<footer class="footer-cta" aria-labelledby="footerTitle">
+  <div class="footer-cta__inner">
+    <div class="footer-cta__left">
+      <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d7b8d505509e7dffe108d879ad5b25b19b1f39b1/camion%20%20poseur%20SEP.webp"
+           alt="Camion Solution Eau Pro avec technicien installateur"
+           class="footer-cta__img" loading="lazy">
     </div>
+    <div class="footer-cta__right">
+    <h2 id="footerTitle">Un installateur proche de chez vous, prêt à intervenir</h2>
+<p>Pose rapide, mise en service incluse et suivi client garanti.</p>
+<a href="#lead-form" class="cta">💧 Je fais ma simulation</a>
+<div class="footer-cta__trust">Simulation sans engagement – Réponse sous 24 h</div>
 
-    <div class="footer-legal">
-      <span id="mentions-legales-link">Mentions légales</span>
     </div>
-  </footer>
+  </div>
+
+  <!-- Lien Mentions légales intégré dans le même bandeau -->
+  <div class="footer-legal">
+    <span id="mentions-legales-link">Mentions légales</span>
+  </div>
+</footer>
+
+
+
 </body>
 </html>
