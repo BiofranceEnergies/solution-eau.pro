@@ -841,6 +841,11 @@ legend{
       </section>
     </div>
   </header>
+<!-- === RÉSULTATS (brut) === -->
+<section id="recap" style="background:#fff;color:#0f172a; padding:16px; border:1px solid #e5e7eb; border-radius:12px; max-width:1100px; margin:24px auto 0; display:none;">
+  <h2 style="margin:0 0 8px">Résultats (brut)</h2>
+  <div id="recap-content" style="white-space:pre-line; font-family:system-ui, -apple-system, Segoe UI, Roboto; line-height:1.5"></div>
+</section>
 
   <!-- =========================================================
        [[REPERE: MAIN]]
@@ -1427,6 +1432,72 @@ document.addEventListener('DOMContentLoaded', function(){
   </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const form = document.getElementById('form-estimation');
+  if (!form) return;
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+
+    // --- Lecture des entrées ---
+    // foyer: valeurs attendues dans TA NOUVELLE LP : "1-2", "3-4", "5+"
+    const foyerVal = (document.getElementById('foyer')?.value || '').trim();
+    const n = foyerVal === '1-2' ? 2 : foyerVal === '3-4' ? 4 : foyerVal === '5+' ? 5 : 0;
+    const peau = !!document.getElementById('peau')?.checked;
+
+    if (!n){
+      alert('Sélectionnez la taille du foyer.');
+      document.getElementById('foyer')?.focus();
+      return;
+    }
+
+    // --- Hypothèses (brut) ---
+    const PRIX_KWH = 0.27;
+    const ECS_KWH_PP = 800;
+    const TAUX_GAIN_ECS = 0.10;
+    const DEPENSE_PROD_PP = 220;
+    const TAUX_ECO_PROD = peau ? 0.45 : 0.35; // plus haut si "peau sèche"
+    const SAVE_MAT_FOYER = 50;
+
+    // --- Calculs ---
+    const baseProduits = n * DEPENSE_PROD_PP;
+    const sProd = Math.round(baseProduits * TAUX_ECO_PROD);
+    const sEnergie = Math.round(n * ECS_KWH_PP * PRIX_KWH * TAUX_GAIN_ECS);
+    const sMateriel = SAVE_MAT_FOYER;
+    const total = sProd + sEnergie + sMateriel;
+
+    // Projection 10 ans : +5%/an seulement sur la part énergie
+    const r = 1.05, years = 10, sommeGeo = (Math.pow(r, years) - 1) / (r - 1);
+    const total10 = Math.round(sProd * 10 + sMateriel * 10 + sEnergie * sommeGeo);
+
+    // --- Affichage brut ---
+    const recap = document.getElementById('recap');
+    const out = document.getElementById('recap-content');
+    if (recap && out){
+      out.textContent =
+        `Taille du foyer : ${foyerVal}  (≈ ${n} pers)\n` +
+        `Peau sèche : ${peau ? 'Oui' : 'Non'}\n\n` +
+        `Économies Produits : ${sProd.toLocaleString('fr-FR')} € / an\n` +
+        `Économies Énergie  : ${sEnergie.toLocaleString('fr-FR')} € / an\n` +
+        `Entretien/Matériel : ${sMateriel.toLocaleString('fr-FR')} € / an\n` +
+        `--------------------------------------------\n` +
+        `TOTAL estimé       : ${total.toLocaleString('fr-FR')} € / an\n` +
+        `Projection 10 ans  : ${total10.toLocaleString('fr-FR')} €\n\n` +
+        `Hypothèses : Produits 220 €/pers/an (gain ${Math.round(TAUX_ECO_PROD*100)}%) • ` +
+        `ECS 800 kWh/pers/an (gain 10%, kWh 0,27 €) • Matériel 50 €/foyer/an.`;
+
+      recap.style.display = 'block';
+      recap.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // (Option tracking brut)
+    // window.dataLayer = window.dataLayer || [];
+    // dataLayer.push({event:'SimulateurUtilise'});
+    // dataLayer.push({event:'EstimationAffichee'});
+  });
+});
+</script>
 
 
 </body>
