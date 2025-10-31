@@ -781,6 +781,101 @@ legend{
     
   </style>
 </head>
+  <script>
+// Attend que le HTML soit chargé
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Cible le formulaire de la NOUVELLE page
+  const form = document.getElementById('form-estimation');
+  
+  // Cible la zone où afficher le résultat (le corps de la carte)
+  const cardBody = form.closest('.card__body');
+
+  // Écoute la soumission du formulaire
+  form.addEventListener('submit', function(event) {
+    
+    // 1. Empêche la page de se recharger
+    event.preventDefault();
+
+    // 2. Récupère les valeurs des NOUVEAUX champs
+    const foyerSelect = document.getElementById('foyer');
+    // Note: parseInt("5+") donne 5, ce qui est parfait pour la logique.
+    const n = parseInt(foyerSelect.value || '0', 10); 
+    const peau = document.getElementById('peau').checked;
+
+    // 3. Validation
+    if (n === 0) {
+      // Trouve le bouton et le secoue (feedback visuel)
+      const ctaButton = form.querySelector('.cta');
+      if (ctaButton) {
+        ctaButton.style.animation = 'shake 0.5s';
+        setTimeout(() => ctaButton.style.animation = '', 500);
+      }
+      
+      // Ajoute une mini-animation CSS pour le shake
+      const style = document.createElement('style');
+      style.innerHTML = `@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }`;
+      document.head.appendChild(style);
+      
+      // Sécurité si l'alerte est préférée
+      // alert('Veuillez sélectionner la taille de votre foyer.');
+      return;
+    }
+
+    // 4. Copie de l'ANCIENNE logique de calcul (à l'identique)
+    const PRIX_KWH = 0.27;
+    const ECS_KWH_PP = 800;
+    const TAUX_GAIN_ECS = 0.10;
+    const DEPENSE_PROD_PP = 220;
+    // Le gain est meilleur si "peau sèche" est cochée
+    const TAUX_ECO_PROD = peau ? 0.45 : 0.35; 
+    const SAVE_MAT_FOYER = 50;
+
+    // Calculs
+    const baseProduits = n * DEPENSE_PROD_PP;
+    const sProd = Math.round(baseProduits * TAUX_ECO_PROD);
+    const sEnergie = Math.round(n * ECS_KWH_PP * PRIX_KWH * TAUX_GAIN_ECS);
+    const sMateriel = SAVE_MAT_FOYER;
+    const total = sProd + sEnergie + sMateriel;
+
+    // 5. Prépare le HTML du résultat (stylisé pour la nouvelle carte)
+    const resultatHTML = `
+      <div style="text-align: center; color: var(--ink); animation: fadeIn 0.5s ease;">
+        <h3 style="font-size: 1rem; color: var(--muted); margin-bottom: 8px; font-weight: 600;">Économies annuelles estimées&nbsp;:</h3>
+        
+        <div style="font-size: clamp(2.6rem, 8vw, 2.8rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 20px;">
+          ≈ ${total.toLocaleString('fr-FR')} €
+        </div>
+        
+        <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.5; max-width: 320px; margin: 0 auto 24px;">
+          Pour un foyer de <strong>${foyerSelect.options[foyerSelect.selectedIndex].text} personne(s)</strong>
+          ${peau ? ' (incluant le besoin de confort "peau sèche").' : '.'}
+        </p>
+        
+        <p style="font-size: 0.8rem; color: var(--muted); opacity: 0.7;">
+          Estimation basée sur vos déclarations.<br>L'étude complète sera réalisée par un technicien.
+        </p>
+      </div>
+      <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      </style>
+    `;
+
+    // 6. Injecte le résultat dans le corps de la carte
+    if (cardBody) {
+      cardBody.innerHTML = resultatHTML;
+      // Change le padding pour mieux centrer le résultat
+      cardBody.style.paddingTop = '28px';
+      cardBody.style.paddingBottom = '28px';
+    } else {
+      // Sécurité si le HTML change
+      alert(`Votre économie est estimée à ${total} € / an.`);
+    }
+    
+  }); // Fin du listener 'submit'
+
+}); // Fin du listener 'DOMContentLoaded'
+</script>
 <body>
   <!-- =========================================================
        [[REPERE: SKIP LINK]]
