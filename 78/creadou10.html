@@ -172,12 +172,15 @@
     .card{
       position:relative;
       width:456px; max-width:95vw; margin-right:2vw;
-      background:rgba(10,15,25,.92);
-      border:1px solid var(--border);
+      background: rgba(10,15,25,.94);
+      border: 1px solid rgba(255,255,255,.16);
       border-radius:22px;
       backdrop-filter:blur(6px);
       -webkit-backdrop-filter:blur(6px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.55), 0 6px 16px rgba(0,0,0,.35);
+     box-shadow:
+  0 18px 60px rgba(0,0,0,.55),
+  0 6px 16px rgba(0,0,0,.35),
+  inset 0 1px 0 rgba(255,255,255,.06);
       overflow:hidden; z-index:2;
     }
     /* Vignette locale pour “éteindre” l’arrière-plan */
