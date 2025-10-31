@@ -629,6 +629,79 @@ legend{
   font-size:18px;font-weight:bold;cursor:pointer;padding:0
 }
 
+ /* ================== FOOTER PROMO ================== */
+.footer-cta{
+  background:linear-gradient(180deg,#0b4fbf,#0a2e70);
+  color:#fff;
+  padding:48px 20px;
+}
+.footer-cta__inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.footer-cta__left{
+  flex:0 0 340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.footer-cta__img{
+  max-width:100%;
+  height:auto;
+  display:block;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.25));
+}
+.footer-cta__right{
+  flex:1;
+  min-width:260px;
+  text-align:left;
+}
+.footer-cta__right h2{
+  font-size:clamp(20px,2.6vw,28px);
+  margin-bottom:10px;
+  font-weight:800;
+}
+.footer-cta__right p{
+  font-size:16px;
+  margin-bottom:18px;
+  line-height:1.55;
+}
+.footer-cta__right .cta{
+  display:inline-block;
+  background:linear-gradient(180deg,#0b4fbf,#0a2e70);
+  color:#fff;
+  font-weight:700;
+  padding:14px 22px;
+  border-radius:14px;
+  text-decoration:none;
+  box-shadow:0 8px 22px rgba(6,182,212,.25);
+  transition:filter .25s ease;
+}
+.footer-cta__right .cta:hover{
+  filter:brightness(1.1);
+}
+.footer-cta__trust{
+  font-size:13px;
+  margin-top:10px;
+  opacity:.9;
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .footer-cta__inner{
+    flex-direction:column;
+    text-align:center;
+    gap:24px;
+  }
+  .footer-cta__left{flex:0 0 auto;}
+  .footer-cta__right{text-align:center;}
+}
+   
     
   </style>
 </head>
@@ -1273,11 +1346,23 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+<!-- ================== FOOTER PROMO ================== -->
+<footer class="footer-cta" aria-labelledby="footerTitle">
+  <div class="footer-cta__inner">
+    <div class="footer-cta__left">
+      <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d7b8d505509e7dffe108d879ad5b25b19b1f39b1/camion%20%20poseur%20SEP.webp"
+           alt="Camion Solution Eau Pro avec technicien installateur"
+           class="footer-cta__img" loading="lazy">
+    </div>
+    <div class="footer-cta__right">
+      <h2 id="footerTitle">Un technicien local à votre service</h2>
+      <p>Pose propre, mise en service incluse et garantie constructeur.</p>
+      <a href="#lead-form" class="cta">💧 Demander mon étude en ligne</a>
+      <div class="footer-cta__trust">Rappel sous 24 h – Pas de démarchage</div>
+    </div>
+  </div>
+</footer>
 
-  <!-- =========================================================
-       [[REPERE: FOOTER]]
-       - À compléter avec Mentions légales / CGU / Contact
-       ========================================================= -->
-  <!-- <footer id="footer" class="footer">...</footer> -->
+
 </body>
 </html>
