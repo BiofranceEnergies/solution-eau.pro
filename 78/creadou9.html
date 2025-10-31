@@ -594,6 +594,20 @@ legend{
   overflow: hidden;
 }
 
+/* ===== Mentions légales (styles) ===== */
+#mentions-legales-container{width:100%;text-align:center;margin:26px 0 8px;display:block}
+#mentions-legales-link{color:#94a3b8;text-decoration:none;cursor:pointer;font-size:13px}
+#mentions-legales-link:hover{color:#64748b;text-decoration:underline}
+#mentions-popup{
+  display:none;position:fixed;bottom:60px;left:50%;transform:translateX(-50%);
+  width:340px;max-width:95vw;background:#fff;color:#111827;border-radius:13px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);padding:18px 20px 12px;z-index:10000;
+  font-size:13px;line-height:1.7;border:1px solid #e5e7eb
+}
+#close-mentions{
+  position:absolute;top:6px;right:12px;background:none;color:#111827;border:none;
+  font-size:18px;font-weight:bold;cursor:pointer;padding:0
+}
 
     
   </style>
@@ -1094,6 +1108,27 @@ legend{
   </div>
 </section>
 
+ <!-- ===== Mentions légales (lien + séparateur) ===== -->
+<div class="content-card">
+  <div id="mentions-legales-container">
+    <span id="mentions-legales-link">Mentions légales</span>
+  </div>
+  <hr class="sep">
+</div>
+
+<!-- ===== Popup Mentions (unique) ===== -->
+<div id="mentions-popup" role="dialog" aria-modal="true" aria-labelledby="mentions-title">
+  <button id="close-mentions" type="button" aria-label="Fermer">&times;</button>
+  <strong id="mentions-title">Mentions légales :</strong><br>
+  Solution Eau Pro webmaster marque de Biofrance Énergies<br>
+  SIRET : 422 231 928 00025<br>
+  Adresse : 4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>
+  Contact : solutioneaupro@gmail.com<br>
+  Hébergeur : GitHub Pages, 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>
+  Données personnelles : Les informations saisies sont utilisées uniquement pour traiter votre demande. Aucun démarchage ni revente.<br>
+  RGPD : Vous pouvez demander la suppression de vos données à tout moment par simple email.
+</div>
+   
    
   </main>
 
@@ -1190,6 +1225,32 @@ function openItem(btn){
     });
   }
 })();
+</script>
+<script>
+// ===== Mentions légales (ouverture/fermeture) =====
+document.addEventListener('DOMContentLoaded', function(){
+  const link = document.getElementById('mentions-legales-link');
+  const popup = document.getElementById('mentions-popup');
+  const close = document.getElementById('close-mentions');
+  if(!link || !popup || !close) return;
+
+  function openPopup(e){
+    if(e) e.preventDefault();
+    popup.style.display = 'block';
+    close.focus();
+  }
+  function closePopup(e){
+    if(e) e.preventDefault();
+    popup.style.display = 'none';
+  }
+  link.addEventListener('click', openPopup);
+  close.addEventListener('click', closePopup);
+
+  // Accessibilité : fermer avec Échap
+  document.addEventListener('keydown', (ev)=>{
+    if(ev.key === 'Escape' && popup.style.display === 'block'){ closePopup(); }
+  });
+});
 </script>
 
 
