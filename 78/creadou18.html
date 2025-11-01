@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Adoucisseur d’eau – Votre étude en ligne</title>
+    <meta
+      name="description"
+      content="Estimez vos économies avec un adoucisseur d’eau installé par un pro. Étude 100 % en ligne : Économies, Dimensionnement, Prix."
+    />
+
+    <link
+      rel="preload"
+      as="image"
+      href="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp"
+      imagesizes="100vw"
+    />
+    
+    <style>
+      /* =================================================================
+       [[REPERE: VARIABLES]]
+       - Palette, hauteurs, largeurs max
+       ================================================================= */
+      :root {
+        --maxw: 1200px;
+        --hero-h-desktop: 94vh;
+        --hero-h-mobile: 98vh;
+
+        /* Couleurs */
+        --ink: #f1f5f9;
+        --muted: #cce8ff;
+        --border: rgba(255, 255, 255, 0.28);
+        --glass: rgba(255, 255, 255, 0.1);
+        --glass-head: rgba(15, 23, 42, 0.98);
+
+        /* CTA bleu profond */
+        --cta-grad-top: #0b4fbf;
+        --cta-grad-bot: #0a2e70;
+        --cta-text: #ffffff;
+
+        /* bleu de marque pour la FAQ ; reprend ton CTA */
+        --brand: var(--cta-grad-top, #0b4fbf);
+        --brand-ink: #0f172a;
+      }
+
+      /* =================================================================
+       [[REPERE: RESET + BODY]]
+       ================================================================= */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #0b1220;
+        color: var(--ink);
+        font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Skipper accessibilité */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .skip-link:focus {
+        position: fixed;
+        left: 16px;
+        top: 16px;
+        width: auto;
+        height: auto;
+        padding: 10px 14px;
+        background: #111827;
+        color: #fff;
+        border-radius: 8px;
+        z-index: 9999;
+      }
+
+      /* =================================================================
+       [[REPERE: LOGO]]
+       - Change l’URL de l’image si besoin
+       ================================================================= */
+      .logo-header {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        z-index: 10;
+        display: block;
+      }
+      .logo-header img {
+        height: 70px;
+        width: auto;
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .logo-header {
+          top: 16px;
+          left: 16px;
+        }
+        .logo-header img {
+          height: 48px;
+        }
+      }
+
+      /* =================================================================
+       [[REPERE: HERO]]
+       - Image de fond : .hero__img (object-position si tu veux recadrer)
+       - Textes à gauche : .hero__copy
+       - Carte formulaire : .card
+       ================================================================= */
+      header.hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        height: var(--hero-h-desktop);
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        header.hero {
+          height: var(--hero-h-mobile);
+          min-height: 640px;
+        }
+      }
+
+      .hero__img {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 50%;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          180deg,
+          rgba(14, 165, 233, 0.28) 0%,
+          rgba(14, 165, 233, 0.18) 40%,
+          rgba(0, 0, 0, 0.42) 100%
+        );
+        mix-blend-mode: soft-light;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 78%,
+          rgba(0, 0, 0, 0.78) 100%
+        );
+      }
+
+      .hero__inner {
+        width: 100%;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 32px;
+        align-items: center;
+      }
+      @media (max-width: 1100px) {
+        .hero__inner {
+          gap: 24px;
+        }
+      }
+      @media (max-width: 900px) {
+        .hero__inner {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
+      /* --- Texte gauche --- */
+      .hero__copy {
+        max-width: 680px;
+        position: relative;
+        z-index: 1;
+      }
+      .hero__intro {
+        font-size: clamp(16px, 1.6vw, 20px);
+        color: #e0f2fe;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+        text-wrap: balance;
+      }
+      .hero__copy h1 {
+        font-size: clamp(34px, 4vw, 52px);
+        line-height: 1.15;
+        font-weight: 800;
+        margin: 12px 0 14px;
+        letter-spacing: -0.3px;
+        text-wrap: balance;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        max-width: 680px;
+        color: #f8fafc;
+      }
+      .hero__copy h1 em {
+        font-style: normal;
+        color: var(--cta-grad-top, #0b4fbf);
+      }
+
+      .hero__copy p {
+        color: var(--muted);
+        max-width: 60ch;
+      }
+
+      /* Uniformisation intro + lead (même taille/couleur/espacement) */
+      .hero__intro,
+      .hero__copy .lead {
+        font-size: clamp(17px, 1.6vw, 20px);
+        line-height: 1.5;
+        color: #e2e8f0; /* texte clair lisible sur le fond */
+        font-weight: 600;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+        margin-top: 14px;
+      }
+
+      /* Voile de lisibilité sous le texte */
+      .hero__copy::after {
+        content: "";
+        position: absolute;
+        left: -8px;
+        right: -8px;
+        top: -8px;
+        height: 340px;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        filter: blur(10px);
+        border-radius: 10px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* --- Carte formulaire --- */
+      .card {
+        position: relative;
+        width: 456px;
+        max-width: 95vw;
+        margin-right: 2vw;
+        background: rgba(10, 15, 25, 0.92);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55),
+          0 6px 16px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+        z-index: 2;
+      }
+      /* Vignette locale pour “éteindre” l’arrière-plan */
+      /* === Centrage vertical du panneau simulateur === */
+      .card {
+        align-self: center; /* aide le centrage dans le flex parent */
+        margin-top: 4vh; /* descend légèrement le panneau sur grand écran */
+        transform: translateY(10px); /* ajustement fin du centrage visuel */
+      }
+
+      /* Sur mobile : on annule ces décalages */
+      @media (max-width: 900px) {
+        .card {
+          margin-top: 0;
+          transform: none;
+        }
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: -48px;
+        z-index: -1;
+        background: radial-gradient(
+          320px 260px at 62% 18%,
+          rgba(0, 0, 0, 0.62),
+          transparent 72%
+        );
+        pointer-events: none;
+      }
+      @media (max-width: 900px) {
+        .card {
+          margin: 0 auto;
+          max-width: 640px;
+          width: 100%;
+          background: #0b1220;
+        }
+        .card::before {
+          display: none;
+        }
+      }
+
+      .card__head {
+        text-align: center;
+        padding: 24px 22px 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.98)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+      .card__head .t1 {
+        display: block;
+        font-weight: 800;
+        font-size: 1.34rem;
+        color: #fff;
+        letter-spacing: 0.1px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+      }
+      .card__head .t2 {
+        display: block;
+        font-size: 1.08rem;
+        color: #fff;
+        opacity: 0.98;
+        margin-top: 2px;
+      }
+      .card__body {
+        padding: 24px 20px 20px;
+      }
+
+      /* Champs */
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .field label {
+        font-weight: 700;
+        color: var(--ink);
+        font-size: 15px;
+      }
+      .sel {
+        flex: 1;
+        min-height: 48px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        outline: 0;
+        font-weight: 600;
+      }
+      /* === NOUVEAU : couleur des options déroulées === */
+      .sel option {
+        color: #111827;
+        background-color: #ffffff;
+      }
+      .sel:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.36);
+      }
+      .sel:focus {
+        border-color: rgba(255, 255, 255, 0.55);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.38);
+      }
+
+      .chk {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .chk input {
+        width: 18px;
+        height: 18px;
+        position: relative;
+        top: 1px;
+      }
+
+      .field.is-inline {
+        justify-content: flex-start;
+        gap: 10px;
+      }
+      .field.is-inline label:first-child {
+        min-width: auto;
+      }
+
+      /* CTA */
+      .cta {
+        display: block;
+        width: 100%;
+        margin-top: 12px;
+        height: 56px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: linear-gradient(
+          180deg,
+          var(--cta-grad-top),
+          var(--cta-grad-bot)
+        );
+        color: var(--cta-text);
+        font-weight: 800;
+        font-size: 1.02rem;
+        box-shadow: 0 16px 36px rgba(11, 63, 145, 0.55),
+          inset 0 2px 4px rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+      .cta:hover {
+        filter: brightness(1.06);
+        transform: translateY(-2px);
+      }
+      .cta:active {
+        transform: translateY(0);
+        filter: brightness(1.02);
+      }
+      .cta:focus-visible {
+        outline: 2px solid #93c5fd;
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cta {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .field {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .field label {
+          min-width: unset;
+        }
+      }
+
+      /* =================================================================
+       [[REPERE: SECTIONS]]
+       - Étapes, Bénéfices, Process, Métriques
+       ================================================================= */
+      .steps {
+        padding: 80px 20px 40px;
+        color: #0f172a;
+        background: #fff;
+      }
+      .steps__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .steps h2 {
+        font-size: clamp(26px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        color: #0f172a;
+        margin-bottom: 10px;
+      }
+      .steps p.subtitle {
+        color: #64748b;
+        margin-bottom: 36px;
+      }
+      .sgrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+      @media (max-width: 980px) {
+        .sgrid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+      .scard {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        box-shadow: 0 8px 22px rgba(2, 6, 23, 0.06),
+          0 2px 6px rgba(2, 6, 23, 0.04);
+        padding: 28px 26px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .sbullet {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(
+          180deg,
+          var(--cta-grad-top),
+          var(--cta-grad-bot)
+        );
+        color: #fff;
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 1;
+      }
+      .scard h3 {
+        font-size: 22px;
+        line-height: 1.2;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 6px 0 8px;
+      }
+      .scard p {
+        color: #64748b;
+      }
+      .steps__note {
+        max-width: 820px;
+        margin: 30px auto 0;
+        text-align: center;
+        font-weight: 800;
+        color: #0f172a;
+        font-size: 1.4rem;
+      }
+      .steps__check {
+        margin-top: 28px;
+        text-align: center;
+      }
+      .steps__check svg {
+        width: 64px;
+        height: 64px;
+        display: inline-block;
+      }
+
+      .benefits {
+        background: #f8fbff;
+        border-top: 1px solid #eef2f7;
+        padding: 80px 20px;
+        color: #0f172a;
+      }
+      .benefits__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .benefits h2 {
+        font-size: clamp(28px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+      .benefits .subtitle {
+        color: #64748b;
+        margin-bottom: 32px;
+      }
+      .bgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+      @media (max-width: 1100px) {
+        .bgrid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 720px) {
+        .bgrid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .bcard {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 24px 22px;
+        text-align: left;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, 0.06),
+          0 2px 6px rgba(2, 6, 23, 0.04);
+        display: flex;
+        flex-direction: column;
+      }
+      .bicon {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: #e8f2ff;
+        margin-bottom: 12px;
+      }
+      .bcard h3 {
+        font-size: 20px;
+        line-height: 1.25;
+        font-weight: 800;
+        margin: 6px 0 8px;
+        color: #0f172a;
+      }
+      .bcard p {
+        color: #64748b;
+      }
+      .benefits + * {
+        margin-top: 0;
+      }
+
+      .process {
+        background: #fff;
+        padding: 80px 20px;
+        color: #0f172a;
+      }
+      .process__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .process h2 {
+        font-size: clamp(28px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+      .process .subtitle {
+        color: #64748b;
+        margin-bottom: 36px;
+      }
+      .pline {
+        position: relative;
+        height: 76px;
+        margin: 0 auto 22px;
+        max-width: 880px;
+        background: linear-gradient(90deg, #e6f0fb 0, #e6f0fb 100%);
+        mask: linear-gradient(
+          90deg,
+          transparent 0,
+          #000 8%,
+          #000 92%,
+          transparent 100%
+        );
+        border-radius: 999px;
+      }
+      .pnode {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #0b84ee;
+        color: #fff;
+        font-weight: 800;
+        box-shadow: 0 6px 18px rgba(11, 132, 238, 0.25),
+          inset 0 2px 4px rgba(255, 255, 255, 0.25);
+      }
+      .pnode.n1 {
+        left: 16%;
+      }
+      .pnode.n2 {
+        left: 50%;
+      }
+      .pnode.n3 {
+        left: 84%;
+      }
+      .prow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-top: 12px;
+        align-items: stretch;
+      }
+      @media (max-width: 980px) {
+        .prow {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+      .pstep {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 26px 22px;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, 0.06),
+          0 2px 6px rgba(2, 6, 23, 0.04);
+        display: flex;
+        flex-direction: column;
+      }
+      .picon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 12px;
+        background: #e8f2ff;
+      }
+      .pstep h3 {
+        font-size: clamp(18px, 2.2vw, 26px);
+        line-height: 1.25;
+        font-weight: 800;
+        margin: 6px 0 8px;
+        color: #0f172a;
+      }
+      .pstep p {
+        color: #64748b;
+      }
+
+      .metrics {
+        background: #f8fbff;
+        padding: 80px 20px;
+        color: #0f172a;
+        border-top: 1px solid #eef2f7;
+      }
+      .metrics__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .metrics h2 {
+        font-size: clamp(28px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+      .metrics .subtitle {
+        color: #64748b;
+        margin-bottom: 32px;
+      }
+      .mgrid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+      @media (max-width: 1200px) {
+        .mgrid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 760px) {
+        .mgrid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .mcard {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 24px 22px;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, 0.06),
+          0 2px 6px rgba(2, 6, 23, 0.04);
+        display: flex;
+        flex-direction: column;
+      }
+      .micon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 10px;
+        background: #e8f2ff;
+      }
+      .mvalue {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        color: #0b84ee;
+        line-height: 1;
+        margin: 6px 0 4px;
+      }
+      .mcard h3 {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 6px;
+      }
+      .mcard p {
+        color: #64748b;
+      }
+
+      /* =========================================================
+   [[REPERE: TEMOIGNAGES / AVIS CLIENTS]]
+   ========================================================= */
+      .testi {
+        background: #ffffff; /* fond blanc pur */
+        border-top: 1px solid #eef2f7;
+        padding: 80px 20px;
+        color: #0f172a;
+      }
+      .testi__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .testi h2 {
+        font-size: clamp(28px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+      .testi__rating {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        color: #64748b;
+        font-weight: 700;
+      }
+      .testi__stars {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .testi__stars svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .testi__stars svg path {
+        fill: var(--cta-grad-top);
+      }
+
+      .testi__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+      @media (max-width: 980px) {
+        .testi__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Carte d’avis */
+      .tcard {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, 0.06),
+          0 2px 6px rgba(2, 6, 23, 0.04);
+        padding: 24px 22px;
+        text-align: left;
+      }
+      .tcard__top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+      .avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #ffe9cc;
+        color: #111827;
+        font-weight: 800;
+        font-size: 18px;
+        display: grid;
+        place-items: center;
+      }
+      .tcard__name {
+        font-weight: 800;
+        color: #0f172a;
+      }
+      .tcard__loc {
+        color: #64748b;
+        font-size: 0.95rem;
+      }
+
+      .tcard__stars {
+        margin: 8px 0 10px;
+        display: flex;
+        gap: 4px;
+      }
+      .tcard__quote {
+        color: #0f172a;
+        font-size: 1.02rem;
+        line-height: 1.5;
+      }
+      /* Taille cohérente des étoiles dans les cartes */
+      .tcard__stars svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+        flex: 0 0 18px;
+      }
+      /* Couleur bleue cohérente pour les étoiles */
+      .tcard__stars svg path {
+        fill: var(--cta-grad-top);
+      }
+
+      @media (max-width: 980px) {
+        .tcard__stars svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .tcard__quote em {
+        font-style: normal;
+        color: #334155;
+      }
+
+      /* enleve leontour blanc*/
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        min-inline-size: unset;
+      }
+      legend {
+        padding: 0;
+        margin: 0;
+      }
+      .sr-only {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* === MOBILE : logo + dégagement du texte === */
+      @media (max-width: 560px) {
+        .logo-header {
+          top: calc(8px + env(safe-area-inset-top));
+          left: 12px;
+        }
+        .logo-header img {
+          height: 36px; /* était 48px */
+        }
+        .hero__copy {
+          padding-top: 64px; /* crée l’espace pour éviter tout chevauchement */
+        }
+      }
+
+      /* Option si écran très petit en hauteur (petits iPhone, split-screen) */
+      @media (max-height: 680px) {
+        .hero__copy {
+          padding-top: 72px;
+        }
+      }
+
+      /* =========================================================
+   [[REPERE: FAQ / QUESTIONS FREQUENTES]]
+   ========================================================= */
+      .faq {
+        background: #f8fbff;
+        border-top: 1px solid #eef2f7;
+        padding: 80px 20px;
+        color: #0f172a;
+      }
+      .faq__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .faq header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .faq h2 {
+        font-size: clamp(28px, 4.2vw, 44px);
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 6px;
+      }
+      .faq .subtitle {
+        color: #64748b;
+      }
+
+      .faq__list {
+        display: grid;
+        gap: 14px;
+        max-width: 920px;
+        margin: 26px auto 0;
+      }
+
+      .faq__item {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06),
+          0 1px 4px rgba(2, 6, 23, 0.04);
+        overflow: hidden;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .faq__item.is-open {
+        border-color: rgba(
+          11,
+          79,
+          191,
+          0.35
+        ); /* bleu adouci */
+        box-shadow: 0 8px 20px rgba(11, 79, 191, 0.1),
+          0 2px 6px rgba(2, 6, 23, 0.06);
+      }
+
+      .faq__btn {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 20px;
+        background: #fff;
+        border: 0;
+        border-bottom: 1px solid #e5e7eb; /* séparation header/panel */
+        font-weight: 800;
+        font-size: 1.05rem;
+        cursor: pointer;
+        color: var(--brand-ink);
+      }
+      .faq__btn:focus-visible {
+        outline: 2px solid #93c5fd;
+        outline-offset: 2px;
+      }
+
+      /* Hover = texte en bleu */
+      .faq__btn:hover {
+        color: var(--brand);
+        background: linear-gradient(180deg, #f9fbff, #ffffff);
+      }
+
+      /* État ouvert = texte bleu + fond éclairci */
+      .faq__btn[aria-expanded="true"] {
+        color: var(--brand);
+        background: linear-gradient(180deg, #f0f6ff, #ffffff);
+      }
+
+      .faq__chev {
+        flex: 0 0 auto;
+        width: 22px;
+        height: 22px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        opacity: 0.75;
+      }
+      .faq__btn[aria-expanded="true"] .faq__chev {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      .faq__chev path {
+        stroke: currentColor;
+      }
+
+      .faq__panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+        will-change: max-height;
+        background: linear-gradient(180deg, #ffffff, #f9fbff);
+      }
+      .faq__content {
+        padding: 16px 20px 20px;
+        color: #475569;
+        line-height: 1.55;
+      }
+      .faq__content p + p {
+        margin-top: 10px;
+      }
+
+      @media (max-width: 720px) {
+        .faq {
+          padding: 60px 16px;
+        }
+        .faq__btn {
+          padding: 16px;
+          font-size: 1rem;
+        }
+        .faq__content {
+          padding: 14px 16px 18px;
+        }
+      }
+
+      /* === FAQ : version finale complète === */
+
+      /* Centre le titre */
+      .faq h2 {
+        text-align: center;
+      }
+
+      /* Bouton FAQ */
+      .faq__btn {
+        position: relative;
+        padding: 20px 44px 20px 24px; /* marge droite pour la flèche */
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      /* Flèche animée à droite */
+      .faq__btn::after {
+        content: "";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        transform: translateY(-50%) rotate(0deg);
+        opacity: 0.65;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        background: no-repeat center / contain
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M8 10l4 4 4-4' stroke='%230b4fbf' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      }
+      .faq__btn:hover::after {
+        opacity: 1;
+      }
+      .faq__btn[aria-expanded="true"]::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      /* Panneaux : fermés par défaut */
+      .faq__panel {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 24px; /* pas de padding vertical fermé */
+        transition: max-height 0.25s ease, padding 0.2s ease;
+      }
+
+      /* Ouverts */
+      .faq__item.is-open .faq__panel {
+        padding: 16px 24px 20px;
+      }
+
+      /* Liste globale : petit souffle latéral */
+      .faq__list {
+        padding: 0 4px;
+      }
+
+      /* Sécurise le calcul de hauteur pendant l'animation */
+      .faq__panel {
+        box-sizing: border-box; /* que la hauteur tienne compte du padding */
+        overflow: hidden;
+      }
+
+      /* ===== Mentions légales (styles) ===== */
+      #mentions-legales-container {
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(180deg, #0b4fbf, #0a2e70);
+        color: #fff;
+        padding: 18px 0 14px;
+        margin: 0;
+      }
+      #mentions-legales-link {
+        color: #e0f2ff;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+      #mentions-legales-link:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      #mentions-legales-link {
+        color: #94a3b8;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      #mentions-legales-link:hover {
+        color: #64748b;
+        text-decoration: underline;
+      }
+      #mentions-popup {
+        display: none;
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 340px;
+        max-width: 95vw;
+        background: #fff;
+        color: #111827;
+        border-radius: 13px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        padding: 18px 20px 12px;
+        z-index: 10000;
+        font-size: 13px;
+        line-height: 1.7;
+        border: 1px solid #e5e7eb;
+      }
+      #close-mentions {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        background: none;
+        color: #111827;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* ================== FOOTER PROMO ================== */
+      .footer-cta {
+        background: linear-gradient(180deg, #0b4fbf, #0a2e70);
+        color: #fff;
+        padding: 48px 20px;
+      }
+      .footer-cta__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .footer-cta__left {
+        flex: 0 0 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-cta__img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+      }
+      .footer-cta__right {
+        flex: 1;
+        min-width: 260px;
+        text-align: left;
+      }
+      .footer-cta__right h2 {
+        font-size: clamp(20px, 2.6vw, 28px);
+        margin-bottom: 10px;
+        font-weight: 800;
+      }
+      .footer-cta__right p {
+        font-size: 16px;
+        margin-bottom: 18px;
+        line-height: 1.55;
+      }
+      .footer-cta__right .cta {
+        display: inline-block;
+        background: linear-gradient(180deg, #0b4fbf, #0a2e70);
+        color: #fff;
+        font-weight: 700;
+        padding: 14px 22px;
+        border-radius: 14px;
+        text-decoration: none;
+        box-shadow: 0 8px 22px rgba(6, 182, 212, 0.25);
+        transition: filter 0.25s ease;
+      }
+      .footer-cta__right .cta:hover {
+        filter: brightness(1.1);
+      }
+      .footer-cta__trust {
+        font-size: 13px;
+        margin-top: 10px;
+        opacity: 0.9;
+      }
+      /* ===== Bas de footer (Mentions légales intégrées) ===== */
+      .footer-legal {
+        text-align: center;
+        margin-top: 32px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .footer-legal span {
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-legal span:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* Mobile */
+      @media (max-width: 760px) {
+        .footer-cta__inner {
+          flex-direction: column;
+          text-align: center;
+          gap: 24px;
+        }
+        .footer-cta__left {
+          flex: 0 0 auto;
+        }
+        .footer-cta__right {
+          text-align: center;
+        }
+      }
+
+      /* ================== STYLE RESUME COUT CALCAIRE ================== */
+.rc {
+  background: #0b4fbf;              /* bleu profond */
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  max-width: 900px;
+  margin: 32px auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  display: none;                    /* caché par défaut */
+}
+
+.rc__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.rc__icon svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.95;
+}
+
+.rc__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.rc__row {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rc__value {
+  display: inline-block;
+  min-width: 120px;
+}
+
+.rc__sub {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+  .rc {
+    padding: 24px 16px;
+  }
+  .rc__row {
+    font-size: 2.4rem;
+  }
+}
+
+/* Petit triangle contour blanc sous le montant */
+.rc__arrow{
+  display:flex;
+  justify-content:center;
+  margin: 12px 0 6px;
+}
+.rc__arrow svg{
+  width: 70px;
+  height: 36px;
+}
+.rc__arrow path{
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+      
+ /* ===== Cartes détail coût (ligne 1/3) ===== */
+.rc-cards{
+  max-width: var(--maxw, 1100px);
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 1 carte pour l’instant, mais grille prête */
+  gap: 16px;
+}
+@media (max-width: 980px){
+  .rc-cards{ grid-template-columns: 1fr; }
+}
+.rc-card{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1353C9;            /* bleu cohérent avec ton bloc */
+  color: #fff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 24px rgba(10,30,80,.18);
+}
+.rc-card__icon{
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+.rc-card__body{
+  display: grid;
+  gap: 6px;
+}
+.rc-card__value{
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.1;
+}
+.rc-card__text{
+  font-size: 16px;
+  line-height: 1.35;
+  opacity: .95;
+}
+     
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Aller au contenu</a>
+
+    <header id="hero" class="hero" aria-label="Haut de page adoucisseur d’eau">
+      <div class="logo-header" role="img" aria-label="Solution Eau Pro">
+        <img
+          src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/LOGO%20SEP2.webp"
+          alt="Solution Eau Pro"
+        />
+      </div>
+
+      <img
+        class="hero__img"
+        src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp"
+        alt=""
+        width="1920"
+        height="1080"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        sizes="100vw"
+      />
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="hero__intro">
+            Dites adieu au calcaire, redécouvrez une eau pure et douce.
+          </p>
+          <h1>
+            <em>Adoucisseur d’eau</em> installé par un professionnel local
+          </h1>
+          <p class="lead">
+            Étude rapide, prix clair et installation garantie constructeur.
+          </p>
+        </div>
+
+        <section
+          id="lead-form"
+          role="region"
+          aria-labelledby="formTitle"
+          class="card"
+        >
+          <header class="card__head">
+            <h2 id="formTitle" class="t1">Votre étude 100 % en ligne&nbsp;:</h2>
+            <p class="t2">Économies • Dimensionnement • Prix</p>
+          </header>
+
+          <div class="card__body">
+            <form id="form-estimation" action="#" onsubmit="return false" novalidate>
+              <fieldset>
+                <legend class="sr-only">Paramètres de votre foyer</legend>
+
+                <div class="field">
+                  <label for="foyer">Taille du foyer</label>
+                  <select id="foyer" name="foyer" class="sel" required>
+                    <option value="" disabled selected hidden>Choisir…</option>
+                    <option value="1-2">1 à 2 personnes</option>
+                    <option value="3-4">3 à 4 personnes</option>
+                    <option value="5+">5 personnes ou plus</option>
+                  </select>
+                </div>
+
+                <div class="field is-inline">
+                  <label for="peau">Confort</label>
+                  <label class="chk">
+                    <input
+                      id="peau"
+                      name="peau_seche"
+                      type="checkbox"
+                      value="1"
+                    />
+                    Peau sèche / rêche
+                  </label>
+                </div>
+              </fieldset>
+
+              <button class="cta" type="submit">Calculer mon gain</button>
+              </form>
+          </div>
+        </section>
+      </div>
+    </header>
+    <section
+      id="recap"
+      style="
+        background: #fff;
+        color: #0f172a;
+        padding: 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        max-width: 1100px;
+        margin: 24px auto 0;
+        display: none;
+      "
+    >
+      <!-- ================== [[RESUME COUT CALCAIRE]] ================== -->
+<section id="resume-cout" class="rc" aria-label="Résumé coût du calcaire" style="display:none">
+  <div class="rc__inner">
+    <div class="rc__icon" aria-hidden="true">
+<svg viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- Pièce -->
+  <circle cx="46" cy="18" r="16" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+
+  <!-- Symbole € plein au centre -->
+  <path d="M45 7.5c-3.3 0-6 2.7-6 6h-2v3h2v1h-2v3h2c0 3.3 2.7 6 6 6 1.5 0 3-.6 4.1-1.5v-3.4c-1 .9-2.2 1.5-3.6 1.5-1.9 0-3.4-1.1-3.9-2.6h5.5v-3h-6c.1-.2.1-.5.1-.7v-.6h5.9v-3h-5.2c.6-1.5 2-2.6 3.7-2.6 1.3 0 2.6.6 3.5 1.4V9c-1.2-.9-2.7-1.5-4.1-1.5z"
+        fill="#ffffff"/>
+
+  <!-- Main (paume + doigts) -->
+  <path d="M6 40c6 0 11.5 1 17 1h9.5c2.2 0 4.4-.5 6.3-1.6l3.7-2.1c1.5-.8 3.3-.8 4.8.1 1.9 1.2 2.1 3.7.4 5.2l-6.9 5.7c-2.5 2.1-5.6 3.2-8.8 3.2H23.5c-3.1 0-6.2.7-9 2l-1.8.9"
+        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Pouce -->
+  <path d="M31 41c2.1-.2 3.9-1.1 5.4-2.7 1.1-1.1 2.7-1.6 4.2-1.2" 
+        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Poignet -->
+  <path d="M6 44c3.2 0 6.4.4 9.4 1.3" 
+        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>
+
+      
+
+    </div>
+    <div class="rc__content">
+      <h3 class="rc__title">Le calcaire vous coûte chaque année…</h3>
+     <div class="rc__row">
+  <span class="rc__value" id="rc-annual">0 €</span>
+</div>
+
+
+
+<div class="rc__sub">
+  Soit <strong id="rc-10ans">0 €</strong> sur 10 ans
+</div>
+<!-- Triangle contour blanc (pointe vers le bas) -->
+<div class="rc__arrow" aria-hidden="true">
+  <svg viewBox="0 0 24 14" role="img" focusable="false" aria-hidden="true">
+    <path d="M1 1 H23 L12 13 Z"/>
+  </svg>
+</div>
+
+     
+    </div>
+  </div>
+   <!-- ================== CARTES DÉTAIL COÛTS ================== -->
+<section id="rc-cards" class="rc-cards" aria-label="Détail du coût annuel">
+  <!-- Carte 1 : Produits -->
+  <article class="rc-card">
+    <div class="rc-card__icon" aria-hidden="true">
+      <!-- Icône originale flacon + spray (outline blanc) -->
+      <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <!-- spray -->
+        <path d="M39 10h4M38 14h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <!-- flacon spray -->
+        <path d="M20 10h8l1 3v4h-10v-4l1-3Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M23 10v-2a2 2 0 0 1 2-2h2v4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="18" y="17" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/>
+        <!-- petit bidon à côté -->
+        <rect x="8" y="20" width="8" height="17" rx="2" stroke="#fff" stroke-width="2"/>
+        <path d="M10 20v-3h4v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="rc-card__body">
+      <div class="rc-card__value"><span id="rc-val-prod">0</span> €</div>
+      <div class="rc-card__text">
+        Surconsommation de produits ménagers et de soins liée au calcaire.
+      </div>
+    </div>
+  </article>
+</section>
+</section>
+
+      <h2 style="margin: 0 0 8px">Résultats (brut)</h2>
+      <div
+        
+        id="recap-content"
+        style="
+          white-space: pre-line;
+          font-family: system-ui, -apple-system, Segoe UI, Roboto;
+          line-height: 1.5;
+        "
+      ></div>
+    </section>
+
+    <main id="main" tabindex="-1">
+      <section id="steps" class="steps" aria-labelledby="stepsTitle">
+        <div class="steps__inner">
+          <h2 id="stepsTitle">
+            Simulation en ligne : rapide, fiable et sans engagement
+          </h2>
+          <p class="subtitle">Des résultats clairs en 3 étapes</p>
+
+          <div class="sgrid">
+            <article class="scard">
+              <div class="sbullet" aria-hidden="true">01</div>
+              <h3>Votre estimation sur mesure</h3>
+              <p>
+                Quelques infos sur votre foyer et vos usages d’eau, rien de
+                superflu.
+              </p>
+            </article>
+
+            <article class="scard">
+              <div class="sbullet" aria-hidden="true">02</div>
+              <h3>Vos économies calculées</h3>
+              <p>
+                Montant annuel estimé + projection à 10 ans, en toute
+                transparence.
+              </p>
+            </article>
+
+            <article class="scard">
+              <div class="sbullet" aria-hidden="true">03</div>
+              <h3>Pose et garantie incluses</h3>
+              <p>
+                Installation par technicien agréé, mise en service et garantie
+                constructeur.
+              </p>
+            </article>
+          </div>
+
+          <p class="steps__note">
+            Vous obtenez l’essentiel : chiffrage, bénéfices, et conditions de
+            pose.
+          </p>
+
+          <div class="steps__check" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="12" cy="12" r="11" fill="#22c55e"></circle>
+              <path
+                d="M7 12.5l3.2 3.2L17 9"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section id="benefits" class="benefits" aria-labelledby="benefitsTitle">
+        <div class="benefits__inner">
+          <h2 id="benefitsTitle">
+            Des avantages visibles dès les premières semaines
+          </h2>
+          <p class="lead" style="margin-bottom: 24px">
+            Réduisez le calcaire, protégez vos appareils et profitez du confort
+            d’une eau douce au quotidien.
+          </p>
+
+          <div class="bgrid">
+            <article class="bcard">
+              <div class="bicon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 7h12m4 0-6 6-3-3-7 7"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Économies garanties</h3>
+              <p>
+                Réduisez jusqu’à 40&nbsp;% vos dépenses en produits d’entretien
+                et jusqu’à 18&nbsp;% d’énergie économisée par mm de tartre
+                évité.
+              </p>
+            </article>
+
+            <article class="bcard">
+              <div class="bicon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 12l2-2-2-2m6 8 2-2-2-2m4-8-1.5 3L10 8l3-1.5L14 3z"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Confort au quotidien</h3>
+              <p>
+                Eau plus douce, linge plus souple, vaisselle brillante sans
+                traces.
+              </p>
+            </article>
+
+            <article class="bcard">
+              <div class="bicon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Bien-être &amp; santé</h3>
+              <p>Peau et cheveux préservés, moins d’irritations.</p>
+            </article>
+
+            <article class="bcard">
+              <div class="bicon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 19c8 0 14-6 14-14-6 0-14 6-14 14z"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Écologie &amp; durabilité</h3>
+              <p>
+                Prolongez la vie de vos appareils électroménagers jusqu’à
+                3&nbsp;fois.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="process" aria-labelledby="processTitle">
+        <div class="process__inner">
+          <h2 id="processTitle">Comment ça marche&nbsp;?</h2>
+          <p class="subtitle">Un processus simple en 3 étapes</p>
+
+          <div class="pline" aria-hidden="true">
+            <span class="pnode n1">1</span>
+            <span class="pnode n2">2</span>
+            <span class="pnode n3">3</span>
+          </div>
+
+          <div class="prow">
+            <article class="pstep">
+              <div class="picon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 3h10M9 3v6l-3 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3l-3-9V3"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Analyse gratuite de votre eau</h3>
+              <p>Mesure de la dureté et recommandation adaptée.</p>
+            </article>
+
+            <article class="pstep">
+              <div class="picon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Installation rapide &amp; pro</h3>
+              <p>Pose par technicien certifié, sans travaux lourds.</p>
+            </article>
+
+            <article class="pstep">
+              <div class="picon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" stroke="#0b4fbf" stroke-width="2" />
+                  <path
+                    d="M7 12.5l3 3L17 9"
+                    stroke="#0b4fbf"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Profitez d’une eau douce</h3>
+              <p>Confort immédiat et protection de vos équipements.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="metrics" class="metrics" aria-labelledby="metricsTitle">
+        <div class="metrics__inner">
+          <h2 id="metricsTitle">
+            Des économies concrètes &amp; mesurables
+          </h2>
+          <p class="subtitle">Investissement rentabilisé en moins de 5 ans</p>
+
+          <div class="mgrid">
+            <article class="mcard">
+              <div class="micon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="26"
+                  height="26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 15l4-4 3 3 7-7"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="mvalue">40%</div>
+              <h3>Économies sur les produits</h3>
+              <p>Réduction des dépenses en détergents et savons.</p>
+            </article>
+
+            <article class="mcard">
+              <div class="micon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="26"
+                  height="26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="mvalue">18%</div>
+              <h3>Économies d’énergie</h3>
+              <p>Par mm de tartre évité sur les appareils chauffant l’eau.</p>
+            </article>
+
+            <article class="mcard">
+              <div class="micon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="26"
+                  height="26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 20c4.4 0 8-3.6 8-8s-3.6-8-8-8-8 3.6-8 8 3.6 8 8 8z"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                  />
+                </svg>
+              </div>
+              <div class="mvalue">3x</div>
+              <h3>Durée de vie prolongée</h3>
+              <p>Vos équipements durent jusqu’à 3 fois plus longtemps.</p>
+            </article>
+
+            <article class="mcard">
+              <div class="micon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="26"
+                  height="26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 7l-9 9-5-5"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                  />
+                </svg>
+              </div>
+              <div class="mvalue">100%</div>
+              <h3>Protection garantie</h3>
+              <p>Élimination du calcaire dans vos canalisations.</p>
+            </article>
+
+            <article class="mcard">
+              <div class="micon" aria-hidden="true" focusable="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="26"
+                  height="26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 14c4 0 4-6 8-6s4 6 8 6"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M3 19h18"
+                    stroke="#0b4fbf"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div class="mvalue">600€</div>
+              <h3>Économies annuelles</h3>
+              <p>Moyenne constatée pour une famille de 4 personnes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="testi" class="testi" aria-labelledby="testiTitle">
+        <div class="testi__inner">
+          <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
+
+          <div class="testi__rating" aria-label="Note moyenne">
+            <span class="testi__stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                <path
+                  d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                <path
+                  d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                <path
+                  d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                <path
+                  d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="75%" stop-color="var(--cta-grad-top)" />
+                    <stop offset="75%" stop-color="transparent" />
+                  </linearGradient>
+                </defs>
+                <path
+                  fill="url(#halfStar)"
+                  d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                />
+              </svg>
+            </span>
+            <span
+              ><strong>4,8 / 5</strong> — extraits d’avis clients récents (12
+              derniers mois)</span
+            >
+          </div>
+
+          <div class="testi__grid">
+            <article class="tcard" aria-label="Avis client">
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">CR</div>
+                <div>
+                  <div class="tcard__name">Jérôme T.</div>
+                  <div class="tcard__loc">Rambouillet (78) · 07/2025</div>
+                </div>
+              </div>
+              <div class="tcard__stars" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+              </div>
+              <p class="tcard__quote">
+                “J’ai fait la simulation un soir, <em>résultat immédiat</em> :
+                économies et coût d’installation en 1 minute. On a décidé de se
+                lancer, et depuis l’eau est douce, plus aucune démangeaison pour
+                mon fils sujet à l’eczéma. Franchement, un vrai confort au
+                quotidien.”
+              </p>
+            </article>
+
+            <article class="tcard" aria-label="Avis client">
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">JT</div>
+                <div>
+                  <div class="tcard__name">Claire R.</div>
+                  <div class="tcard__loc">Maule (78) · 05/2025</div>
+                </div>
+              </div>
+              <div class="tcard__stars" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="50%" stop-color="var(--cta-grad-top)" />
+                      <stop offset="50%" stop-color="transparent" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    fill="url(#halfStarJT)"
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+              </div>
+              <p class="tcard__quote">
+                “J’ai eu toutes les infos en quelques clics, sans démarchage. Le
+                devis était clair, et deux semaines plus tard
+                <em>l’adoucisseur était posé</em>. Je vois la différence : linge
+                plus souple, moins de produits et plus d’économies.”
+              </p>
+            </article>
+
+            <article class="tcard" aria-label="Avis client">
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">NV</div>
+                <div>
+                  <div class="tcard__name">Nadine V.</div>
+                  <div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div>
+                </div>
+              </div>
+              <div class="tcard__stars" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)">
+                  <path
+                    d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"
+                  />
+                </svg>
+              </div>
+              <p class="tcard__quote">
+                “J’ai utilisé le simulateur par curiosité, et dès le lendemain
+                un technicien est venu faire <em>l’analyse de mon eau</em>.
+                Résultat : je me suis équipée, et fini les traces de calcaire
+                sur la paroi de douche. L’eau est plus agréable, et la salle de
+                bain reste propre plus longtemps.”
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="faq" class="faq" aria-labelledby="faqTitle">
+        <div class="faq__inner">
+          <h2 id="faqTitle">Questions fréquentes</h2>
+
+          <div class="faq__list">
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Comment est calculée mon estimation ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  L’estimation repose sur la taille de votre foyer, la dureté
+                  d’eau moyenne observée dans votre secteur et vos usages (eau
+                  chaude, linge, électroménager). Elle fournit une base
+                  réaliste, ensuite confirmée lors de l’étude personnalisée
+                  réalisée à votre domicile, avec l’analyse précise de votre
+                  eau.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Quel modèle ou quelle capacité pour mon foyer ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Le choix dépend de la dureté de votre eau et du volume d’eau
+                  consommé entre chaque régénération. L’objectif est de
+                  dimensionner l’appareil pour assurer confort, autonomie et
+                  économie de sel.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                L’eau adoucie est-elle potable ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  C’est une idée reçue : l’eau adoucie ne devient pas « salée ».
+                  Elle reste parfaitement potable et conforme aux normes
+                  sanitaires en vigueur. Le procédé d’adoucissement consiste
+                  simplement à remplacer les ions calcium et magnésium —
+                  responsables du calcaire — par des ions sodium. Cette
+                  technique d’échange d’ions est reconnue par le Ministère de la
+                  Santé (circulaire DGS n° 2000-166 du 28 mars 2000) parmi les
+                  procédés autorisés pour le traitement des eaux destinées à la
+                  consommation humaine. La disparition du calcaire n’a aucune
+                  incidence nutritionnelle : une alimentation équilibrée couvre
+                  naturellement les besoins en calcium et en magnésium.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Vais-je consommer beaucoup de sel ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Non, la consommation de sel reste très faible. Elle dépend de
+                  la dureté de votre eau et du volume d’eau traité entre chaque
+                  régénération. Nos adoucisseurs sont équipés de
+                  <strong>vannes de dernière génération</strong>, capables
+                  d’optimiser chaque cycle de régénération. Résultat :
+                  <strong>moins d’eau utilisée, moins de sel consommé</strong>,
+                  tout en maintenant une efficacité maximale. Pour un foyer
+                  moyen, cela représente généralement
+                  <strong>3 à 6 sacs de 25 kg par an</strong>, soit un coût
+                  très modéré au regard du confort et des économies obtenues.
+                  C’est l’un des grands avantages des systèmes récents : ils
+                  sont
+                  <strong
+                    >bien plus économes et précis</strong
+                  >
+                  que les anciens modèles, souvent trop gourmands en eau et en
+                  sel.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Quel entretien prévoir ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Un adoucisseur demande très peu d’entretien. Un
+                  <strong>contrôle annuel</strong> suffit pour vérifier les
+                  réglages, nettoyer la cuve, désinfecter le circuit et
+                  remplacer les consommables si nécessaire. Cette visite permet
+                  de
+                  <strong>préserver la performance de la résine</strong> et
+                  d’assurer une eau parfaitement adoucie toute l’année. Nos
+                  techniciens agréés disposent d’un matériel de diagnostic précis
+                  et interviennent rapidement, sans immobiliser votre
+                  installation. Pour plus de sérénité, il est possible de
+                  souscrire un
+                  <strong>contrat d’entretien</strong> incluant la vérification
+                  complète et la maintenance préventive de votre appareil.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Où s’installe l’appareil ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  L’adoucisseur s’installe
+                  <strong
+                    >au plus près de l’arrivée d’eau principale</strong
+                  >, généralement dans le garage, le cellier ou le local
+                  technique. Il nécessite simplement
+                  <strong>une évacuation</strong> pour la régénération et
+                  <strong
+                    >une alimentation électrique basse tension (24 V)</strong
+                  >. Sa consommation est <strong>quasi nulle</strong>,
+                  équivalente à quelques watts seulement. L’installation
+                  comprend un <strong>by-pass</strong> et un
+                  <strong>préfiltre</strong> pour protéger la résine et permettre
+                  un passage en eau dure si besoin (entretien ou dépannage). Nos
+                  techniciens déterminent avec vous
+                  <strong
+                    >l’emplacement le plus adapté</strong
+                  >
+                  afin de garantir un accès facile et une intégration propre
+                  dans votre réseau d’eau.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Combien de temps dure la pose ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  L’installation d’un adoucisseur est rapide et propre. Elle
+                  prend en moyenne
+                  <strong>une demi-journée à une journée</strong>, selon la
+                  configuration de votre arrivée d’eau. Aucune modification
+                  lourde de plomberie n’est nécessaire : nos techniciens
+                  interviennent sur le réseau existant et mettent l’appareil en
+                  service immédiatement. La coupure d’eau pendant la pose est
+                  <strong>très courte</strong>, limitée au strict nécessaire
+                  pour le raccordement. Avant leur départ, ils réalisent
+                  <strong>le réglage de dureté</strong> et
+                  <strong
+                    >le contrôle complet du fonctionnement</strong
+                  >
+                  pour que tout soit opérationnel dès le premier jour.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Quels effets concrets vais-je constater au quotidien ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Les effets de l’adoucisseur sont visibles dès la mise en
+                  service. L’eau froide est adoucie immédiatement, tandis qu’il
+                  faut parfois <strong>quelques jours</strong> pour que l’eau
+                  calcaire du ballon d’eau chaude soit entièrement remplacée par
+                  l’eau douce. Dès le départ, il est recommandé de
+                  <strong
+                    >réduire d’environ deux à trois fois</strong
+                  >
+                  les doses de savon, shampooing, lessive ou produits ménagers :
+                  l’eau douce mousse davantage et se rince plus facilement. Vous
+                  remarquerez rapidement une
+                  <strong
+                    >peau plus douce, un linge plus souple, des surfaces sans
+                    traces</strong
+                  >
+                  et une nette diminution des dépôts de tartre. L’adoucisseur
+                  apporte ainsi un <strong>confort immédiat</strong>, une
+                  <strong
+                    >meilleure efficacité de vos produits</strong
+                  >
+                  et un
+                  <strong
+                    >entretien domestique considérablement simplifié</strong
+                  >. C’est souvent
+                  <strong>dès la première douche</strong> que les utilisateurs
+                  perçoivent la différence.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Quelle est la durée de vie d’un adoucisseur ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Un adoucisseur bien entretenu a une
+                  <strong>durée de vie moyenne de 15 à 20 ans</strong>. La
+                  longévité dépend surtout de la
+                  <strong>qualité de la résine</strong>, de la
+                  <strong>régularité de l’entretien</strong> et du
+                  <strong>type de vanne</strong> utilisée. Les modèles récents,
+                  équipés d’électronique basse tension et de cycles optimisés,
+                  conservent leurs performances beaucoup plus longtemps que les
+                  anciennes générations. Avec un entretien annuel, votre
+                  installation reste fiable et performante sur le long terme.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Quelles sont les garanties et le service après-vente ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  Nos adoucisseurs bénéficient d’une
+                  <strong>garantie constructeur complète</strong>, couvrant les
+                  pièces principales et la cuve. La mise en service, le réglage
+                  de dureté et le contrôle du fonctionnement sont réalisés par un
+                  <strong>technicien agréé</strong> lors de l’installation. En
+                  cas de besoin, notre service après-vente assure un
+                  <strong>diagnostic rapide et une intervention sur site</strong>,
+                  avec la possibilité d’un
+                  <strong>contrat d’entretien annuel</strong> pour un suivi
+                  régulier. Votre installation reste ainsi performante, sûre et
+                  durable, sans immobilisation ni contrainte.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq__item">
+              <button class="faq__btn" aria-expanded="false">
+                Que se passe-t-il en cas de coupure d’eau ou de courant ?
+              </button>
+              <div class="faq__panel">
+                <p>
+                  En cas de coupure d’eau, l’adoucisseur se met simplement en
+                  pause et redémarre automatiquement dès que l’alimentation est
+                  rétablie. Lors d’une coupure de courant, les réglages sont
+                  <strong>mémorisés électroniquement</strong>, il n’y a donc
+                  <strong>aucun risque de dérèglement</strong> ni de perte de
+                  programmation. Les modèles récents fonctionnent en basse
+                  tension (24 V) et reprennent leur cycle là où ils s’étaient
+                  arrêtés, sans intervention manuelle.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div
+        id="mentions-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mentions-title"
+      >
+        <button id="close-mentions" type="button" aria-label="Fermer">
+          &times;
+        </button>
+        <strong id="mentions-title">Mentions légales :</strong><br />
+        Solution Eau Pro webmaster marque de Biofrance Énergies<br />
+        SIRET : 422 231 928 00025<br />
+        Adresse : 4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br />
+        Contact : solutioneaupro@gmail.com<br />
+        Hébergeur : GitHub Pages, 88 Colin P. Kelly Jr. Street, San Francisco,
+        CA 94107, USA<br />
+        Données personnelles : Les informations saisies sont utilisées uniquement
+        pour traiter votre demande. Aucun démarchage ni revente.<br />
+        RGPD : Vous pouvez demander la suppression de vos données à tout moment
+        par simple email.
+      </div>
+    </main>
+
+    <script>
+      // ========= FAQ TOGGLE ROBUSTE =========
+      (function () {
+        // -- remplace ces trois fonctions à l'intérieur de ton (function(){ ... }) --
+        function setPanelHeight(panel) {
+          if (!panel) return;
+
+          // Démarre à 0 pour garantir l'animation
+          panel.style.maxHeight = "0px";
+
+          // Laisse le temps au style "ouvert" (padding, etc.) de s'appliquer
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => {
+              const h = panel.scrollHeight; // hauteur réelle (contenu + padding)
+              panel.style.maxHeight = h + "px";
+
+              // En fin de transition, retire la limite pour éviter toute coupe
+              const onEnd = (e) => {
+                if (e.propertyName !== "max-height") return;
+                panel.style.maxHeight = "none";
+                panel.removeEventListener("transitionend", onEnd);
+              };
+              panel.addEventListener("transitionend", onEnd);
+            })
+          );
+        }
+
+        function closePanel(panel) {
+          if (!panel) return;
+
+          // Si on était en 'none', fixe d'abord la hauteur courante pour fermer proprement
+          if (getComputedStyle(panel).maxHeight === "none") {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            void panel.offsetHeight; // force reflow
+          }
+          panel.style.maxHeight = "0px";
+        }
+
+        function openItem(btn) {
+          const panel = btn.nextElementSibling;
+
+          // Ferme les autres
+          document
+            .querySelectorAll('.faq__btn[aria-expanded="true"]')
+            .forEach((b) => {
+              if (b !== btn) {
+                b.setAttribute("aria-expanded", "false");
+                const p = b.nextElementSibling;
+                closePanel(p);
+                const it = b.closest(".faq__item");
+                if (it) it.classList.remove("is-open");
+              }
+            });
+
+          // Ouvre l'item courant
+          btn.setAttribute("aria-expanded", "true");
+          const it = btn.closest(".faq__item");
+          if (it) it.classList.add("is-open");
+
+          setPanelHeight(panel);
+        }
+        // -- fin remplacement --
+
+        document.addEventListener("click", function (e) {
+          const btn = e.target.closest(".faq__btn");
+          if (!btn) return;
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          const panel = btn.nextElementSibling;
+          const it = btn.closest(".faq__item");
+          if (isOpen) {
+            btn.setAttribute("aria-expanded", "false");
+            if (it) it.classList.remove("is-open");
+            closePanel(panel);
+          } else {
+            openItem(btn);
+          }
+        });
+
+        window.addEventListener("load", function () {
+          const firstBtn = document.querySelector(".faq__btn");
+          if (firstBtn) {
+            openItem(firstBtn);
+          }
+        });
+
+        window.addEventListener("resize", function () {
+          document
+            .querySelectorAll('.faq__btn[aria-expanded="true"]')
+            .forEach((btn) => {
+              setPanelHeight(btn.nextElementSibling);
+            });
+        });
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () {
+            document
+              .querySelectorAll('.faq__btn[aria-expanded="true"]')
+              .forEach((btn) => {
+                setPanelHeight(btn.nextElementSibling);
+              });
+          });
+        }
+      })();
+    </script>
+    <script>
+      // ===== Mentions légales (ouverture/fermeture) =====
+      document.addEventListener("DOMContentLoaded", function () {
+        const link = document.getElementById("mentions-legales-link");
+        const popup = document.getElementById("mentions-popup");
+        const close = document.getElementById("close-mentions");
+        if (!link || !popup || !close) return;
+
+        function openPopup(e) {
+          if (e) e.preventDefault();
+          popup.style.display = "block";
+          close.focus();
+        }
+        function closePopup(e) {
+          if (e) e.preventDefault();
+          popup.style.display = "none";
+        }
+        link.addEventListener("click", openPopup);
+        close.addEventListener("click", closePopup);
+
+        // Accessibilité : fermer avec Échap
+        document.addEventListener("keydown", (ev) => {
+          if (ev.key === "Escape" && popup.style.display === "block") {
+            closePopup();
+          }
+        });
+      });
+    </script>
+
+    <footer class="footer-cta" aria-labelledby="footerTitle">
+      <div class="footer-cta__inner">
+        <div class="footer-cta__left">
+          <img
+            src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d7b8d505509e7dffe108d879ad5b25b19b1f39b1/camion%20%20poseur%20SEP.webp"
+            alt="Camion Solution Eau Pro avec technicien installateur"
+            class="footer-cta__img"
+            loading="lazy"
+          />
+        </div>
+        <div class="footer-cta__right">
+          <h2 id="footerTitle">
+            Un installateur proche de chez vous, prêt à intervenir
+          </h2>
+          <p>Pose rapide, mise en service incluse et suivi client garanti.</p>
+          <a href="#lead-form" class="cta">💧 Je fais ma simulation</a>
+          <div class="footer-cta__trust">
+            Simulation sans engagement – Réponse sous 24 h
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <span id="mentions-legales-link">Mentions légales</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("form-estimation");
+        if (!form) return;
+
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+
+          // --- Lecture des entrées ---
+          // foyer: valeurs attendues dans TA NOUVELLE LP : "1-2", "3-4", "5+"
+          const foyerVal = (
+            document.getElementById("foyer")?.value || ""
+          ).trim();
+          const n =
+            foyerVal === "1-2"
+              ? 2
+              : foyerVal === "3-4"
+              ? 4
+              : foyerVal === "5+"
+              ? 5
+              : 0;
+          const peau = !!document.getElementById("peau")?.checked;
+
+          if (!n) {
+            alert("Sélectionnez la taille du foyer.");
+            document.getElementById("foyer")?.focus();
+            return;
+          }
+
+          // --- Hypothèses (brut) ---
+          const PRIX_KWH = 0.27;
+          const ECS_KWH_PP = 800;
+          const TAUX_GAIN_ECS = 0.1;
+          const DEPENSE_PROD_PP = 220;
+          const TAUX_ECO_PROD = peau ? 0.45 : 0.35; // plus haut si "peau sèche"
+          const SAVE_MAT_FOYER = 80; // matériel/entretien : valeur réaliste
+
+          // --- Calculs ---
+          const baseProduits = n * DEPENSE_PROD_PP;
+          const sProd = Math.round(baseProduits * TAUX_ECO_PROD);
+          const sEnergie = Math.round(n * ECS_KWH_PP * PRIX_KWH * TAUX_GAIN_ECS);
+          const sMateriel = SAVE_MAT_FOYER;
+          const total = sProd + sEnergie + sMateriel;
+
+          // Projection 10 ans : +5%/an seulement sur la part énergie
+          const r = 1.05,
+            years = 10,
+            sommeGeo = (Math.pow(r, years) - 1) / (r - 1);
+          const total10 = Math.round(
+            sProd * 10 + sMateriel * 10 + sEnergie * sommeGeo
+          );
+
+          // --- Affichage brut ---
+          const recap = document.getElementById("recap");
+          const out = document.getElementById("recap-content");
+          if (recap && out) {
+            // --- Détermination du modèle recommandé ---
+let modele = "";
+if (n <= 2) modele = "Adoucisseur d’eau 10 L de résine";
+else if (n <= 4) modele = "Adoucisseur d’eau 15 L de résine";
+else modele = "Adoucisseur d’eau 20 L de résine";
+// --- Tarif selon le modèle ---
+let tarif = 0;
+if (modele.includes("10 L")) tarif = 2200;
+else if (modele.includes("15 L")) tarif = 2400;
+else if (modele.includes("20 L")) tarif = 2600;
+
+// --- Financement facultatif (table fixe) ---
+const DUREE_MOIS = 84;
+const TAEG_PCT   = 5.96;
+const financeTable = {
+  2200: { mensu: 31.93, total: 2682.08 },
+  2400: { mensu: 34.84, total: 2925.76 },
+  2600: { mensu: 37.74, total: 3169.68 }
+};
+
+const fin = financeTable[tarif]; // peut être undefined si tarif non listé
+
+// Construit le bloc texte seulement si une offre existe pour ce tarif
+let finBloc = "";
+if (fin) {
+  const fmt2 = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+  finBloc =
+    `\nFinancement (facultatif) :\n` +
+    `Pour ${tarif.toLocaleString("fr-FR")} €\n` +
+    `Mensualité : ${fin.mensu.toLocaleString("fr-FR", fmt2)} € (Hors assurance facultative)\n` +
+    `Durée : ${DUREE_MOIS} mois\n` +
+    `TAEG : ${TAEG_PCT.toLocaleString("fr-FR", fmt2)}%\n` +
+    `Montant total dû (Hors assurance facultative) : ${fin.total.toLocaleString("fr-FR", fmt2)} €\n\n` +
+    `Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.\n`;
+}
+            
+// === Mise à jour des 3 cartes de coûts détaillés ===
+const cards = document.querySelectorAll('.rc-card');
+if (cards.length) {
+  // On récupère les valeurs des 3 postes de coût
+  const produitsSrc = (typeof sProd !== 'undefined' ? sProd :
+                      (typeof Prod  !== 'undefined' ? Prod  : 0));
+  const energieSrc  = (typeof sEnergie !== 'undefined' ? sEnergie :
+                      (typeof Energie  !== 'undefined' ? Energie  : 0));
+  const materielSrc = (typeof sMateriel !== 'undefined' ? sMateriel :
+                      (typeof Materiel  !== 'undefined' ? Materiel  : 0));
+
+  const produits = Math.round(Number(produitsSrc) || 0);
+  const energie  = Math.round(Number(energieSrc)  || 0);
+  const materiel = Math.round(Number(materielSrc) || 0);
+
+  const valeurs = [produits, energie, materiel];
+  const textes = [
+    'Surconsommation de produits d’entretien pour la maison et le corps',
+    'Surconsommation d’énergie pour chauffer une eau entartrée',
+    'Coût de la dégradation du matériel et des canalisations'
+  ];
+
+  cards.forEach((card, i) => {
+    const valueEl = card.querySelector('.rc-card__value');
+    const textEl  = card.querySelector('.rc-card__text');
+    if (valueEl) valueEl.textContent = valeurs[i].toLocaleString('fr-FR') + ' €';
+    if (textEl)  textEl.textContent  = textes[i];
+  });
+}
+          
+
+// --- Affichage brut avec modèle inclus ---
+out.textContent =
+  `Taille du foyer : ${foyerVal}  (≈ ${n} pers)\n` +
+  `Peau sèche : ${peau ? "Oui" : "Non"}\n` +
+  `Modèle recommandé : ${modele}\n` +
+`Prix installé & mis en service : ${tarif.toLocaleString("fr-FR")} € TTC\n\n` +
+
+  `Économies Produits : ${sProd.toLocaleString("fr-FR")} € / an\n` +
+  `Économies Énergie  : ${sEnergie.toLocaleString("fr-FR")} € / an\n` +
+  `Entretien/Matériel : ${sMateriel.toLocaleString("fr-FR")} € / an\n` +
+  `--------------------------------------------\n` +
+  `TOTAL estimé       : ${total.toLocaleString("fr-FR")} € / an\n` +
+  `Projection 10 ans  : ${total10.toLocaleString("fr-FR")} €\n\n` +
+ finBloc +
+`\n` +
+`Nos estimations sont basées sur les consommations moyennes observées en France.`;
+
+
+
+            recap.style.display = "block";
+            recap.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          // === Mise à jour du bloc "Résumé coût du calcaire" ===
+const rc       = document.getElementById('resume-cout');
+const rcAnnual = document.getElementById('rc-annual');
+const rc10     = document.getElementById('rc-10ans');
+
+if (rc && rcAnnual && rc10) {
+  // total  = coût annuel (somme Produits + Énergie + Matériel)
+  // total10 = projection 10 ans (déjà calculée plus haut)
+  rcAnnual.textContent = `${total.toLocaleString("fr-FR")} €`;
+  rc10.textContent     = `${total10.toLocaleString("fr-FR")} €`;
+
+  rc.style.display = "block"; // Affiche la carte bleue
+}
+
+          // (Option tracking brut)
+          // window.dataLayer = window.dataLayer || [];
+          // dataLayer.push({event:'SimulateurUtilise'});
+          // dataLayer.push({event:'EstimationAffichee'});
+        });
+      });
+    </script>
+  </body>
+</html>
