@@ -1363,6 +1363,24 @@
   }
 }
 
+/* Petit triangle contour blanc sous le montant */
+.rc__arrow{
+  display:flex;
+  justify-content:center;
+  margin: 12px 0 6px;
+}
+.rc__arrow svg{
+  width: 28px;
+  height: 16px;
+}
+.rc__arrow path{
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+      
+      
     </style>
   </head>
   <body>
@@ -1492,12 +1510,21 @@
     </div>
     <div class="rc__content">
       <h3 class="rc__title">Le calcaire vous coûte chaque année…</h3>
-      <div class="rc__row">
-        <span class="rc__value" id="rc-annual">0 €</span>
-      </div>
-      <div class="rc__sub">
-        Soit <strong id="rc-10ans">0 €</strong> sur 10 ans
-      </div>
+     <div class="rc__row">
+  <span class="rc__value" id="rc-annual">0 €</span>
+</div>
+
+<!-- Triangle contour blanc (pointe vers le bas) -->
+<div class="rc__arrow" aria-hidden="true">
+  <svg viewBox="0 0 24 14" role="img" focusable="false" aria-hidden="true">
+    <path d="M1 1 H23 L12 13 Z"/>
+  </svg>
+</div>
+
+<div class="rc__sub">
+  Soit <strong id="rc-10ans">0 €</strong> sur 10 ans
+</div>
+
     </div>
   </div>
 </section>
