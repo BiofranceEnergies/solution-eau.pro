@@ -1380,7 +1380,47 @@
   stroke-linejoin: round;
 }
       
-      
+ /* ===== Cartes détail coût (ligne 1/3) ===== */
+.rc-cards{
+  max-width: var(--maxw, 1100px);
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 1 carte pour l’instant, mais grille prête */
+  gap: 16px;
+}
+@media (max-width: 980px){
+  .rc-cards{ grid-template-columns: 1fr; }
+}
+.rc-card{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1353C9;            /* bleu cohérent avec ton bloc */
+  color: #fff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 24px rgba(10,30,80,.18);
+}
+.rc-card__icon{
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+.rc-card__body{
+  display: grid;
+  gap: 6px;
+}
+.rc-card__value{
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.1;
+}
+.rc-card__text{
+  font-size: 16px;
+  line-height: 1.35;
+  opacity: .95;
+}
+     
     </style>
   </head>
   <body>
@@ -1503,9 +1543,7 @@
         stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
 </svg>
 
-
-
-
+      
 
     </div>
     <div class="rc__content">
@@ -1525,7 +1563,33 @@
     <path d="M1 1 H23 L12 13 Z"/>
   </svg>
 </div>
-      
+ <!-- ================== CARTES DÉTAIL COÛTS ================== -->
+<section id="rc-cards" class="rc-cards" aria-label="Détail du coût annuel">
+  <!-- Carte 1 : Produits -->
+  <article class="rc-card">
+    <div class="rc-card__icon" aria-hidden="true">
+      <!-- Icône originale flacon + spray (outline blanc) -->
+      <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <!-- spray -->
+        <path d="M39 10h4M38 14h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <!-- flacon spray -->
+        <path d="M20 10h8l1 3v4h-10v-4l1-3Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M23 10v-2a2 2 0 0 1 2-2h2v4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="18" y="17" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/>
+        <!-- petit bidon à côté -->
+        <rect x="8" y="20" width="8" height="17" rx="2" stroke="#fff" stroke-width="2"/>
+        <path d="M10 20v-3h4v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="rc-card__body">
+      <div class="rc-card__value"><span id="rc-val-prod">0</span> €</div>
+      <div class="rc-card__text">
+        Surconsommation de produits ménagers et de soins liée au calcaire.
+      </div>
+    </div>
+  </article>
+</section>
+     
     </div>
   </div>
 </section>
@@ -2660,7 +2724,36 @@ if (fin) {
     `Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.\n`;
 }
             
-            
+// === Mise à jour des 3 cartes de coûts détaillés ===
+const cards = document.querySelectorAll('.rc-card');
+if (cards.length) {
+  // On récupère les valeurs des 3 postes de coût
+  const produitsSrc = (typeof sProd !== 'undefined' ? sProd :
+                      (typeof Prod  !== 'undefined' ? Prod  : 0));
+  const energieSrc  = (typeof sEnergie !== 'undefined' ? sEnergie :
+                      (typeof Energie  !== 'undefined' ? Energie  : 0));
+  const materielSrc = (typeof sMateriel !== 'undefined' ? sMateriel :
+                      (typeof Materiel  !== 'undefined' ? Materiel  : 0));
+
+  const produits = Math.round(Number(produitsSrc) || 0);
+  const energie  = Math.round(Number(energieSrc)  || 0);
+  const materiel = Math.round(Number(materielSrc) || 0);
+
+  const valeurs = [produits, energie, materiel];
+  const textes = [
+    'Surconsommation de produits d’entretien pour la maison et le corps',
+    'Surconsommation d’énergie pour chauffer une eau entartrée',
+    'Coût de la dégradation du matériel et des canalisations'
+  ];
+
+  cards.forEach((card, i) => {
+    const valueEl = card.querySelector('.rc-card__value');
+    const textEl  = card.querySelector('.rc-card__text');
+    if (valueEl) valueEl.textContent = valeurs[i].toLocaleString('fr-FR') + ' €';
+    if (textEl)  textEl.textContent  = textes[i];
+  });
+}
+          
 
 // --- Affichage brut avec modèle inclus ---
 out.textContent =
