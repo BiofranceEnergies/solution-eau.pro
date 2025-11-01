@@ -2504,6 +2504,32 @@ let tarif = 0;
 if (modele.includes("10 L")) tarif = 2200;
 else if (modele.includes("15 L")) tarif = 2400;
 else if (modele.includes("20 L")) tarif = 2600;
+
+// --- Financement facultatif (table fixe) ---
+const DUREE_MOIS = 84;
+const TAEG_PCT   = 5.96;
+const financeTable = {
+  2200: { mensu: 31.93, total: 2682.08 },
+  2400: { mensu: 34.84, total: 2925.76 },
+  2600: { mensu: 37.74, total: 3169.68 }
+};
+
+const fin = financeTable[tarif]; // peut être undefined si tarif non listé
+
+// Construit le bloc texte seulement si une offre existe pour ce tarif
+let finBloc = "";
+if (fin) {
+  const fmt2 = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+  finBloc =
+    `\nFinancement (facultatif) :\n` +
+    `Pour ${tarif.toLocaleString("fr-FR")} €\n` +
+    `Mensualité : ${fin.mensu.toLocaleString("fr-FR", fmt2)} € (Hors assurance facultative)\n` +
+    `Durée : ${DUREE_MOIS} mois\n` +
+    `TAEG : ${TAEG_PCT.toLocaleString("fr-FR", fmt2)}%\n` +
+    `Montant total dû (Hors assurance facultative) : ${fin.total.toLocaleString("fr-FR", fmt2)} €\n\n` +
+    `Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.\n`;
+}
+            
             
 
 // --- Affichage brut avec modèle inclus ---
@@ -2519,7 +2545,9 @@ out.textContent =
   `--------------------------------------------\n` +
   `TOTAL estimé       : ${total.toLocaleString("fr-FR")} € / an\n` +
   `Projection 10 ans  : ${total10.toLocaleString("fr-FR")} €\n\n` +
- `Nos estimations sont basées sur les consommations moyennes observées en France.`;
+ finBloc +
+`\n` +
+`Nos estimations sont basées sur les consommations moyennes observées en France.`;
 
 
 
