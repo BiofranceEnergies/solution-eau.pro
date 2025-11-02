@@ -1318,159 +1318,80 @@
         }
       }
 
-/* ================== STYLE RESUME COUT CALCAIRE ================== */
-.rc {
-  background: #0b4fbf;
-  color: #ffffff;
-  border-radius: 12px;
-  padding: 22px 20px;
-  text-align: center;
-  max-width: var(--costw);
-  width: 100%;
-  margin: 28px auto;
-  box-shadow: 0 8px 18px rgba(10,30,80,.12); /* ombre adoucie */
-  display: none;
+/* === RC — grand bloc récap ============================== */
+.rc{
+  background:#0b4fbf;
+  color:#fff;
+  border-radius:12px;
+  padding:22px 20px;
+  text-align:center;
+  max-width:var(--costw);
+  width:100%;
+  margin:28px auto;
+  box-shadow:0 8px 18px rgba(10,30,80,.12);
+  display:none; /* sera ouvert en JS */
+}
+.rc__inner{display:flex;flex-direction:column;align-items:center;gap:16px}
+.rc__icon svg{width:60px;height:60px;opacity:.95}
+.rc__title{font-size:1.4rem;font-weight:600;margin:0}
+.rc__row{font-size:3rem;font-weight:700;line-height:1}
+.rc__sub{font-size:1.1rem;opacity:.9;margin-top:4px}
+.rc__arrow{display:flex;justify-content:center;margin:12px 0 6px}
+.rc__arrow svg{width:70px;height:36px}
+.rc__arrow path{fill:none;stroke:#fff;stroke-width:3;stroke-linejoin:round}
+@media (max-width:700px){
+  .rc{padding:24px 16px}
+  .rc__row{font-size:2.4rem}
 }
 
-
-.rc__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.rc__icon svg {
-  width: 60px;
-  height: 60px;
-  opacity: 0.95;
-}
-
-.rc__title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.rc__row {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.rc__value {
-  display: inline-block;
-  min-width: 120px;
-}
-
-.rc__sub {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-top: 4px;
-}
-
-@media (max-width: 700px) {
-  .rc {
-    padding: 24px 16px;
-  }
-  .rc__row {
-    font-size: 2.4rem;
-  }
-}
-
-/* Petit triangle contour blanc sous le montant */
-.rc__arrow{
-  display:flex;
-  justify-content:center;
-  margin: 12px 0 6px;
-}
-.rc__arrow svg{
-  width: 70px;
-  height: 36px;
-}
-.rc__arrow path{
-  fill: none;
-  stroke: #fff;
-  stroke-width: 3;
-  stroke-linejoin: round;
-}
-      
-/* === RC — largeur harmonisée avec le grand bloc bleu ================= */
-.rc {
-  max-width: var(--costw);
-  width: 100%;
-  margin: 28px auto;
-}
-
-/* === RC-CARDS — conteneur des 3 cartes (même largeur que .rc) ======== */
+/* === RC-CARDS — même largeur que .rc ==================== */
 #rc-cards.rc-cards{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: var(--costw);
-  margin: 32px auto 0;
-  padding-inline: 0;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  max-width:var(--costw);
+  margin:32px auto 0;
+  padding-inline:0;
 }
 
-/* === RC-CARD — version compacte, icône rapprochée ==================== */
+/* === RC-CARD — FLEX : icône proche, corps CENTRÉ ========= */
 #rc-cards .rc-card{
-  display: grid;
-  grid-template-columns: 44px 1fr;  /* icône plus près du texte */
-  column-gap: 12px;
-  align-items: center;
-  background: #1353C9;
-  color: #fff;
-  border-radius: 12px;
-  padding: 18px 20px;
-  box-shadow: 0 8px 18px rgba(10,30,80,.12);
+  display:flex;
+  align-items:center;
+  gap:14px;                     /* rapproche l’icône */
+  background:#1353C9;
+  color:#fff;
+  border-radius:12px;
+  padding:18px 20px;
+  box-shadow:0 8px 18px rgba(10,30,80,.12);
+  width:100%;
+  margin:0 auto;
 }
 
 /* Icône */
 #rc-cards .rc-card__icon{
-  justify-self: center;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex:0 0 30px;
+  display:flex;align-items:center;justify-content:center;
 }
-#rc-cards .rc-card__icon svg{
-  width: 28px;
-  height: 28px;
-}
+#rc-cards .rc-card__icon svg{width:26px;height:26px}
 
-/* Colonne texte */
+/* Corps CENTRÉ */
 #rc-cards .rc-card__body{
-  display: grid;
-  justify-items: start;   /* texte aligné proche de l’icône */
-  text-align: left;
-  row-gap: 6px;
+  flex:1 1 auto;
+  display:grid;
+  row-gap:6px;
+  justify-items:center;   /* centre valeur + texte */
+  text-align:center;
+}
+#rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
+#rc-cards .rc-card__text{line-height:1.4;opacity:.95}
+
+@media (max-width:680px){
+  #rc-cards .rc-card{gap:10px;padding:16px}
+  #rc-cards .rc-card__icon{flex-basis:26px}
+  #rc-cards .rc-card__icon svg{width:22px;height:22px}
 }
 
-/* Valeur + texte */
-#rc-cards .rc-card__value{
-  font-size: clamp(24px, 3.5vw, 36px);
-  line-height: 1.15;
-}
-#rc-cards .rc-card__text{
-  line-height: 1.4;
-}
-
-/* Mobile */
-@media (max-width: 680px){
-  #rc-cards .rc-card{
-    grid-template-columns: 38px 1fr;
-    column-gap: 10px;
-    padding: 16px 16px;
-  }
-  #rc-cards .rc-card__icon svg{
-    width: 24px;
-    height: 24px;
-  }
-  #rc-cards .rc-card__body{
-    justify-items: center;
-    text-align: center;
-  }
-}
 
     </style>
   </head>
@@ -1573,59 +1494,29 @@
 <section id="resume-cout" class="rc" aria-label="Résumé coût du calcaire" style="display:none">
   <div class="rc__inner">
     <div class="rc__icon" aria-hidden="true">
-<svg viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <!-- Pièce -->
-  <circle cx="46" cy="18" r="16" stroke="#ffffff" stroke-width="2.5" fill="none"/>
-
-  <!-- Symbole € plein au centre -->
-  <path d="M45 7.5c-3.3 0-6 2.7-6 6h-2v3h2v1h-2v3h2c0 3.3 2.7 6 6 6 1.5 0 3-.6 4.1-1.5v-3.4c-1 .9-2.2 1.5-3.6 1.5-1.9 0-3.4-1.1-3.9-2.6h5.5v-3h-6c.1-.2.1-.5.1-.7v-.6h5.9v-3h-5.2c.6-1.5 2-2.6 3.7-2.6 1.3 0 2.6.6 3.5 1.4V9c-1.2-.9-2.7-1.5-4.1-1.5z"
-        fill="#ffffff"/>
-
-  <!-- Main (paume + doigts) -->
-  <path d="M6 40c6 0 11.5 1 17 1h9.5c2.2 0 4.4-.5 6.3-1.6l3.7-2.1c1.5-.8 3.3-.8 4.8.1 1.9 1.2 2.1 3.7.4 5.2l-6.9 5.7c-2.5 2.1-5.6 3.2-8.8 3.2H23.5c-3.1 0-6.2.7-9 2l-1.8.9"
-        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-  <!-- Pouce -->
-  <path d="M31 41c2.1-.2 3.9-1.1 5.4-2.7 1.1-1.1 2.7-1.6 4.2-1.2" 
-        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-  <!-- Poignet -->
-  <path d="M6 44c3.2 0 6.4.4 9.4 1.3" 
-        stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-</svg>
-
-      
-
+      <svg viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="46" cy="18" r="16" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+        <path d="M45 7.5c-3.3 0-6 2.7-6 6h-2v3h2v1h-2v3h2c0 3.3 2.7 6 6 6 1.5 0 3-.6 4.1-1.5v-3.4c-1 .9-2.2 1.5-3.6 1.5-1.9 0-3.4-1.1-3.9-2.6h5.5v-3h-6c.1-.2.1-.5.1-.7v-.6h5.9v-3h-5.2c.6-1.5 2-2.6 3.7-2.6 1.3 0 2.6.6 3.5 1.4V9c-1.2-.9-2.7-1.5-4.1-1.5z" fill="#ffffff"/>
+        <path d="M6 40c6 0 11.5 1 17 1h9.5c2.2 0 4.4-.5 6.3-1.6l3.7-2.1c1.5-.8 3.3-.8 4.8.1 1.9 1.2 2.1 3.7.4 5.2l-6.9 5.7c-2.5 2.1-5.6 3.2-8.8 3.2H23.5c-3.1 0-6.2.7-9 2l-1.8.9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M31 41c2.1-.2 3.9-1.1 5.4-2.7 1.1-1.1 2.7-1.6 4.2-1.2" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M6 44c3.2 0 6.4.4 9.4 1.3" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
     </div>
     <div class="rc__content">
       <h3 class="rc__title">Le calcaire vous coûte chaque année…</h3>
-     <div class="rc__row">
-  <span class="rc__value" id="rc-annual">0 €</span>
-</div>
-
-
-
-<div class="rc__sub">
-  Soit <strong id="rc-10ans">0 €</strong> sur 10 ans
-</div>
-<!-- Triangle contour blanc (pointe vers le bas) -->
-<div class="rc__arrow" aria-hidden="true">
-  <svg viewBox="0 0 24 14" role="img" focusable="false" aria-hidden="true">
-    <path d="M1 1 H23 L12 13 Z"/>
- </svg>
+      <div class="rc__row"><span class="rc__value" id="rc-annual">0 €</span></div>
+      <div class="rc__sub">Soit <strong id="rc-10ans">0 €</strong> sur 10 ans</div>
+      <div class="rc__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 14" role="img" focusable="false" aria-hidden="true"><path d="M1 1 H23 L12 13 Z"/></svg>
       </div>
-    </div> <!-- /.rc__content -->
-
-  </div> <!-- /.rc__inner -->
+    </div>
+  </div>
 </section>
-  
+
 <!-- ================== CARTES DÉTAIL COÛTS ================== -->
 <section id="rc-cards" class="rc-cards" aria-label="Détail du coût annuel">
-
-  <!-- Carte 1 : Produits -->
   <article class="rc-card">
     <div class="rc-card__icon" aria-hidden="true">
-      <!-- Icône flacon -->
       <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39 10h4M38 14h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
         <path d="M20 10h8l1 3v4h-10v-4l1-3Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
@@ -1637,14 +1528,12 @@
     </div>
     <div class="rc-card__body">
       <div class="rc-card__value"><span id="rc-val-prod">0</span> €</div>
-      <div class="rc-card__text">Surconsommation de produits ménagers et de soins liée au calcaire.</div>
+      <div class="rc-card__text">Surconsommation de produits d’entretien pour la maison et le corps</div>
     </div>
   </article>
 
-  <!-- Carte 2 : Énergie -->
   <article class="rc-card">
     <div class="rc-card__icon" aria-hidden="true">
-      <!-- Icône ampoule -->
       <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M24 4a10 10 0 0 1 6 18v6h-12v-6a10 10 0 0 1 6-18Z" stroke="#fff" stroke-width="2"/>
         <path d="M20 40h8v4h-8z" fill="#fff"/>
@@ -1652,14 +1541,12 @@
     </div>
     <div class="rc-card__body">
       <div class="rc-card__value"><span id="rc-val-energie">0</span> €</div>
-      <div class="rc-card__text">Surcoût énergétique dû à l’entartrage des appareils.</div>
+      <div class="rc-card__text">Surconsommation d’énergie pour chauffer une eau entartrée</div>
     </div>
   </article>
 
-  <!-- Carte 3 : Matériel -->
   <article class="rc-card">
     <div class="rc-card__icon" aria-hidden="true">
-      <!-- Icône engrenage -->
       <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="6" stroke="#fff" stroke-width="2"/>
         <path d="M24 6v4M24 38v4M6 24h4M38 24h4M12 12l3 3M33 33l3 3M12 36l3-3M33 15l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
@@ -1667,11 +1554,11 @@
     </div>
     <div class="rc-card__body">
       <div class="rc-card__value"><span id="rc-val-materiel">0</span> €</div>
-      <div class="rc-card__text">Usure prématurée et entretien du matériel ménager.</div>
+      <div class="rc-card__text">Coût de la dégradation du matériel et des canalisations</div>
     </div>
   </article>
-
 </section>
+
 
 
 
