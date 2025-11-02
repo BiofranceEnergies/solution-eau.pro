@@ -1395,80 +1395,83 @@
   stroke-linejoin: round;
 }
       
-/* ===== Cartes détail coût (alignées sur la même largeur que le grand bloc) ===== */
-.rc-cards {
+/* === RC — largeur harmonisée avec le grand bloc bleu ================= */
+.rc {
+  max-width: var(--costw);
+  width: 100%;
+  margin: 28px auto;
+}
+
+/* === RC-CARDS — conteneur des 3 cartes (même largeur que .rc) ======== */
+#rc-cards.rc-cards{
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: var(--costw);   /* au lieu de var(--maxw) */
+  max-width: var(--costw);
   margin: 32px auto 0;
   padding-inline: 0;
 }
-/* optionnel mais propre */
-.rc { 
-  max-width: var(--costw); 
-  width: 100%; 
-}
-.rc-card { 
-  width: 100%; 
-}
 
-
-@media (max-width: 600px){
-  .rc-card{
-    grid-template-columns: 56px 1fr;
-    padding: 22px 20px;
-  }
-  .rc-card__value{
-    font-size: clamp(22px, 6vw, 34px);
-  }
-}
-
-
-/* ================== CARTES DÉTAIL COÛTS ================== */
-.rc-card {
+/* === RC-CARD — version compacte, icône rapprochée ==================== */
+#rc-cards .rc-card{
   display: grid;
-  grid-template-columns: 56px 1fr;   /* colonne icône plus fine (72 → 56) */
+  grid-template-columns: 44px 1fr;  /* icône plus près du texte */
+  column-gap: 12px;
   align-items: center;
-  column-gap: 20px;
   background: #1353C9;
   color: #fff;
-  border-radius: 12px;               /* coins adoucis (16 → 12) */
-  padding: 20px 22px;                /* plus compact (28 → 20) */
-  box-shadow: 0 8px 18px rgba(10,30,80,.12); /* ombre adoucie */
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 18px rgba(10,30,80,.12);
 }
 
-/* Icône : bien centrée dans sa colonne */
-.rc-card__icon {
+/* Icône */
+#rc-cards .rc-card__icon{
   justify-self: center;
   align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+#rc-cards .rc-card__icon svg{
+  width: 28px;
+  height: 28px;
+}
 
-/* Colonne texte : valeur + description centrées proprement */
-.rc-card__body {
+/* Colonne texte */
+#rc-cards .rc-card__body{
   display: grid;
-  justify-items: center;           /* centre horizontalement valeur + texte */
-  align-content: center;           /* centre verticalement */
-  row-gap: 8px;
-  text-align: center;
-  height: auto;                    /* annule ton height:100% précédent */
+  justify-items: start;   /* texte aligné proche de l’icône */
+  text-align: left;
+  row-gap: 6px;
 }
 
-/* Valeur */
-.rc-card__value {
-  font-size: clamp(24px, 3.5vw, 36px); /* avant max 40px */
+/* Valeur + texte */
+#rc-cards .rc-card__value{
+  font-size: clamp(24px, 3.5vw, 36px);
+  line-height: 1.15;
+}
+#rc-cards .rc-card__text{
+  line-height: 1.4;
 }
 
-
-/* Texte descriptif */
-.rc-card__text {
-  line-height: 1.4; /* avant 1.35 */
+/* Mobile */
+@media (max-width: 680px){
+  #rc-cards .rc-card{
+    grid-template-columns: 38px 1fr;
+    column-gap: 10px;
+    padding: 16px 16px;
+  }
+  #rc-cards .rc-card__icon svg{
+    width: 24px;
+    height: 24px;
+  }
+  #rc-cards .rc-card__body{
+    justify-items: center;
+    text-align: center;
+  }
 }
 
-     
     </style>
   </head>
   <body>
