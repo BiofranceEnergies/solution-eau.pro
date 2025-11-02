@@ -1377,12 +1377,13 @@
 #rc-cards .rc-card__icon svg{width:26px;height:26px}
 
 /* Corps CENTRÉ */
+/* Corps CENTRÉ (Corrigé) */
 #rc-cards .rc-card__body{
-  flex:0 0 auto;            /* empêche l’étirement */
-  display:grid;
-  row-gap:6px;
-  justify-items:start;      /* colle le texte à l’icône */
-  text-align:left;
+  flex:0 0 auto;
+  display:grid;
+  row-gap:6px;
+  justify-items:center;  /* <-- CORRIGÉ */
+  text-align:center;     /* <-- CORRIGÉ */
 }
 
 #rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
