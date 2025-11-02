@@ -1358,7 +1358,8 @@
 #rc-cards .rc-card{
   display:flex;
   align-items:center;
-  gap:14px;                     /* rapproche l’icône */
+  justify-content:center;   /* centre le groupe icône+texte */
+  gap:14px;                 /* rapproche l’icône du texte */
   background:#1353C9;
   color:#fff;
   border-radius:12px;
@@ -1377,19 +1378,24 @@
 
 /* Corps CENTRÉ */
 #rc-cards .rc-card__body{
-  flex:1 1 auto;
+  flex:0 0 auto;            /* empêche l’étirement */
   display:grid;
   row-gap:6px;
-  justify-items:center;   /* centre valeur + texte */
-  text-align:center;
+  justify-items:start;      /* colle le texte à l’icône */
+  text-align:left;
 }
+
 #rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
 #rc-cards .rc-card__text{line-height:1.4;opacity:.95}
 
 @media (max-width:680px){
-  #rc-cards .rc-card{gap:10px;padding:16px}
-  #rc-cards .rc-card__icon{flex-basis:26px}
-  #rc-cards .rc-card__icon svg{width:22px;height:22px}
+  #rc-cards .rc-card{ gap:10px; padding:16px; }
+  #rc-cards .rc-card__icon{ flex-basis:26px; }
+  #rc-cards .rc-card__icon svg{ width:22px; height:22px; }
+  #rc-cards .rc-card__body{
+    justify-items:center;   /* recentre sur petit écran */
+    text-align:center;
+  }
 }
 
 
