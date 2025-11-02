@@ -1408,10 +1408,17 @@
   display: grid;
   place-items: center;
 }
-.rc-card__body{
-  display: grid;
-  gap: 6px;
+.rc-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* centre horizontalement */
+  justify-content: center;    /* centre verticalement */
+  height: 100%;
+  text-align: center;
+  gap: 6px;                   /* conserve ton espacement interne */
 }
+
+
 .rc-card__value{
   font-weight: 800;
   font-size: clamp(24px, 4vw, 40px);
