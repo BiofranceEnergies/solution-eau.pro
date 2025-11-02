@@ -42,6 +42,19 @@
         --brand: var(--cta-grad-top, #0b4fbf);
         --brand-ink: #0f172a;
       }
+      /* Largeur harmonisée pour le bloc coût + ses cartes */
+:root {
+  --costw: 880px;   /* largeur cible desktop */
+}
+
+/* Ajustements responsives */
+@media (max-width: 900px){
+  :root { --costw: 680px; }
+}
+@media (max-width: 600px){
+  :root { --costw: min(92vw, 560px); }
+}
+
 
       /* =================================================================
        [[REPERE: RESET + BODY]]
@@ -1309,18 +1322,14 @@
 .rc {
   background: #0b4fbf;
   color: #ffffff;
-  border-radius: 16px;
-  /* avant : padding: 32px 24px; -> OK, on garde */
-  padding: 32px 24px;
+  border-radius: 12px;
+  padding: 22px 20px;
   text-align: center;
-
-  /* AVANT : max-width: 900px;  ==>  REMPLACER par : */
-  max-width: var(--maxw);
+  max-width: var(--costw);
   width: 100%;
-  margin: 32px auto;        /* on garde */
-
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  display: none;            /* caché par défaut */
+  margin: 28px auto;
+  box-shadow: 0 8px 18px rgba(10,30,80,.12); /* ombre adoucie */
+  display: none;
 }
 
 
@@ -1389,11 +1398,11 @@
 /* ===== Cartes détail coût (alignées sur la même largeur que le grand bloc) ===== */
 .rc-cards {
   display: flex;
-  flex-direction: column;   /* les 3 cartes empilées */
-  gap: 20px;                /* espace régulier entre elles */
-  max-width: var(--maxw);   /* même largeur que le grand bloc bleu */
-  margin: 32px auto 0;      /* centrage horizontal */
-  padding-inline: 24px;     /* même marge latérale */
+  flex-direction: column;
+  gap: 20px;
+  max-width: var(--costw);   /* au lieu de var(--maxw) */
+  margin: 32px auto 0;
+  padding-inline: 24px;
 }
 
 
@@ -1412,15 +1421,14 @@
 /* ================== CARTES DÉTAIL COÛTS ================== */
 .rc-card {
   display: grid;
-  grid-template-columns: 72px 1fr; /* colonne icône / colonne contenu */
-  align-items: center;             /* centre verticalement TOUT (icône + texte) */
-  column-gap: 24px;
-  background: #1353C9;             /* bleu cohérent */
+  grid-template-columns: 56px 1fr;   /* colonne icône plus fine (72 → 56) */
+  align-items: center;
+  column-gap: 20px;
+  background: #1353C9;
   color: #fff;
-  border-radius: 16px;
-  padding: 28px 32px;              /* padding équilibré haut/bas */
-  box-shadow: 0 10px 24px rgba(10,30,80,.18);
-  
+  border-radius: 12px;               /* coins adoucis (16 → 12) */
+  padding: 20px 22px;                /* plus compact (28 → 20) */
+  box-shadow: 0 8px 18px rgba(10,30,80,.12); /* ombre adoucie */
 }
 
 /* Icône : bien centrée dans sa colonne */
@@ -1444,19 +1452,13 @@
 
 /* Valeur */
 .rc-card__value {
-  font-weight: 800;
-  font-size: clamp(24px, 4vw, 40px);
-  line-height: 1.1;
-  margin: 0;
+  font-size: clamp(24px, 3.5vw, 36px); /* avant max 40px */
 }
+
 
 /* Texte descriptif */
 .rc-card__text {
-  font-size: 16px;
-  line-height: 1.35;
-  opacity: .95;
-  text-align: center;
-  margin: 0;
+  line-height: 1.4; /* avant 1.35 */
 }
 
      
