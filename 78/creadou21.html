@@ -1376,15 +1376,15 @@
 }
 #rc-cards .rc-card__icon svg{width:26px;height:26px}
 
-/* Corps CENTRÉ */
-#rc-cards .rc-card__body{
-  flex:0 0 auto;            /* empêche l’étirement */
-  display:grid;
-  row-gap:6px;
-  justify-items:start;      /* colle le texte à l’icône */
-  text-align:left;
-}
 
+/* === CORPS (Corrigé, centré) === */
+#rc-cards .rc-card__body{
+  display:grid;
+  row-gap:6px;
+  flex: 0 0 auto;
+  justify-items:center;
+  text-align:center;
+}
 #rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
 #rc-cards .rc-card__text{line-height:1.4;opacity:.95}
 
