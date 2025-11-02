@@ -1305,18 +1305,24 @@
         }
       }
 
-      /* ================== STYLE RESUME COUT CALCAIRE ================== */
+/* ================== STYLE RESUME COUT CALCAIRE ================== */
 .rc {
-  background: #0b4fbf;              /* bleu profond */
+  background: #0b4fbf;
   color: #ffffff;
   border-radius: 16px;
+  /* avant : padding: 32px 24px; -> OK, on garde */
   padding: 32px 24px;
   text-align: center;
-  max-width: 900px;
-  margin: 32px auto;
+
+  /* AVANT : max-width: 900px;  ==>  REMPLACER par : */
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 32px auto;        /* on garde */
+
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  display: none;                    /* caché par défaut */
+  display: none;            /* caché par défaut */
 }
+
 
 .rc__inner {
   display: flex;
@@ -1380,14 +1386,16 @@
   stroke-linejoin: round;
 }
       
- /* ===== Cartes détail coût (ligne 1/3) ===== */
+/* ===== Cartes détail coût (alignées sur la même largeur que le grand bloc) ===== */
 .rc-cards {
   display: flex;
-  flex-direction: column; /* 🔹 passe les cartes en colonne */
-  gap: 20px;              /* espace régulier entre les cartes */
-  max-width: 700px;       /* largeur raisonnable pour une colonne centrée */
-  margin: 48px auto 0;    /* centrage global */
+  flex-direction: column;   /* les 3 cartes empilées */
+  gap: 20px;                /* espace régulier entre elles */
+  max-width: var(--maxw);   /* même largeur que le grand bloc bleu */
+  margin: 32px auto 0;      /* centrage horizontal */
+  padding-inline: 24px;     /* même marge latérale */
 }
+
 
 
 @media (max-width: 600px){
@@ -1412,7 +1420,7 @@
   border-radius: 16px;
   padding: 28px 32px;              /* padding équilibré haut/bas */
   box-shadow: 0 10px 24px rgba(10,30,80,.18);
-  margin-bottom: 24px;             /* espacement entre les cartes */
+  
 }
 
 /* Icône : bien centrée dans sa colonne */
