@@ -1380,13 +1380,17 @@
 /* Corps CENTRÉ (Corrigé) */
 #rc-cards .rc-card__body{
   flex:0 0 auto;
-  display:grid;
+  display:grid
   row-gap:6px;
   justify-items:center;  /* <-- CORRIGÉ */
   text-align:center;     /* <-- CORRIGÉ */
 }
 
-#rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
+#rc-cards .rc-card__value{
+  font-size:clamp(26px,3.5vw,36px);
+  line-height:1.15;
+  justify-self: center; /* <--- AJOUTEZ CETTE LIGNE */
+}
 #rc-cards .rc-card__text{line-height:1.4;opacity:.95}
 
 @media (max-width:680px){
