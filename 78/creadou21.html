@@ -1354,50 +1354,60 @@
   padding-inline:0;
 }
 
+/* =========================================================
+   BLOC CORRIGÉ : Copiez et collez ceci
+   ========================================================= */
+
 /* === RC-CARD — FLEX : icône proche, corps CENTRÉ ========= */
 #rc-cards .rc-card{
-  display:flex;
-  align-items:center;
-  justify-content:center;   /* centre le groupe icône+texte */
-  gap:14px;                 /* rapproche l’icône du texte */
-  background:#1353C9;
-  color:#fff;
-  border-radius:12px;
-  padding:18px 20px;
-  box-shadow:0 8px 18px rgba(10,30,80,.12);
-  width:100%;
-  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* centre le groupe icône+texte */
+  gap:14px;                 /* rapproche l’icône du texte */
+  background:#1353C9;
+  color:#fff;
+  border-radius:12px;
+  padding:18px 20px;
+  box-shadow:0 8px 18px rgba(10,30,80,.12);
+  width:100%;
+  margin:0 auto;
 }
 
 /* Icône */
 #rc-cards .rc-card__icon{
-  flex:0 0 30px;
-  display:flex;align-items:center;justify-content:center;
+  flex:0 0 30px;
+  display:flex;align-items:center;justify-content:center;
 }
 #rc-cards .rc-card__icon svg{width:26px;height:26px}
 
 
-/* === CORPS (Corrigé, centré) === */
+/* === CORPS (Corrigé) === */
 #rc-cards .rc-card__body{
   display:grid;
   row-gap:6px;
   flex: 0 0 auto;
-  justify-items:center;
-  text-align:center;
+  /* justify-items:center; <-- On l'enlève d'ici */
+  text-align:center;     /* On garde celui-ci pour le texte du bas */
 }
-#rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
+
+/* === VALEUR (Corrigée) === */
+#rc-cards .rc-card__value{
+  font-size:clamp(26px,3.5vw,36px);
+  line-height:1.15;
+  justify-self: center; /* <--- ON AJOUTE LA CORRECTION ICI */
+}
+
 #rc-cards .rc-card__text{line-height:1.4;opacity:.95}
 
 @media (max-width:680px){
-  #rc-cards .rc-card{ gap:10px; padding:16px; }
-  #rc-cards .rc-card__icon{ flex-basis:26px; }
-  #rc-cards .rc-card__icon svg{ width:22px; height:22px; }
-  #rc-cards .rc-card__body{
-    justify-items:center;   /* recentre sur petit écran */
-    text-align:center;
-  }
+  #rc-cards .rc-card{ gap:10px; padding:16px; }
+  #rc-cards .rc-card__icon{ flex-basis:26px; }
+  #rc-cards .rc-card__icon svg{ width:22px; height:22px; }
+  #rc-cards .rc-card__body{
+    justify-items:center;   /* recentre sur petit écran */
+    text-align:center;
+  }
 }
-
 
     </style>
   </head>
