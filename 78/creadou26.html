@@ -15,73 +15,7 @@
       href="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp"
       imagesizes="100vw"
     />
-    /* =========================================================
-   [[STYLE : PRIX + TRANSITION + FINANCEMENT FLUIDE]]
-   ========================================================= */
-
-/* Bloc prix */
-.prod__price {
-  margin-top: 20px;
-  font-size: clamp(18px, 2.6vw, 22px);
-  line-height: 1.4;
-  font-weight: 800;
-  color: #0b4fbf;
-}
-
-/* Phrase de transition */
-.fin-transition {
-  margin-top: 18px;
-  margin-bottom: 18px;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  font-weight: 700;
-  color: #0f172a;
-}
-@media (max-width: 860px) {
-  .fin-transition {
-    text-align: center;
-  }
-}
-
-/* Bloc financement fluide */
-.fin-simple {
-  margin-top: 8px;
-  line-height: 1.6;
-  color: #1e293b;
-}
-.fin-simple__title {
-  margin: 6px 0 2px;
-  font-weight: 900;
-  font-size: 1.1rem;
-  color: #0b4fbf;
-}
-.fin-simple__lead {
-  margin: 4px 0 12px;
-  color: #475569;
-}
-.fin-simple__montant {
-  margin: 0;
-  font-weight: 900;
-  font-size: clamp(20px, 2.5vw, 26px);
-  color: #0f172a;
-}
-.fin-simple__meta {
-  margin-top: 6px;
-  color: #475569;
-  font-size: 0.9rem;
-}
-.fin-simple__legal {
-  margin-top: 8px;
-  color: #334155;
-  font-size: 0.85rem;
-  line-height: 1.55;
-}
-@media (max-width: 860px) {
-  .fin-simple {
-    text-align: center;
-  }
-}
-
+    
     <style>
       /* =================================================================
        [[REPERE: VARIABLES]]
@@ -773,34 +707,6 @@
       <div class="prod__price">
         Prix installé dès <span class="prod__amount" id="prod-prix">—</span> TTC
       </div>
-      <!-- [[TRANSITION + FINANCEMENT FLUIDE]] -->
-<p id="fin-transition" class="fin-transition" style="display:none;">
-  Plutôt que de perdre <strong id="fin-annual">—</strong> par an à cause du calcaire,
-  <strong>investissez-les dans votre confort.</strong>
-</p>
-
-<div id="fin-simple" class="fin-simple" style="display:none;">
-  <h4 class="fin-simple__title">L’adoucisseur qui s’autofinance</h4>
-  <p class="fin-simple__lead">
-    Vos économies mensuelles (produits + énergie) <strong>couvrent en partie la mensualité</strong>.
-  </p>
-
-  <p class="fin-simple__montant">
-    <strong id="fin-monthly">—</strong> /mois • 
-    <span id="fin-duration">84 mois</span>
-  </p>
-
-  <p class="fin-simple__meta">
-    (TAEG fixe : <span id="fin-taeg">5,96 %</span> — Montant total dû : 
-    <span id="fin-total">—</span> TTC — Installation comprise)
-  </p>
-
-  <p class="fin-simple__legal">
-    <strong>Un crédit vous engage et doit être remboursé.</strong>
-    Vérifiez vos capacités de remboursement avant de vous engager.
-  </p>
-</div>
-
     </div>
   </div>
 </section>
@@ -1204,43 +1110,9 @@ if (prod) {
           // Masquer toutes les sections marquées après simulation (on garde le haut de page + bloc résultats + footer)
           document.querySelectorAll('[data-hide-after-sim="1"]').forEach(el => { el.style.display = 'none'; });
 
-         // Scroll sur le bloc résultats
-recap?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-// === Transition + Financement fluide (dynamiques) ===
-(function(){
-  const annualEl   = document.getElementById('rc-annual');
-  const finTrans   = document.getElementById('fin-transition');
-  const finAnnual  = document.getElementById('fin-annual');
-  const finSimple  = document.getElementById('fin-simple');
-  const finMonthly = document.getElementById('fin-monthly');
-  const finTotal   = document.getElementById('fin-total');
-
-  const financeTable = {
-    2200: { mensu: 31.93, total: 2682.08 },
-    2400: { mensu: 34.84, total: 2925.76 },
-    2600: { mensu: 37.74, total: 3169.68 }
-  };
-
-  const prixSpan = document.getElementById('prod-prix');
-  const montant = prixSpan ? parseInt(prixSpan.textContent.replace(/\s|€/g, ''), 10) : 0;
-  const fin = financeTable[montant] || null;
-
-  const annualText = annualEl?.textContent?.trim();
-
-  if (finTrans && finAnnual && annualText) {
-    finAnnual.textContent = annualText;
-    finTrans.style.display = 'block';
-  }
-
-  if (finSimple && fin && finMonthly && finTotal) {
-    finMonthly.textContent = fin.mensu.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-    finTotal.textContent   = fin.total.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-    finSimple.style.display = 'block';
-  }
-})();
-});
-
+          // Scroll sur le bloc résultats
+          recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
     </script>
   </body>
