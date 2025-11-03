@@ -405,6 +405,16 @@
 
       /* Masquage du texte “Résultats (brut)” */
       #recap h2, #recap-content{ display:none !important; }
+
+      /* Barre de séparation sous le slogan */
+.slogan-sep{
+  width: clamp(140px, 40%, 320px);
+  height: 4px;
+  background:#0b4fbf;
+  border-radius:999px;
+  margin: 18px auto 26px;
+}
+
     </style>
   </head>
   <body>
@@ -555,6 +565,7 @@
         L’adoucisseur <strong>Solution Eau Pro</strong><br>
         la solution anti-calcaire pour une eau plus douce qui allège votre budget.
       </p>
+      <div class="slogan-sep" role="presentation" aria-hidden="true"></div>
 
       <!-- Texte brut masqué (conserve les valeurs pour un export/email si besoin) -->
       <h2 style="margin:0 0 8px">Résultats (brut)</h2>
