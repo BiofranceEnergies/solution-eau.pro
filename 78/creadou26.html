@@ -384,18 +384,11 @@
       }
       #rc-cards .rc-card__icon{ flex:0 0 30px; display:flex; align-items:center; justify-content:center; }
       #rc-cards .rc-card__icon svg{ width:26px; height:26px; }
-
-      /* CORRECTION : point-virgule manquant + centrage */
       #rc-cards .rc-card__body{
-        flex:0 0 auto;
-        display:grid;
-        row-gap:6px;
-        justify-items:center;
-        text-align:center;
+        flex:0 0 auto; display:grid; row-gap:6px; justify-items:center; text-align:center;
       }
       #rc-cards .rc-card__value{ font-size:clamp(26px,3.5vw,36px); line-height:1.15; justify-self:center; }
       #rc-cards .rc-card__text{ line-height:1.4; opacity:.95; }
-
       @media (max-width:680px){
         #rc-cards .rc-card{ gap:10px; padding:16px; }
         #rc-cards .rc-card__icon{ flex-basis:26px; }
@@ -407,180 +400,69 @@
       #recap h2, #recap-content{ display:none !important; }
 
       /* Barre de séparation sous le slogan */
-.slogan-sep{
-  width: clamp(200px, 55%, 480px);
-  height: 4px;
-  background:#0b4fbf;
-  border-radius:999px;
-  margin: 18px auto 26px;
-}
-/* ===== Bloc produit recommandé (image + specs + prix) ===== */
-.prod{ 
-  background:#fff;
-  margin:64px auto 0;             /* --> espace sous la ligne bleue */
-  padding:0 20px;
-}
-.prod__inner{
-  max-width:var(--maxw);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns: 420px 1fr;   /* image à gauche, texte à droite */
-  gap:28px;
-  align-items:center;
-}
-.prod__img{ 
-  width:100%; 
-  height:auto; 
-  display:block; 
-  max-width:380px; 
-  margin:0 auto;
-}
-.prod__title{
-  font-weight:900;
-  font-size:clamp(20px,3vw,28px);
-  color:#0f172a;
-  margin:0 0 10px;
-}
-.prod__specs{
-  list-style:none;
-  margin:0 0 14px;
-  padding:0;
-}
-.prod__specs li{
-  line-height:1.55;
-  color:#475569;
-  margin:6px 0;
-}
-.prod__price{
-  font-weight:800;
-  color:#0b4fbf;
-  font-size:clamp(18px,2.6vw,22px);
-}
-.prod__amount{
-  font-size:clamp(26px,4.8vw,38px);
-  line-height:1.1;
-}
-/* Responsive */
-@media (max-width: 900px){
-  .prod__inner{ grid-template-columns:1fr; text-align:center; }
-}
-/* Espacement du bloc produit sous la ligne bleue */
-#prod {
-  margin-top: 28px;
-}
-/* Lisibilité des caractéristiques du produit */
-.prod__specs li {
-  color: #1e293b;          /* gris foncé plus lisible */
-  font-size: 0.95rem;      /* taille légèrement réduite pour hiérarchie visuelle */
-  line-height: 1.55;
-}
-/* Mise en valeur du prix installé */
-.prod__price {
-  background: #f0f4ff;        /* fond doux bleu clair */
-  border-radius: 8px;         /* coins arrondis */
-  display: inline-block;      /* étiquette compacte */
-  padding: 6px 12px;          /* espace intérieur */
-  margin-top: 10px;           /* petit espace avec les caractéristiques */
-  font-weight: 700;           /* texte plus affirmé */
-  color: #0b4fbf;             /* bleu identitaire */
-}
-/* Responsive : affichage du bloc produit sur mobile */
-@media (max-width: 860px) {
-/* Ajustement du bloc produit : espacement et proportion de l'image */
-.prod__inner {
-  margin-top: 12px;              /* espace un peu plus sous la ligne bleue */
-  align-items: center;
-}
+      .slogan-sep{
+        width: clamp(200px, 55%, 480px);
+        height: 4px;
+        background:#0b4fbf;
+        border-radius:999px;
+        margin: 18px auto 26px;
+      }
 
-.prod__img {
-  max-height: 300px;             /* taille plus généreuse */
-  object-fit: contain;           /* conserve les proportions naturelles */
-}
+      /* ===== Bloc produit recommandé (image + specs + prix) ===== */
+      .prod{ background:#fff; margin:64px auto 0; padding:0 20px; }
+      .prod__inner{
+        max-width:var(--maxw); margin:0 auto; display:grid;
+        grid-template-columns: 420px 1fr; gap:28px; align-items:center;
+      }
+      .prod__img{ width:100%; height:auto; display:block; max-width:380px; margin:0 auto; }
+      .prod__title{ font-weight:900; font-size:clamp(20px,3vw,28px); color:#0f172a; margin:0 0 10px; }
+      .prod__specs{ list-style:none; margin:0 0 14px; padding:0; }
+      .prod__specs li{ line-height:1.55; color:#475569; margin:6px 0; }
+      .prod__price{ font-weight:800; color:#0b4fbf; font-size:clamp(18px,2.6vw,22px); }
+      .prod__amount{ font-size:clamp(26px,4.8vw,38px); line-height:1.1; }
+      @media (max-width: 900px){ .prod__inner{ grid-template-columns:1fr; text-align:center; } }
+      #prod { margin-top: 28px; }
+      .prod__specs li { color: #1e293b; font-size: 0.95rem; line-height: 1.55; }
+      .prod__price {
+        background: #f0f4ff; border-radius: 8px; display: inline-block;
+        padding: 6px 12px; margin-top: 10px; font-weight: 700; color: #0b4fbf;
+      }
+      @media (max-width: 860px){
+        .prod__inner { margin-top:12px; align-items:center; }
+        .prod__img { max-height:300px; object-fit:contain; }
+        .prod__title { font-size:1.1rem; line-height:1.4; }
+        .prod__price { display:block; margin:14px auto 0; }
+      }
+      .prod__title {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-size: clamp(20px, 2.8vw, 28px);
+        font-weight: 900; color: #0f172a; margin-bottom: 10px; letter-spacing: -0.3px;
+      }
+      .prod__specs li { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 0.95rem; color: #1e293b; }
+      .prod__price { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-weight: 800; letter-spacing: -0.2px; }
 
-
-  .prod__title {
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  .prod__price {
-    display: block;
-    margin: 14px auto 0;
-  }
-}
-/* Harmonisation typographique du bloc produit */
-.prod__title {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(20px, 2.8vw, 28px);
-  font-weight: 900;
-  color: #0f172a;           /* même nuance que les titres principaux */
-  margin-bottom: 10px;
-  letter-spacing: -0.3px;
-}
-
-.prod__specs li {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 0.95rem;
-  color: #1e293b;
-}
-
-.prod__price {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-}
-/* ===== Bloc autofinancement (après produit) ===== */
-.autofin{
-  background:#fff;
-  max-width:var(--maxw);
-  margin:22px auto 0;
-  padding:0 20px;
-  text-align:center;
-}
-.autofin__line{
-  font-weight:800;
-  font-size:clamp(20px,2vw,26px);
-  line-height:1.25;
-  color:#0f172a;
-}
-.autofin__line + .autofin__line{ margin-top:4px; } /* 2ᵉ ligne serrée */
-.autofin .v{ color:var(--cta-grad-top); }
-
-.fin-card{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:20px 24px;
-  max-width:680px;
-  margin:18px auto 0;
-  background:#fff;
-}
-.fin-list{
-  display:grid;
-  grid-template-columns: 1fr auto;
-  gap:10px 18px;
-  text-align:left;
-  align-items:center;
-}
-.fin-list dt{
-  color:#0f172a;
-  font-weight:700;
-}
-.fin-list dd{
-  margin:0;
-  font-weight:800;
-  color:var(--cta-grad-top);
-}
-.fin-legal{
-  margin-top:12px;
-  font-size:13px;
-  color:#64748b;
-  text-align:center;
-}
-@media (max-width:560px){
-  .fin-list{ grid-template-columns:1fr; }
-  .fin-list dd{ text-align:left; }
-}
-
+      /* ===== Bloc autofinancement (après produit) ===== */
+      .autofin{
+        background:#fff; max-width:var(--maxw); margin:22px auto 0; padding:0 20px; text-align:center;
+      }
+      .autofin__line{
+        font-weight:800; font-size:clamp(20px,2vw,26px); line-height:1.25; color:#0f172a;
+      }
+      .autofin__line + .autofin__line{ margin-top:4px; }
+      .autofin .v{ color:var(--cta-grad-top); }
+      .fin-card{
+        border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; max-width:680px; margin:18px auto 0; background:#fff;
+      }
+      .fin-list{
+        display:grid; grid-template-columns: 1fr auto; gap:10px 18px; text-align:left; align-items:center;
+      }
+      .fin-list dt{ color:#0f172a; font-weight:700; }
+      .fin-list dd{ margin:0; font-weight:800; color:var(--cta-grad-top); }
+      .fin-legal{ margin-top:12px; font-size:13px; color:#64748b; text-align:center; }
+      @media (max-width:560px){
+        .fin-list{ grid-template-columns:1fr; }
+        .fin-list dd{ text-align:left; }
+      }
     </style>
   </head>
   <body>
@@ -733,70 +615,67 @@
       </p>
       <div class="slogan-sep" role="presentation" aria-hidden="true"></div>
     
+      <!-- [[DÉBUT du bloc produit recommandé]] -->
+      <section id="prod" class="prod" aria-label="Votre adoucisseur recommandé" style="display:none">
+        <div class="prod__inner">
+          <div>
+            <img
+              class="prod__img"
+              src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d225be165d82d1a79a704e583120eb2813ff6932/neaqua%20vague%20fond%20t.webp"
+              alt="Adoucisseur d’eau recommandé"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 class="prod__title">
+              Votre adoucisseur <span id="prod-capacite">—</span> •
+              <span id="prod-modele">—</span>
+            </h3>
+            <ul class="prod__specs">
+              <li id="prod-vanne">Vanne volumétrique Fleck</li>
+              <li id="prod-regen">Régénération volumétrique</li>
+              <li id="prod-install">Installation & mise en service incluses</li>
+            </ul>
+            <div class="prod__price">
+              Prix installé dès <span class="prod__amount" id="prod-prix">—</span> TTC
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- [[FIN du bloc produit recommandé]] -->
 
-<!-- [[DÉBUT du bloc produit recommandé]] -->
-<section id="prod" class="prod" aria-label="Votre adoucisseur recommandé" style="display:none">
-  <div class="prod__inner">
-    <div>
-      <img
-        class="prod__img"
-        src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d225be165d82d1a79a704e583120eb2813ff6932/neaqua%20vague%20fond%20t.webp"
-        alt="Adoucisseur d’eau recommandé"
-        loading="lazy"
-      />
-    </div>
-    <div>
-      <h3 class="prod__title">
-        Votre adoucisseur <span id="prod-capacite">—</span> •
-        <span id="prod-modele">—</span>
-      </h3>
-      <ul class="prod__specs">
-        <li id="prod-vanne">Vanne volumétrique Fleck</li>
-        <li id="prod-regen">Régénération volumétrique</li>
-        <li id="prod-install">Installation & mise en service incluses</li>
-      </ul>
-      <div class="prod__price">
-        Prix installé dès <span class="prod__amount" id="prod-prix">—</span> TTC
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- [[DEBUT bloc autofinancement]] -->
+      <section id="autofin" class="autofin" aria-label="Comparatif économies / financement" style="display:none">
+        <p class="autofin__line">
+          Plutôt que de perdre <span id="af-total" class="v">—</span> / an à cause du calcaire,
+        </p>
+        <p class="autofin__line">
+          investissez-les dans votre confort.
+        </p>
 
+        <div class="fin-card" aria-label="Détails de financement (facultatif)">
+          <dl class="fin-list">
+            <dt>Prix installé</dt>
+            <dd><span id="fin-capital">—</span> TTC</dd>
 
-    <!-- [[DEBUT bloc autofinancement]] -->
-<section id="autofin" class="autofin" aria-label="Comparatif économies / financement" style="display:none">
-  <!-- 2 lignes centrées -->
-  <p class="autofin__line">
-    Plutôt que de perdre <span id="af-total" class="v">—</span> / an à cause du calcaire,
-  </p>
-  <p class="autofin__line">
-    investissez-les dans votre confort.
-  </p>
+            <dt>Mensualité (hors assurance)</dt>
+            <dd><span id="fin-mensu">—</span> / mois</dd>
 
-  <!-- Carte financement (facultatif) -->
-  <div class="fin-card" aria-label="Détails de financement (facultatif)">
-    <dl class="fin-list">
-      <dt>Prix installé</dt>
-      <dd><span id="fin-capital">—</span> TTC</dd>
+            <dt>Durée</dt>
+            <dd><span id="fin-duree">—</span> mois</dd>
 
-      <dt>Mensualité (hors assurance)</dt>
-      <dd><span id="fin-mensu">—</span> / mois</dd>
+            <dt>TAEG</dt>
+            <dd><span id="fin-taeg">—</span> %</dd>
 
-      <dt>Durée</dt>
-      <dd><span id="fin-duree">—</span> mois</dd>
-
-      <dt>TAEG</dt>
-      <dd><span id="fin-taeg">—</span> %</dd>
-
-      <dt>Montant total dû</dt>
-      <dd><span id="fin-total">—</span></dd>
-    </dl>
-    <p class="fin-legal">
-      Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.
-    </p>
-  </div>
-</section>
-<!-- [[FIN bloc autofinancement]] -->
+            <dt>Montant total dû</dt>
+            <dd><span id="fin-total">—</span></dd>
+          </dl>
+          <p class="fin-legal">
+            Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.
+          </p>
+        </div>
+      </section>
+      <!-- [[FIN bloc autofinancement]] -->
 
       <h2 style="margin:0 0 8px">Résultats (brut)</h2>
       <div id="recap-content" style="white-space:pre-line;font-family:system-ui,-apple-system,Segoe UI,Roboto;line-height:1.5;"></div>
@@ -883,14 +762,28 @@
               <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
               <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
               <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-              <svg viewBox="0 0 24 24"><defs><linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0"><stop offset="75%" stop-color="var(--cta-grad-top)" /><stop offset="75%" stop-color="transparent" /></linearGradient></defs><path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+              <svg viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="75%" stop-color="var(--cta-grad-top)" />
+                    <stop offset="75%" stop-color="transparent" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+              </svg>
             </span>
             <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
           </div>
 
           <div class="testi__grid">
             <article class="tcard" aria-label="Avis client">
-              <div class="tcard__top"><div class="avatar" aria-hidden="true">CR</div><div><div class="tcard__name">Jérôme T.</div><div class="tcard__loc">Rambouillet (78) · 07/2025</div></div></div>
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">JT</div>
+                <div>
+                  <div class="tcard__name">Jérôme T.</div>
+                  <div class="tcard__loc">Rambouillet (78) · 07/2025</div>
+                </div>
+              </div>
               <div class="tcard__stars" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
               </div>
@@ -898,16 +791,39 @@
             </article>
 
             <article class="tcard" aria-label="Avis client">
-              <div class="tcard__top"><div class="avatar" aria-hidden="true">JT</div><div><div class="tcard__name">Claire R.</div><div class="tcard__loc">Maule (78) · 05/2025</div></div></div>
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">CR</div>
+                <div>
+                  <div class="tcard__name">Claire R.</div>
+                  <div class="tcard__loc">Maule (78) · 05/2025</div>
+                </div>
+              </div>
               <div class="tcard__stars" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
-                <svg viewBox="0 0 24 24"><defs><linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0"><stop offset="50%" stop-color="var(--cta-grad-top)" /><stop offset="50%" stop-color="transparent" /></linearGradient></defs><path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></path></svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+                <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="halfStarJT" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="50%" stop-color="var(--cta-grad-top)" />
+                      <stop offset="50%" stop-color="transparent" />
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+                </svg>
               </div>
               <p class="tcard__quote">“J’ai eu toutes les infos en quelques clics, sans démarchage. Le devis était clair, et deux semaines plus tard <em>l’adoucisseur était posé</em>. Je vois la différence : linge plus souple, moins de produits et plus d’économies.”</p>
             </article>
 
             <article class="tcard" aria-label="Avis client">
-              <div class="tcard__top"><div class="avatar" aria-hidden="true">NV</div><div><div class="tcard__name">Nadine V.</div><div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div></div></div>
+              <div class="tcard__top">
+                <div class="avatar" aria-hidden="true">NV</div>
+                <div>
+                  <div class="tcard__name">Nadine V.</div>
+                  <div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div>
+                </div>
+              </div>
               <div class="tcard__stars" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
               </div>
@@ -1065,7 +981,6 @@
         function openPopup(e){ if(e) e.preventDefault(); popup.style.display="block"; close.focus(); }
         function closePopup(e){ if(e) e.preventDefault(); popup.style.display="none"; }
 
-        // le lien est dans le footer
         if(link){ link.addEventListener("click", openPopup); }
         close.addEventListener("click", closePopup);
 
@@ -1101,6 +1016,15 @@
 
         form.addEventListener("submit", function (ev) {
           ev.preventDefault();
+
+          // --- Financement : constantes accessibles partout dans le handler
+          const DUREE_MOIS = 84;
+          const TAEG_PCT   = 5.96;
+          const financeTable = {
+            2200: { mensu: 31.93, total: 2682.08 },
+            2400: { mensu: 34.84, total: 2925.76 },
+            2600: { mensu: 37.74, total: 3169.68 }
+          };
 
           // Entrées
           const foyerVal = (document.getElementById("foyer")?.value || "").trim();
@@ -1142,63 +1066,62 @@
             const el = document.getElementById(id);
             if (el) el.textContent = Math.round(valeurs[i]).toLocaleString("fr-FR");
           });
+
           // === Sélection du modèle et tarif ===
-let modele, tarif;
-if (n <= 2) {
-  modele = "Adoucisseur d’eau 10 L de résine";
-  tarif  = 2200;
-} else if (n <= 4) {
-  modele = "Adoucisseur d’eau 15 L de résine";
-  tarif  = 2400;
-} else {
-  modele = "Adoucisseur d’eau 20 L de résine";
-  tarif  = 2600;
-}
+          let modele, tarif;
+          if (n <= 2) {
+            modele = "Adoucisseur d’eau 10 L de résine";
+            tarif  = 2200;
+          } else if (n <= 4) {
+            modele = "Adoucisseur d’eau 15 L de résine";
+            tarif  = 2400;
+          } else {
+            modele = "Adoucisseur d’eau 20 L de résine";
+            tarif  = 2600;
+          }
 
-// === Mise à jour du bloc produit ===
-const prod = document.getElementById('prod');
-if (prod) {
-  prod.style.display = 'block';
-  const capSpan  = document.getElementById('prod-capacite');
-  const modSpan  = document.getElementById('prod-modele');
-  const prixSpan = document.getElementById('prod-prix');
-  if (capSpan)  capSpan.textContent  = (modele.match(/\d+\s?L/)?.[0] || "");
-  if (modSpan)  modSpan.textContent  = "Vanne volumétrique Fleck";
-  if (prixSpan) prixSpan.textContent = tarif.toLocaleString("fr-FR") + " €";
-}
-// === Bloc "Autofinancement" (texte 2 lignes + carte financement) ===
-const af = document.getElementById('autofin');
-if (af) {
-  // Valeur dynamique = économies totales / an
-  const afTotal = document.getElementById('af-total');
-  if (afTotal) afTotal.textContent = total.toLocaleString("fr-FR") + " €";
+          // === Mise à jour du bloc produit ===
+          const prod = document.getElementById('prod');
+          if (prod) {
+            prod.style.display = 'block';
+            const capSpan  = document.getElementById('prod-capacite');
+            const modSpan  = document.getElementById('prod-modele');
+            const prixSpan = document.getElementById('prod-prix');
+            if (capSpan)  capSpan.textContent  = (modele.match(/\d+\s?L/)?.[0] || "");
+            if (modSpan)  modSpan.textContent  = "Vanne volumétrique Fleck";
+            if (prixSpan) prixSpan.textContent = tarif.toLocaleString("fr-FR") + " €";
+          }
 
-  // Renseigner la carte financement selon le tarif choisi
-  const fin = financeTable[tarif];
-  const elCap  = document.getElementById('fin-capital');
-  const elMen  = document.getElementById('fin-mensu');
-  const elDur  = document.getElementById('fin-duree');
-  const elT    = document.getElementById('fin-taeg');
-  const elTot  = document.getElementById('fin-total');
+          // === Bloc "Autofinancement" (texte 2 lignes + carte financement) ===
+          const af = document.getElementById('autofin');
+          if (af) {
+            // Valeur dynamique = économies totales / an
+            const afTotal = document.getElementById('af-total');
+            if (afTotal) afTotal.textContent = total.toLocaleString("fr-FR") + " €";
 
-  if (fin && elCap && elMen && elDur && elT && elTot) {
-    const fmt2 = { minimumFractionDigits:2, maximumFractionDigits:2 };
-    elCap.textContent = tarif.toLocaleString("fr-FR");
-    elMen.textContent = fin.mensu.toLocaleString("fr-FR", fmt2);
-    elDur.textContent = "84"; // conforme à ton tableau
-    elT.textContent   = (5.96).toLocaleString("fr-FR", fmt2);
-    elTot.textContent = fin.total.toLocaleString("fr-FR", fmt2) + " €";
-  }
+            // Renseigner la carte financement selon le tarif choisi
+            const fin = financeTable[tarif];
+            const elCap  = document.getElementById('fin-capital');
+            const elMen  = document.getElementById('fin-mensu');
+            const elDur  = document.getElementById('fin-duree');
+            const elT    = document.getElementById('fin-taeg');
+            const elTot  = document.getElementById('fin-total');
 
-  af.style.display = "block";
-}
+            if (fin && elCap && elMen && elDur && elT && elTot) {
+              const fmt2 = { minimumFractionDigits:2, maximumFractionDigits:2 };
+              elCap.textContent = tarif.toLocaleString("fr-FR");
+              elMen.textContent = fin.mensu.toLocaleString("fr-FR", fmt2);
+              elDur.textContent = String(DUREE_MOIS);
+              elT.textContent   = TAEG_PCT.toLocaleString("fr-FR", fmt2);
+              elTot.textContent = fin.total.toLocaleString("fr-FR", fmt2) + " €";
+            }
+
+            af.style.display = "block";
+          }
 
           // Texte brut (masqué)
           const out = document.getElementById("recap-content");
           if (out){
-            
-            const DUREE_MOIS = 84, TAEG_PCT = 5.96;
-            const financeTable = { 2200:{mensu:31.93,total:2682.08}, 2400:{mensu:34.84,total:2925.76}, 2600:{mensu:37.74,total:3169.68} };
             const fin = financeTable[tarif], fmt2 = { minimumFractionDigits:2, maximumFractionDigits:2 };
             const finBloc = fin ? (
               `\nFinancement (facultatif) :\nPour ${tarif.toLocaleString("fr-FR")} €\nMensualité : ${fin.mensu.toLocaleString("fr-FR", fmt2)} € (Hors assurance facultative)\nDurée : ${DUREE_MOIS} mois\nTAEG : ${TAEG_PCT.toLocaleString("fr-FR", fmt2)}%\nMontant total dû (Hors assurance facultative) : ${fin.total.toLocaleString("fr-FR", fmt2)} €\n\nUn crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.\n`
