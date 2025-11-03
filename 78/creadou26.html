@@ -530,64 +530,6 @@
   letter-spacing: -0.2px;
 }
 
-      /* ===== Transition + Financement (Lovable 2025) ===== */
-.fin-transition{
-  margin-top:20px;
-  color:#0f172a;
-  line-height:1.45;
-  font-weight:800;
-  letter-spacing:-0.2px;
-}
-@media (max-width:860px){ .fin-transition{ margin-top:16px; text-align:center; } }
-
-.fin-card{
-  margin-top:20px;
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:16px;
-  padding:24px;
-  box-shadow:0 10px 28px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
-  color:#0f172a;
-}
-.fin-card__head{
-  display:flex; align-items:center; gap:10px; margin-bottom:6px;
-}
-.fin-card__icon{ font-size:20px; line-height:1; }
-.fin-card__title{
-  margin:0; font-weight:900; font-size:clamp(18px,2.2vw,22px); letter-spacing:-0.2px;
-}
-.fin-card__lead{
-  margin:6px 0 12px; color:#475569; line-height:1.55;
-}
-
-.fin-badge{
-  display:inline-flex; align-items:center; gap:10px;
-  background:#f0f4ff;
-  border:1px solid #e3ecff;
-  border-radius:999px;
-  padding:9px 16px;
-  font-weight:900;
-  font-size:clamp(20px,2.6vw,28px);
-}
-.fin-badge__sep{ opacity:.6; font-weight:700; }
-.fin-meta{
-  margin-top:12px; color:#475569; font-size:13.5px; line-height:1.6;
-}
-.fin-legal{
-  margin-top:10px; color:#334155; font-size:12.5px; line-height:1.55;
-}
-
-@media (max-width:900px){
-  .fin-card{ text-align:center; padding:18px; }
-  .fin-card__head{ justify-content:center; }
-  .fin-badge{ justify-content:center; font-size:22px; padding:8px 14px; }
-  .fin-meta{ font-size:13px; }
-  .fin-legal{ font-size:12.5px; }
-}
-
-/* Respiration sous le financement avant le prix */
-.prod__price{ margin-top:20px; }
-
     </style>
   </head>
   <body>
@@ -762,39 +704,6 @@
         <li id="prod-regen">Régénération volumétrique</li>
         <li id="prod-install">Installation & mise en service incluses</li>
       </ul>
-      <!-- [[TRANSITION ÉCONOMIQUE]] -->
-<p id="fin-transition" class="fin-transition" style="display:none">
-  Plutôt que de perdre <strong id="fin-annual">—</strong> par an à cause du calcaire,
-  <strong>investissez-les dans votre confort.</strong>
-</p>
-
-<!-- [[BLOC FINANCEMENT]] -->
-<div id="fin-card" class="fin-card" style="display:none" aria-labelledby="finTitle">
-  <div class="fin-card__head">
-    <span class="fin-card__icon" aria-hidden="true">💶</span>
-    <h4 id="finTitle" class="fin-card__title">L’adoucisseur qui s’autofinance</h4>
-  </div>
-
-  <p class="fin-card__lead">
-    Vos économies mensuelles (produits + énergie) <strong>couvrent en partie la mensualité</strong>.
-  </p>
-
-  <div class="fin-badge" aria-label="Mensualité indicative">
-    <span id="fin-monthly">—</span> /mois <span class="fin-badge__sep">•</span>
-    <span id="fin-duration">84&nbsp;mois</span>
-  </div>
-
-  <p class="fin-meta">
-    (TAEG fixe&nbsp;: <span id="fin-taeg">5,96&nbsp;%</span> — Montant total dû&nbsp;:
-    <span id="fin-total">—</span> TTC — Installation comprise)
-  </p>
-
-  <p class="fin-legal">
-    <strong>Un crédit vous engage et doit être remboursé.</strong>
-    Vérifiez vos capacités de remboursement avant de vous engager.
-  </p>
-</div>
-
       <div class="prod__price">
         Prix installé dès <span class="prod__amount" id="prod-prix">—</span> TTC
       </div>
@@ -1148,8 +1057,6 @@
             const el = document.getElementById(id);
             if (el) el.textContent = Math.round(valeurs[i]).toLocaleString("fr-FR");
           });
-         
-          
           // === Sélection du modèle et tarif ===
 let modele, tarif;
 if (n <= 2) {
@@ -1203,45 +1110,10 @@ if (prod) {
           // Masquer toutes les sections marquées après simulation (on garde le haut de page + bloc résultats + footer)
           document.querySelectorAll('[data-hide-after-sim="1"]').forEach(el => { el.style.display = 'none'; });
 
-         
-recap?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-// === Transition + Financement (dynamiques) ===
-(function(){
-  const annualEl = document.getElementById('rc-annual');
-  const finTrans = document.getElementById('fin-transition');
-  const finAnnual = document.getElementById('fin-annual');
-  const finCard = document.getElementById('fin-card');
-  const finMonthly = document.getElementById('fin-monthly');
-  const finTotal = document.getElementById('fin-total');
-
-  // Recréation locale de la table de financement (évite le problème de scope)
-  const financeTableLocal = {
-    2200: { mensu: 31.93, total: 2682.08 },
-    2400: { mensu: 34.84, total: 2925.76 },
-    2600: { mensu: 37.74, total: 3169.68 }
-  };
-  const fin = financeTableLocal[tarif] || null;
-
-  const annualText = annualEl?.textContent?.trim();
-
-  // Transition (reprend le montant annuel calculé)
-  if (finTrans && finAnnual && annualText) {
-    finAnnual.textContent = annualText;
-    finTrans.style.display = 'block';
-  }
-
-  // Carte financement (mensualité + total dû)
-  if (finCard && fin && finMonthly && finTotal) {
-    finMonthly.textContent = fin.mensu.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-    finTotal.textContent   = fin.total.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-    finCard.style.display = 'block';
-  }
-})();
- }); // fin form.addEventListener('submit', …)
-});  
-
-      
+          // Scroll sur le bloc résultats
+          recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
     </script>
   </body>
 </html>
