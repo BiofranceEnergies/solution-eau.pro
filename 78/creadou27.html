@@ -463,6 +463,58 @@
         .fin-list{ grid-template-columns:1fr; }
         .fin-list dd{ text-align:left; }
       }
+
+      /* =========================================================
+   [[REPERE: AERATION RESULTATS PRODUIT + FINANCEMENT]]
+   Coller ces overrides en fin de <style>
+   ========================================================= */
+
+/* Plus d'air autour de la zone produit + meilleure respiration globale */
+.prod{ padding: 40px 20px 10px; }
+.prod__inner{ gap: 46px; align-items: start; }
+
+/* Contrainte douce de largeur pour éviter les lignes trop longues */
+.prod__inner > div:last-child{ max-width: 560px; }
+
+/* Titre : interlignage + marge pour respirer */
+.prod__title{ line-height: 1.22; margin-bottom: 14px; }
+
+/* Liste specs : espacement vertical plus généreux */
+.prod__specs li{ margin: 8px 0; }
+
+/* Badge prix : un peu plus compact, descendu légèrement */
+.prod__price{
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; margin-top: 14px; border-radius: 10px;
+}
+
+/* Image: un peu plus petite et relevée pour équilibrer */
+.prod__img{ max-width: 340px; margin-top: -6px; }
+
+/* Slogan sous les cartes : marge verticale accrue */
+#rc-slogan{ margin-top: 46px !important; margin-bottom: 32px !important; }
+
+/* Carte financement : padding + interligne + gaps */
+.fin-card{ padding: 24px 26px; }
+.fin-list{ gap: 12px 22px; }
+.fin-list dt{ line-height: 1.35; }
+.fin-list dd{ line-height: 1.35; }
+
+/* Légales: un peu plus légère visuellement */
+.fin-legal{ margin-top: 14px; opacity: .9; }
+
+/* Sur écrans moyens/petits, laisser encore plus d'air et resserrer le badge */
+@media (max-width: 1024px){
+  .prod__inner{ gap: 36px; }
+  .prod__img{ max-width: 320px; }
+}
+@media (max-width: 860px){
+  .prod{ padding-top: 32px; }
+  .prod__inner{ gap: 20px; }
+  .prod__inner > div:last-child{ max-width: 620px; margin-inline: auto; }
+  .prod__price{ margin-top: 10px; }
+}
+
     </style>
   </head>
   <body>
