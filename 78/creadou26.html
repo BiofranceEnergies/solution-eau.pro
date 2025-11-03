@@ -529,6 +529,118 @@
   font-weight: 800;
   letter-spacing: -0.2px;
 }
+/* =========================================================
+   [[STYLE : PRIX + TRANSITION + FINANCEMENT]]
+   ========================================================= */
+
+/* Bloc prix : espace au-dessus et centrage harmonisé */
+.prod__price {
+  margin-top: 20px;
+  text-align: left;
+  font-size: clamp(18px, 2.6vw, 22px);
+  line-height: 1.4;
+  background: #f0f4ff;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: 700;
+  color: #0b4fbf;
+}
+
+/* Transition économique : respiration + ton affirmé */
+.fin-transition {
+  margin-top: 22px;
+  color: #0f172a;
+  line-height: 1.5;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.2px;
+}
+@media (max-width: 860px) {
+  .fin-transition {
+    margin-top: 18px;
+    text-align: center;
+  }
+}
+
+/* Carte financement */
+.fin-card {
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.06), 0 2px 6px rgba(2, 6, 23, 0.04);
+  color: #0f172a;
+}
+.fin-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.fin-card__icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.fin-card__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(18px, 2.2vw, 22px);
+  letter-spacing: -0.2px;
+}
+.fin-card__lead {
+  margin: 6px 0 12px;
+  color: #475569;
+  line-height: 1.55;
+}
+.fin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #f0f4ff;
+  border: 1px solid #e3ecff;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 900;
+  font-size: clamp(20px, 2.6vw, 28px);
+}
+.fin-badge__sep {
+  opacity: 0.6;
+  font-weight: 700;
+}
+.fin-meta {
+  margin-top: 12px;
+  color: #475569;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.fin-legal {
+  margin-top: 10px;
+  color: #334155;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+@media (max-width: 900px) {
+  .fin-card {
+    text-align: center;
+    padding: 18px;
+  }
+  .fin-card__head {
+    justify-content: center;
+  }
+  .fin-badge {
+    justify-content: center;
+    font-size: 22px;
+    padding: 8px 14px;
+  }
+  .fin-meta {
+    font-size: 13px;
+  }
+  .fin-legal {
+    font-size: 12.5px;
+  }
+}
 
     </style>
   </head>
@@ -707,6 +819,38 @@
       <div class="prod__price">
         Prix installé dès <span class="prod__amount" id="prod-prix">—</span> TTC
       </div>
+      <!-- [[TRANSITION ÉCONOMIQUE]] -->
+<p id="fin-transition" class="fin-transition" style="display:none">
+  Plutôt que de perdre <strong id="fin-annual">—</strong> par an à cause du calcaire,
+  <strong>investissez-les dans votre confort.</strong>
+</p>
+
+<!-- [[BLOC FINANCEMENT]] -->
+<div id="fin-card" class="fin-card" style="display:none" aria-labelledby="finTitle">
+  <div class="fin-card__head">
+    <span class="fin-card__icon" aria-hidden="true">💶</span>
+    <h4 id="finTitle" class="fin-card__title">L’adoucisseur qui s’autofinance</h4>
+  </div>
+
+  <p class="fin-card__lead">
+    Vos économies mensuelles (produits + énergie) <strong>couvrent en partie la mensualité</strong>.
+  </p>
+
+  <div class="fin-badge" aria-label="Mensualité indicative">
+    <span id="fin-monthly">—</span> /mois <span class="fin-badge__sep">•</span>
+    <span id="fin-duration">84&nbsp;mois</span>
+  </div>
+
+  <p class="fin-meta">
+    (TAEG fixe&nbsp;: <span id="fin-taeg">5,96&nbsp;%</span> — Montant total dû&nbsp;:
+    <span id="fin-total">—</span> TTC — Installation comprise)
+  </p>
+
+  <p class="fin-legal">
+    <strong>Un crédit vous engage et doit être remboursé.</strong>
+    Vérifiez vos capacités de remboursement avant de vous engager.
+  </p>
+</div>
     </div>
   </div>
 </section>
@@ -1112,6 +1256,45 @@ if (prod) {
 
           // Scroll sur le bloc résultats
           recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+          // === Transition + Financement (dynamiques, affichés après simulation) ===
+(function(){
+  const annualEl   = document.getElementById('rc-annual');
+  const finTrans   = document.getElementById('fin-transition');
+  const finAnnual  = document.getElementById('fin-annual');
+  const finCard    = document.getElementById('fin-card');
+  const finMonthly = document.getElementById('fin-monthly');
+  const finTotal   = document.getElementById('fin-total');
+
+  // Table des financements selon le tarif choisi
+  const financeTable = {
+    2200: { mensu: 31.93, total: 2682.08 },
+    2400: { mensu: 34.84, total: 2925.76 },
+    2600: { mensu: 37.74, total: 3169.68 }
+  };
+
+  // On récupère le montant affiché du bloc prix (donc à jour)
+  const prixSpan = document.getElementById('prod-prix');
+  const montant = prixSpan ? parseInt(prixSpan.textContent.replace(/\s|€/g, ''), 10) : 0;
+  const fin = financeTable[montant] || null;
+
+  // Récupération du texte du coût annuel
+  const annualText = annualEl?.textContent?.trim();
+
+  // --- Affiche la phrase de transition ---
+  if (finTrans && finAnnual && annualText) {
+    finAnnual.textContent = annualText;
+    finTrans.style.display = 'block';
+  }
+
+  // --- Affiche la carte financement ---
+  if (finCard && fin && finMonthly && finTotal) {
+    finMonthly.textContent = fin.mensu.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+    finTotal.textContent   = fin.total.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+    finCard.style.display = 'block';
+  }
+})();
+
         });
       });
     </script>
