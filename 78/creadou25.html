@@ -464,6 +464,72 @@
 @media (max-width: 900px){
   .prod__inner{ grid-template-columns:1fr; text-align:center; }
 }
+/* Espacement du bloc produit sous la ligne bleue */
+#prod {
+  margin-top: 28px;
+}
+/* Lisibilité des caractéristiques du produit */
+.prod__specs li {
+  color: #1e293b;          /* gris foncé plus lisible */
+  font-size: 0.95rem;      /* taille légèrement réduite pour hiérarchie visuelle */
+  line-height: 1.55;
+}
+/* Mise en valeur du prix installé */
+.prod__price {
+  background: #f0f4ff;        /* fond doux bleu clair */
+  border-radius: 8px;         /* coins arrondis */
+  display: inline-block;      /* étiquette compacte */
+  padding: 6px 12px;          /* espace intérieur */
+  margin-top: 10px;           /* petit espace avec les caractéristiques */
+  font-weight: 700;           /* texte plus affirmé */
+  color: #0b4fbf;             /* bleu identitaire */
+}
+/* Responsive : affichage du bloc produit sur mobile */
+@media (max-width: 860px) {
+  .prod__inner {
+    display: flex;
+    flex-direction: column;    /* empile l’image et le texte */
+    align-items: center;       /* centre le contenu */
+    text-align: center;
+  }
+
+  .prod__img {
+    width: 80%;
+    max-width: 260px;          /* limite la taille */
+    margin-bottom: 16px;       /* espace entre image et texte */
+  }
+
+  .prod__title {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .prod__price {
+    display: block;
+    margin: 14px auto 0;
+  }
+}
+/* Harmonisation typographique du bloc produit */
+.prod__title {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 900;
+  color: #0f172a;           /* même nuance que les titres principaux */
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.prod__specs li {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.prod__price {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
 
     </style>
   </head>
