@@ -486,18 +486,17 @@
 }
 /* Responsive : affichage du bloc produit sur mobile */
 @media (max-width: 860px) {
-  .prod__inner {
-    display: flex;
-    flex-direction: column;    /* empile l’image et le texte */
-    align-items: center;       /* centre le contenu */
-    text-align: center;
-  }
+/* Ajustement du bloc produit : espacement et proportion de l'image */
+.prod__inner {
+  margin-top: 12px;              /* espace un peu plus sous la ligne bleue */
+  align-items: center;
+}
 
-  .prod__img {
-    width: 80%;
-    max-width: 260px;          /* limite la taille */
-    margin-bottom: 16px;       /* espace entre image et texte */
-  }
+.prod__img {
+  max-height: 300px;             /* taille plus généreuse */
+  object-fit: contain;           /* conserve les proportions naturelles */
+}
+
 
   .prod__title {
     font-size: 1.1rem;
