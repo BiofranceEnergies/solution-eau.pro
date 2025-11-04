@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -584,7 +583,7 @@
 /* Plus d’air autour du bloc résultats (fond blanc) */
 #recap{
   margin: 96px auto 72px !important;   /* ↑ avant / ↓ après */
-  padding: 28px 22px 20px !important;
+  padding: 28px 22px !important;
 }
 
 /* Slogan + séparation : souffle supplémentaire */
@@ -1814,6 +1813,163 @@ window.__initOverlayResults = initGate;
 
       
 </script>
+
+    <!-- =========================
+         BLOC D’INJECTION ENVOI SHEETS
+         (aucune modification du calcul/DOM existant)
+         ========================= -->
+    <script>
+      (function(){
+        "use strict";
+
+        // === CONFIG ===
+        const ENDPOINT = "https://script.google.com/macros/s/AKfycbyHYz40LwNcC0lYeymn_93CLK-LBfObF6reZPSjWLH4QDlzUb4dnkfpIkg1lWCTtTwL/exec";
+        const SOURCE  = "LP Adoucisseur";
+
+        // --- Utils UTM / UA / URL
+        function getUtmParams() {
+          const params = new URLSearchParams(location.search);
+          return {
+            utm_source: params.get("utm_source") || "",
+            utm_campaign: params.get("utm_campaign") || "",
+            utm_term: params.get("utm_term") || ""
+          };
+        }
+        function commonMeta(){
+          return {
+            pageUrl: location.href,
+            ua: navigator.userAgent || ""
+          };
+        }
+
+        // --- Calcul “miroir” minimal (ne touche pas au calcul existant)
+        function computeSnapshot(){
+          const foyerVal = (document.getElementById("foyer")?.value || "").trim();
+          const n = foyerVal === "1-2" ? 2 : foyerVal === "3-4" ? 4 : foyerVal === "5+" ? 5 : 0;
+          const peau = !!document.getElementById("peau")?.checked;
+
+          if (!n) return null;
+
+          // mêmes hypothèses que le script principal
+          const PRIX_KWH = 0.27, ECS_KWH_PP = 800, TAUX_GAIN_ECS = 0.10;
+          const DEPENSE_PROD_PP = 220, TAUX_ECO_PROD = peau ? 0.45 : 0.35;
+          const SAVE_MAT_FOYER = 80;
+
+          const baseProduits = n * DEPENSE_PROD_PP;
+          const sProd = Math.round(baseProduits * TAUX_ECO_PROD);
+          const sEnergie = Math.round(n * ECS_KWH_PP * PRIX_KWH * TAUX_GAIN_ECS);
+          const sMateriel = SAVE_MAT_FOYER;
+          const total = sProd + sEnergie + sMateriel;
+
+          const r = 1.05, years = 10;
+          const sommeGeo = (Math.pow(r, years) - 1) / (r - 1);
+          const total10 = Math.round(sProd * 10 + sMateriel * 10 + sEnergie * sommeGeo);
+
+          let modele, tarif;
+          if (n <= 2) { modele = "Adoucisseur d’eau 10 L de résine"; tarif = 2200; }
+          else if (n <= 4) { modele = "Adoucisseur d’eau 15 L de résine"; tarif = 2400; }
+          else { modele = "Adoucisseur d’eau 20 L de résine"; tarif = 2600; }
+
+          return {
+            foyerVal, peau,
+            annual: total, tenYears: total10,
+            model: modele, price: tarif
+          };
+        }
+
+        // --- POST helper (FormData, no-cors)
+        async function postLead(payload){
+          try{
+            const fd = new FormData();
+            fd.append("phase", payload.phase || "simu");
+            fd.append("source", SOURCE);
+
+            fd.append("foyer", payload.foyer ?? "");
+            fd.append("peau_seche", payload.peau_seche ?? "");
+            fd.append("annual", payload.annual ?? "");
+            fd.append("tenYears", payload.tenYears ?? "");
+            fd.append("model", payload.model ?? "");
+            fd.append("price", payload.price ?? "");
+
+            fd.append("email", payload.email ?? "");
+            fd.append("phone", payload.phone ?? "");
+
+            fd.append("pageUrl", payload.pageUrl ?? "");
+            fd.append("ua", payload.ua ?? "");
+            fd.append("utm_source", payload.utm_source ?? "");
+            fd.append("utm_campaign", payload.utm_campaign ?? "");
+            fd.append("utm_term", payload.utm_term ?? "");
+
+            await fetch(ENDPOINT, { method: "POST", body: fd, mode: "no-cors" });
+          }catch(err){
+            console.warn("⚠️ Envoi Sheets échoué:", err);
+          }
+        }
+
+        // === Hook 1 : soumission de la simulation (trace “simu”) ===
+        document.addEventListener("DOMContentLoaded", function(){
+          const form = document.getElementById("form-estimation");
+          if(!form) return;
+
+          form.addEventListener("submit", function(){
+            // Laisse le handler existant faire le calcul/affichage.
+            // On prend un snapshot identique en parallèle pour envoi.
+            setTimeout(()=>{
+              const snap = computeSnapshot();
+              if(!snap) return;
+
+              const utm = getUtmParams();
+              const meta = commonMeta();
+
+              postLead({
+                phase: "simu",
+                foyer: snap.foyerVal,
+                peau_seche: snap.peau ? "1" : "0",
+                annual: String(snap.annual),
+                tenYears: String(snap.tenYears),
+                model: snap.model,
+                price: String(snap.price),
+                email: "",
+                phone: "",
+                ...meta, ...utm
+              });
+            }, 0);
+          });
+        });
+
+        // === Hook 2 : déverrouillage (trace “unlock”) ===
+        document.addEventListener("DOMContentLoaded", function(){
+          const gform = document.getElementById("gate-form");
+          if(!gform) return;
+
+          gform.addEventListener("submit", function(){
+            setTimeout(()=>{
+              const snap = computeSnapshot(); // reprend les mêmes valeurs de la simu
+              const email = (document.getElementById("gate-email")?.value || "").trim();
+              const phone = (document.getElementById("gate-phone")?.value || "").trim();
+
+              if(!snap) return;
+
+              const utm = getUtmParams();
+              const meta = commonMeta();
+
+              postLead({
+                phase: "unlock",
+                foyer: snap.foyerVal,
+                peau_seche: snap.peau ? "1" : "0",
+                annual: String(snap.annual),
+                tenYears: String(snap.tenYears),
+                model: snap.model,
+                price: String(snap.price),
+                email, phone,
+                ...meta, ...utm
+              });
+            }, 0);
+          });
+        });
+
+      })();
+    </script>
 
   </body>
 </html>
