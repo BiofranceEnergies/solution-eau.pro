@@ -845,6 +845,68 @@
     0 10px 24px rgba(15,23,42,.10),
     inset 0 1px 0 rgba(255,255,255,.65);
 }
+/* === Tweaks Lovable 2025 – Bandeau promo === */
+.promo2025{
+  /* respiration interne un peu plus généreuse */
+  padding: clamp(56px, 6vw, 84px) 22px;
+  /* espace externe plus court au-dessus, plus long dessous */
+  margin: 48px auto 110px;
+  max-width: 960px; /* un chouïa plus large pour l'effet "hero" */
+}
+
+/* Halo recentré et un peu plus dense au milieu */
+.promo2025::before{
+  inset: -28px; /* halo moins étalé */
+  background: radial-gradient( circle at center,
+    rgba(33,112,255,.18) 0%,
+    rgba(33,112,255,.10) 32%,
+    rgba(33,112,255,.04) 54%,
+    transparent 72%
+  );
+  opacity: .9;
+}
+
+/* l’inner reste identique mais on accepte un contenu plus large */
+.promo2025__inner{ max-width: 760px; }
+
+/* Badge plus proche du texte, un peu plus “chip” */
+.promo2025__badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 10px rgba(15,23,42,.06), inset 0 0 0 1px rgba(11,79,191,.12);
+  font-size: 12px;
+  font-weight: 600;
+  color:#0b4fbf;
+  margin: 0 auto 10px;
+}
+
+/* Emoji + titre plus “hero” */
+.promo2025__emoji{ font-size: 54px; margin: 12px 0 10px; }
+.promo2025__text{
+  font-size: clamp(22px, 2.4vw, 26px);
+  letter-spacing: -.2px;
+}
+.promo2025__text strong{ font-weight: 800; }
+
+/* Sous-texte un rien plus doux et resserré */
+.promo2025__sub{
+  font-size: clamp(13px,1.35vw,14px);
+  color: #6b7a90;
+  margin-top: 12px;
+}
+
+/* Mobile: on resserre un peu pour éviter le “gros coussin” */
+@media (max-width: 640px){
+  .promo2025{ padding: 52px 18px; margin: 42px auto 96px; }
+  .promo2025__emoji{ font-size: 48px; }
+  .promo2025__badge{ font-size: 11px; padding: 5px 9px; }
+  .promo2025__text{ font-size: 20px; }
+}
 
      
     </style>
