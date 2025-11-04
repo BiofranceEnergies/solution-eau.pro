@@ -1569,6 +1569,112 @@
           <div class="footer-cta__trust">Simulation sans engagement – Réponse sous 24 h</div>
         </div>
       </div>
+      <!-- ================== CONTACT CONSEILLER (gradient shift) ================== -->
+<div class="footer-contact-glow orbit">
+  <a href="tel:0648893480" class="cta-call">
+    <span>📞 Conseiller local :</span> <strong>06 48 89 34 80</strong>
+  </a>
+</div>
+
+<style>
+.footer-contact-glow{
+  text-align:center;
+  margin-top:18px;
+  margin-bottom:6px;
+}
+
+/* Bouton */
+.footer-contact-glow .cta-call{
+  position:relative;
+  display:inline-block;
+  padding:10px 20px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:.2px;
+  border-radius:40px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+/* Anneau en rotation “Vercel-style” */
+.footer-contact-glow.orbit .cta-call::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(33,112,255,.00) 0deg,
+      rgba(33,112,255,.55) 90deg,
+      rgba(33,112,255,.00) 180deg,
+      rgba(33,112,255,.45) 270deg,
+      rgba(33,112,255,.00) 360deg
+    );
+  filter:blur(10px);
+  opacity:.55;
+  animation:orbitSpin 6s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* Voile interne très doux pour l’aspect “verre” */
+.footer-contact-glow.orbit .cta-call::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  z-index:1;
+  pointer-events:none;
+}
+
+/* Contenu au-dessus des effets */
+.footer-contact-glow .cta-call > *{
+  position:relative;
+  z-index:2;
+}
+
+/* Hover : un peu plus lumineux + légère élévation */
+.footer-contact-glow .cta-call:hover{
+  background:rgba(255,255,255,.12);
+  box-shadow:0 10px 28px rgba(11,79,191,.35);
+  transform:translateY(-1px);
+}
+
+/* Texte “Conseiller local” légèrement adouci */
+.footer-contact-glow span{
+  opacity:.9;
+  font-weight:500;
+}
+
+/* Animation rotation */
+@keyframes orbitSpin{
+  to{ transform:rotate(360deg); }
+}
+
+/* Accessibilité : motion reduce */
+@media (prefers-reduced-motion: reduce){
+  .footer-contact-glow.orbit .cta-call::before{
+    animation:none;
+    opacity:.35;
+  }
+}
+
+/* Responsive */
+@media (max-width:600px){
+  .footer-contact-glow .cta-call{
+    font-size:15px;
+    padding:9px 16px;
+  }
+}
+</style>
+
       <div class="footer-legal"><span id="mentions-legales-link">Mentions légales</span></div>
     </footer>
 
