@@ -1711,6 +1711,14 @@
 
           // Scroll sur le bloc résultats
           recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Active l’overlay de déverrouillage (si pas déjà débloqué)
+try {
+  if (!localStorage.getItem("overlayResultsUnlocked") &&
+      typeof window.__initOverlayResults === "function") {
+    window.__initOverlayResults();
+  }
+} catch (e) {}
+
         });
       });
     </script>
@@ -1793,14 +1801,10 @@
     setTimeout(placeOverlay, 50);
     setTimeout(placeOverlay, 250);
   }
+// Expose seulement la fonction d'initialisation (aucun appel ici)
+window.__initOverlayResults = initGate;
+})();
 
-recap?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-// 👉 Active l’overlay de déverrouillage des résultats
-if (!window.__overlayShown && typeof window.__initOverlayResults === "function") {
-  window.__overlayShown = true;            // évite un double affichage si on recalcule
-  window.__initOverlayResults();
-}
       
 </script>
 
