@@ -909,7 +909,76 @@
   .promo2025__text{ font-size: 20px; }
 }
 
-     
+   /* ===== Overlay résultats (masque sous le 1er bloc) ===== */
+#recap{ position: relative; }
+#gate-overlay{
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top sera fixé en JS = bas de #resume-cout */
+  bottom: 0;
+  z-index: 50;
+  display: none;                /* activé en JS */
+  pointer-events: auto;
+}
+#gate-overlay.is-visible{ display:block; }
+
+#gate-overlay .gate-dim{
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#gate-overlay .gate-card{
+  position: sticky;       /* suit le scroll dans la zone masquée */
+  top: min(18vh, 140px);
+  margin: 24px auto;
+  max-width: 720px;
+  background: #0b1220;
+  color: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 16px 48px rgba(0,0,0,.28);
+  padding: 22px 20px;
+}
+.gate-card__title{
+  font-weight: 800; font-size: clamp(18px,2.4vw,22px);
+  margin-bottom: 6px; text-align:center;
+}
+.gate-card__sub{
+  color:#cbd5e1; text-align:center; line-height:1.45; margin-bottom: 14px;
+}
+.gate-bullets{
+  display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  color:#e2e8f0; font-weight:600; margin: 6px 0 12px;
+}
+.gate-bullets span{ display:inline-flex; align-items:center; gap:6px; }
+
+.gate-form{ display:grid; gap:10px; grid-template-columns:1fr 1fr; }
+.gate-form .full{ grid-column: 1 / -1; }
+.gate-input{
+  width:100%; height:48px; border-radius:12px; border:1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06); color:#fff; padding:0 12px; font-weight:600;
+}
+.gate-input::placeholder{ color:#cbd5e1; opacity:.85; }
+.gate-cta{
+  height:52px; border-radius:14px; border:1px solid rgba(255,255,255,.28);
+  background: linear-gradient(180deg, var(--cta-grad-top), var(--cta-grad-bot));
+  color:#fff; font-weight:800; cursor:pointer;
+}
+.gate-consent{ font-size:12px; color:#cbd5e1; text-align:center; margin-top:8px; }
+
+@media (max-width: 700px){
+  #gate-overlay .gate-card{ top: 10vh; }
+  .gate-form{ grid-template-columns:1fr; }
+}
+
+/* Impression: jamais d’overlay */
+@media print{
+  #gate-overlay{ display:none !important; }
+}
+  
     </style>
   </head>
   <body>
@@ -1006,6 +1075,32 @@
           </div>
         </div>
       </section>
+<!-- ===== OVERLAY DE RÉSULTATS (masque sous le 1er bloc) ===== -->
+<div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-dim" aria-hidden="true"></div>
+
+  <div class="gate-card">
+    <h3 id="gate-title" class="gate-card__title">Vous avez votre estimation… allons plus loin.</h3>
+    <p class="gate-card__sub">
+      Découvrez votre coût précis, vos économies et une mensualité fixe — avec remise immédiate (jusqu’au 31/12/2025).
+    </p>
+
+    <div class="gate-bullets" aria-hidden="true">
+      <span>🔒 Données protégées</span>
+      <span>⚡ Affichage immédiat</span>
+    </div>
+
+    <form id="gate-form" class="gate-form" novalidate>
+      <input class="gate-input" type="email" id="gate-email" name="email" placeholder="Votre email (facultatif)">
+      <input class="gate-input" type="tel" id="gate-phone" name="phone" placeholder="Téléphone (obligatoire)" required>
+      <button type="submit" class="gate-cta full">Déverrouiller les résultats</button>
+    </form>
+
+    <p class="gate-consent">
+      En validant, vous acceptez d’être contacté uniquement par SMS pour votre étude. Un SMS de confirmation vous sera envoyé.
+    </p>
+  </div>
+</div>
 
       <!-- ================== CARTES DÉTAIL COÛTS ================== -->
       <section id="rc-cards" class="rc-cards" aria-label="Détail du coût annuel">
@@ -1619,5 +1714,95 @@
         });
       });
     </script>
+    <script>
+(function(){
+  const STORAGE_KEY = "overlayResultsUnlocked";
+
+  function isUnlocked(){
+    try{ return localStorage.getItem(STORAGE_KEY) === "1"; }catch(e){ return false; }
+  }
+  function setUnlocked(){
+    try{ localStorage.setItem(STORAGE_KEY,"1"); }catch(e){}
+  }
+
+  function px(n){ return (Math.max(0, Math.round(n)) + "px"); }
+
+  function placeOverlay(){
+    const recap = document.getElementById("recap");
+    const first = document.getElementById("resume-cout");
+    const gate  = document.getElementById("gate-overlay");
+    if(!recap || !first || !gate) return;
+
+    const rect = first.getBoundingClientRect();
+    const recRect = recap.getBoundingClientRect();
+    const top = (rect.bottom - recRect.top);
+    gate.style.top = px(top);
+  }
+
+  function showOverlay(){
+    const gate = document.getElementById("gate-overlay");
+    if(!gate) return;
+    placeOverlay();
+    gate.classList.add("is-visible");
+  }
+
+  function hideOverlay(){
+    const gate = document.getElementById("gate-overlay");
+    if(!gate) return;
+    gate.classList.remove("is-visible");
+  }
+
+  function phoneValid(tel){
+    if(!tel) return false;
+    const v = tel.replace(/[^\d+]/g,"").replace(/^(\+33)/,"0");
+    return /^0\d{9}$/.test(v);
+  }
+
+  function initGate(){
+    const gate = document.getElementById("gate-overlay");
+    const recap = document.getElementById("recap");
+    const first = document.getElementById("resume-cout");
+    if(!gate || !recap || !first) return;
+
+    if(isUnlocked()){ hideOverlay(); return; }
+    showOverlay();
+
+    const form = document.getElementById("gate-form");
+    const phone = document.getElementById("gate-phone");
+    if(form && phone){
+      form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        if(!phoneValid(phone.value)){
+          phone.focus();
+          phone.setCustomValidity("Numéro invalide (FR, 10 chiffres).");
+          phone.reportValidity();
+          setTimeout(()=> phone.setCustomValidity(""), 2000);
+          return;
+        }
+
+        // ✅ déverrouille les résultats
+        setUnlocked();
+        hideOverlay();
+
+        const next = document.getElementById("rc-cards") || document.getElementById("prod") || recap;
+        next && next.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    }
+
+    window.addEventListener("resize", placeOverlay);
+    setTimeout(placeOverlay, 50);
+    setTimeout(placeOverlay, 250);
+  }
+
+recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+// 👉 Active l’overlay de déverrouillage des résultats
+if (!window.__overlayShown && typeof window.__initOverlayResults === "function") {
+  window.__overlayShown = true;            // évite un double affichage si on recalcule
+  window.__initOverlayResults();
+}
+      
+</script>
+
   </body>
 </html>
