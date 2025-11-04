@@ -578,6 +578,61 @@
 }
   #recap{ margin-bottom: 72px !important; }
 
+      /* ===== PATCH V2 : respiration + badge + carte financement ===== */
+
+/* Plus d’air autour du bloc résultats (fond blanc) */
+#recap{
+  margin: 96px auto 72px !important;   /* ↑ avant / ↓ après */
+  padding: 28px 22px 20px !important;
+}
+
+/* Slogan + séparation : souffle supplémentaire */
+#rc-slogan{ margin: 30px auto 24px !important; line-height: 1.35 !important; }
+.slogan-sep{ margin: 14px auto 34px !important; }
+
+/* Bloc produit : grille un peu plus aérée et image mieux “posée” */
+.prod{ margin-top: 36px !important; }
+.prod__inner{ gap: 36px !important; align-items: center !important; }
+.prod__img{ max-width: 420px !important; max-height: 340px !important; object-fit: contain !important; }
+
+/* Badge prix : plus léger mais lisible (contraste OK) */
+.prod__price{
+  background: #eef5ff !important;
+  border: 1px solid #d6e6ff !important;
+  box-shadow: 0 4px 12px rgba(11,79,191,.08) !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+}
+.prod__price .prod__amount{ font-size: clamp(26px,4.6vw,36px) !important; }
+
+/* Bloc autofinancement : carte plus “premium” et respirante */
+.autofin{ margin: 24px auto 44px !important; }
+.fin-card{
+  max-width: 760px !important;
+  padding: 24px 26px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 16px rgba(2,6,23,.05) !important;
+}
+.fin-list{ row-gap: 12px !important; }
+.fin-list dt{ color:#0f172a !important; }
+.fin-list dd{ color:#0b4fbf !important; font-weight: 800 !important; }
+
+/* Palier visuel avant le footer bleu */
+.footer-cta{ margin-top: 92px !important; }
+
+/* Mobile : compacts mais respirants */
+@media (max-width: 900px){
+  #recap{ margin: 80px auto 56px !important; }
+  .prod__inner{ gap: 24px !important; }
+  .footer-cta{ margin-top: 72px !important; }
+}
+@media (max-width: 560px){
+  .prod__img{ max-width: 360px !important; max-height: 300px !important; }
+  .fin-card{ padding: 20px 18px !important; }
+}
+
+
     </style>
   </head>
   <body>
