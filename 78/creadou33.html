@@ -1573,13 +1573,7 @@
       <div class="footer-legal"><span id="mentions-legales-link">Mentions légales</span></div>
     </footer>
 
-    <script>
-      // ====== Calcul + affichage ======
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("form-estimation");
-        if (!form) return;
-
-      
+   <script>
 // 🔓 Mode test overlay : ajouter ?lock à l'URL pour forcer le verrouillage
 if (window.location.search.includes('lock')) {
   localStorage.removeItem("overlayResultsUnlocked");
@@ -1590,7 +1584,14 @@ if (window.location.search.includes('lock')) {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-estimation");
   if (!form) return;
-  ...
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    ...
+  });
+});
+</script>
+
 
         
         form.addEventListener("submit", function (ev) {
