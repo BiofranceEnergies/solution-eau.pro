@@ -640,6 +640,18 @@
   margin-top: 24px !important;   /* espace entre la phrase et la carte */
   box-shadow: 0 6px 18px rgba(0,0,0,.04) !important;  /* effet flottant subtil */
 }
+.fin-tag{
+  display:inline-block;
+  font-weight:800;
+  font-size:.9rem;
+  color:#0b4fbf;
+  background:#eaf2ff;
+  border:1px solid #d6e6ff;
+  padding:6px 10px;
+  border-radius:999px;
+  margin:0 0 12px;
+}
+.fin-list dd span[id^="fin-"]{ font-weight:800; }
 
 
     </style>
@@ -832,27 +844,32 @@
           investissez-les dans votre confort.
         </p>
 
-        <div class="fin-card" aria-label="Détails de financement (facultatif)">
-          <dl class="fin-list">
-            <dt>Prix installé</dt>
-            <dd><span id="fin-capital">—</span> TTC</dd>
+       <div class="fin-card" aria-label="Financement (facultatif)">
+  <div class="fin-tag" aria-hidden="true">Financement possible (facultatif)</div>
 
-            <dt>Mensualité (hors assurance)</dt>
-            <dd><span id="fin-mensu">—</span> / mois</dd>
+  <dl class="fin-list" role="list">
+    <dt>Prix installé</dt>
+    <dd><span id="fin-capital">—</span> TTC</dd>
 
-            <dt>Durée</dt>
-            <dd><span id="fin-duree">—</span> mois</dd>
+    <dt>Mensualité (hors assurance)</dt>
+    <dd><span id="fin-mensu">—</span> € / mois</dd>
 
-            <dt>TAEG</dt>
-            <dd><span id="fin-taeg">—</span> %</dd>
+    <dt>Durée</dt>
+    <dd><span id="fin-duree">—</span> mois</dd>
 
-            <dt>Montant total dû</dt>
-            <dd><span id="fin-total">—</span></dd>
-          </dl>
-          <p class="fin-legal">
-            Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.
-          </p>
-        </div>
+    <dt>TAEG</dt>
+    <dd><span id="fin-taeg">—</span> %</dd>
+
+    <dt>Montant total dû (hors assurance)</dt>
+    <dd><span id="fin-total">—</span> €</dd>
+  </dl>
+
+  <p class="fin-legal">
+    Financement <strong>facultatif</strong>. Assurance emprunteur facultative non incluse.  
+    Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.
+  </p>
+</div>
+
       </section>
       <!-- [[FIN bloc autofinancement]] -->
 
