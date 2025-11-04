@@ -1573,27 +1573,12 @@
       <div class="footer-legal"><span id="mentions-legales-link">Mentions légales</span></div>
     </footer>
 
-   <script>
-// 🔓 Mode test overlay : ajouter ?lock à l'URL pour forcer le verrouillage
-if (window.location.search.includes('lock')) {
-  localStorage.removeItem("overlayResultsUnlocked");
-  console.log("🔄 Overlay réinitialisé (mode test)");
-}
+    <script>
+      // ====== Calcul + affichage ======
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("form-estimation");
+        if (!form) return;
 
-// ===== Calcul + affichage =====
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("form-estimation");
-  if (!form) return;
-
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault();
-    ...
-  });
-});
-</script>
-
-
-        
         form.addEventListener("submit", function (ev) {
           ev.preventDefault();
 
@@ -1738,8 +1723,15 @@ try {
       });
     </script>
     <script>
-(function(){
+
+      (function(){
+  if (location.search.includes('lock=test')) {
+    localStorage.removeItem('overlayResultsUnlocked');
+    console.log('%c🔁 Mode test activé : clé overlayResultsUnlocked supprimée', 'color:#0bf;font-weight:bold;');
+  }
+
   const STORAGE_KEY = "overlayResultsUnlocked";
+
 
   function isUnlocked(){
     try{ return localStorage.getItem(STORAGE_KEY) === "1"; }catch(e){ return false; }
