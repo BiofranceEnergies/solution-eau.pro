@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -1475,6 +1474,35 @@
       </div>
     </main>
 
+    <!-- ===== Logger LEADS EAU (no-CORS) ===== -->
+    <script>
+    (function () {
+      const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyHYz40LwNcC0lYeymn_93CLK-LBfObF6reZPSjWLH4QDlzUb4dnkfpIkg1lWCTtTwL/exec";
+
+      function parseUTM() {
+        const p = new URLSearchParams(location.search);
+        return {
+          utm_source:   p.get("utm_source")   || "",
+          utm_campaign: p.get("utm_campaign") || "",
+          utm_term:     p.get("utm_term")     || ""
+        };
+      }
+
+      function logToSheet(payload) {
+        try {
+          fetch(WEBAPP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+        } catch (_) {}
+      }
+
+      window.__LEADS_EAU = { logToSheet, parseUTM };
+    })();
+    </script>
+
     <script>
       // ========= FAQ TOGGLE =========
       (function () {
@@ -1654,7 +1682,7 @@
             const prixSpan = document.getElementById('prod-prix');
             if (capSpan)  capSpan.textContent  = (modele.match(/\d+\s?L/)?.[0] || "");
             if (modSpan)  modSpan.textContent  = "Vanne volumétrique Fleck";
-            if (prixSpan) prixSpan.textContent = tarif.toLocaleString("fr-FR") + " €";
+            if (prixSpan) prixSpan.textContent = tarif.toLocaleString("fr-FR"); // le "€ TTC" est déjà dans le HTML
           }
 
           // === Bloc "Autofinancement" (texte 2 lignes + carte financement) ===
@@ -1706,32 +1734,60 @@
               `\nNos estimations sont basées sur les consommations moyennes observées en France.`;
           }
 
-          // Masquer toutes les sections marquées après simulation (on garde le haut de page + bloc résultats + footer)
+          /* ========= MÉMO POUR L’OVERLAY ========= */
+          window.__lastSimuEAU = {
+            foyer: foyerVal,
+            peau_seche: peau ? "1" : "0",
+            annual: String(total),
+            tenYears: String(total10),
+            model: modele,
+            price: String(tarif)
+          };
+
+          /* ========= LOG SHEET — phase "simu" ========= */
+          try {
+            const { logToSheet, parseUTM } = window.__LEADS_EAU || {};
+            if (logToSheet) {
+              const utm = parseUTM ? parseUTM() : {};
+              logToSheet({
+                phase: "simu",
+                source: "LP Adoucisseur",
+                foyer: foyerVal,
+                peau_seche: (peau ? "1" : "0"),
+                annual: String(total),
+                tenYears: String(total10),
+                model: modele,
+                price: String(tarif),
+                email: "",
+                phone: "",
+                pageUrl: location.href,
+                ua: navigator.userAgent,
+                ...utm
+              });
+            }
+          } catch (_) {}
+
+          // Masquer les sections marquées après simulation
           document.querySelectorAll('[data-hide-after-sim="1"]').forEach(el => { el.style.display = 'none'; });
 
           // Scroll sur le bloc résultats
           recap?.scrollIntoView({ behavior: "smooth", block: "start" });
+
           // Active l’overlay de déverrouillage (si pas déjà débloqué)
-try {
-  if (!localStorage.getItem("overlayResultsUnlocked") &&
-      typeof window.__initOverlayResults === "function") {
-    window.__initOverlayResults();
-  }
-} catch (e) {}
+          try {
+            if (!localStorage.getItem("overlayResultsUnlocked") &&
+                typeof window.__initOverlayResults === "function") {
+              window.__initOverlayResults();
+            }
+          } catch (e) {}
 
         });
       });
     </script>
+
     <script>
-
-      (function(){
-  if (location.search.includes('lock=test')) {
-    localStorage.removeItem('overlayResultsUnlocked');
-    console.log('%c🔁 Mode test activé : clé overlayResultsUnlocked supprimée', 'color:#0bf;font-weight:bold;');
-  }
-
+(function(){
   const STORAGE_KEY = "overlayResultsUnlocked";
-
 
   function isUnlocked(){
     try{ return localStorage.getItem(STORAGE_KEY) === "1"; }catch(e){ return false; }
@@ -1799,6 +1855,32 @@ try {
         setUnlocked();
         hideOverlay();
 
+        /* --- LOG SHEET : phase "unlock" --- */
+        try {
+          const email = (document.getElementById("gate-email")?.value || "").trim();
+          const phoneVal = (document.getElementById("gate-phone")?.value || "").trim();
+          const S = window.__lastSimuEAU || {};
+          const { logToSheet, parseUTM } = window.__LEADS_EAU || {};
+          if (logToSheet) {
+            const utm = parseUTM ? parseUTM() : {};
+            logToSheet({
+              phase: "unlock",
+              source: "LP Adoucisseur",
+              foyer: S.foyer || "",
+              peau_seche: S.peau_seche || "",
+              annual: S.annual || "",
+              tenYears: S.tenYears || "",
+              model: S.model || "",
+              price: S.price || "",
+              email: email,
+              phone: phoneVal,
+              pageUrl: location.href,
+              ua: navigator.userAgent,
+              ...utm
+            });
+          }
+        } catch (_) {}
+
         const next = document.getElementById("rc-cards") || document.getElementById("prod") || recap;
         next && next.scrollIntoView({behavior:"smooth", block:"start"});
       });
@@ -1817,3 +1899,4 @@ window.__initOverlayResults = initGate;
 
   </body>
 </html>
+
