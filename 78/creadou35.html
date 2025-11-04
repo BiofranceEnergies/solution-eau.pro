@@ -1783,6 +1783,43 @@ try {
 
     const form = document.getElementById("gate-form");
     const phone = document.getElementById("gate-phone");
+    // --- Format FR "00 00 00 00 00" en saisie ---
+function formatFR(val){
+  if(!val) return "";
+  // normaliser +33 -> 0 et retirer tout hors chiffres
+  let d = val.replace(/[^\d+]/g,"").replace(/^\+33/,"0").replace(/\D/g,"");
+  d = d.slice(0,10);
+  return d.replace(/(\d{2})(?=\d)/g, "$1 ").trim();
+}
+
+// Accessibilité + contraintes douces
+try{
+  phone.setAttribute("inputmode","tel");
+  phone.setAttribute("autocomplete","tel");
+  phone.setAttribute("maxlength","14"); // 10 chiffres + 4 espaces = 14
+  phone.placeholder = "06 12 34 56 78";
+}catch(e){}
+
+// Gestion du curseur pour ne pas “sauter” à la fin
+function onPhoneInput(e){
+  const el = e.target;
+  const old = el.value;
+  const pos = el.selectionStart || 0;
+  const before = old.slice(0, pos).replace(/\D/g,"");
+  const next = formatFR(old);
+  let idx = 0, count = 0;
+  while (idx < next.length && count < before.length){
+    if (/\d/.test(next[idx])) count++;
+    idx++;
+  }
+  el.value = next;
+  try{ el.setSelectionRange(idx, idx); }catch(_){}
+}
+
+// Formatage en live + en sortie de champ
+phone.addEventListener("input", onPhoneInput);
+phone.addEventListener("blur", ()=>{ phone.value = formatFR(phone.value); });
+
     if(form && phone){
       form.addEventListener("submit", (e)=>{
         e.preventDefault();
