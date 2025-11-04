@@ -1579,6 +1579,20 @@
         const form = document.getElementById("form-estimation");
         if (!form) return;
 
+      
+// 🔓 Mode test overlay : ajouter ?lock à l'URL pour forcer le verrouillage
+if (window.location.search.includes('lock')) {
+  localStorage.removeItem("overlayResultsUnlocked");
+  console.log("🔄 Overlay réinitialisé (mode test)");
+}
+
+// ===== Calcul + affichage =====
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("form-estimation");
+  if (!form) return;
+  ...
+
+        
         form.addEventListener("submit", function (ev) {
           ev.preventDefault();
 
