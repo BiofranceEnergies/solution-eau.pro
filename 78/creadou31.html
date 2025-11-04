@@ -786,6 +786,65 @@
   font-weight: 400;
 }
 
+/* --- Badge verre dépoli (Lovable 2025) --- */
+.promo2025__inner { position: relative; }
+
+.promo2025__badge{
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: -6px auto 14px;               /* rapproche du 🎁 sans coller */
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);     /* verre dépoli */
+  border: 1px solid rgba(255,255,255,.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 6px 18px rgba(15,23,42,.08),
+    inset 0 1px 0 rgba(255,255,255,.6);
+  color: #0b4fbf;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.promo2025__badge::before{
+  content:"";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0b4fbf;
+  box-shadow: 0 0 0 4px rgba(11,79,191,.12);
+}
+
+@keyframes promoBadgePulse{
+  0%   { box-shadow: 0 0 0 0 rgba(11,79,191,.22); }
+  70%  { box-shadow: 0 0 0 12px rgba(11,79,191,0); }
+  100% { box-shadow: 0 0 0 0 rgba(11,79,191,0); }
+}
+
+.promo2025__badge::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius: inherit;
+  pointer-events:none;
+  animation: promoBadgePulse 2.6s ease-out infinite;
+}
+
+.promo2025:hover .promo2025__badge{
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 24px rgba(15,23,42,.10),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
 
      
     </style>
@@ -1012,7 +1071,8 @@
 <!-- [[DEBUT bloc promo Lovable 2025]] -->
 <section class="promo2025" aria-label="Offre spéciale limitée">
   <div class="promo2025__inner">
-    <p class="promo2025__emoji">🎁</p>
+    <div class="promo2025__badge" aria-label="Offre limitée">Offre limitée</div>
+    <p class="promo2025__emoji" aria-hidden="true">🎁</p>
     <p class="promo2025__text">
       <strong>280 € offerts</strong> jusqu’au <strong>31 décembre 2025</strong>
     </p>
@@ -1021,6 +1081,7 @@
     </p>
   </div>
 </section>
+
 <!-- [[FIN bloc promo Lovable 2025]] -->
 
       <h2 style="margin:0 0 8px">Résultats (brut)</h2>
