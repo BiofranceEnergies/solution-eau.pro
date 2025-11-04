@@ -1008,14 +1008,22 @@
     line-height: 1.4;
   }
 }
-    /* ===== Ajustement CTA "Déverrouiller les résultats" ===== */
-#gate-submit, 
-.cta-unlock {
-  font-size: clamp(17px, 2vw, 20px);  /* taille fluide, plus grande sur desktop */
-  font-weight: 600;                   /* texte plus affirmé */
-  letter-spacing: 0.3px;
-  text-transform: none;               /* pas besoin de majuscules complètes */
+/* ===== CTA overlay : taille de police plus lisible ===== */
+#gate-overlay .gate-card .gate-cta{
+  font-size: clamp(18px, 2.2vw, 22px);  /* + grand sur desktop, reste propre sur mobile */
+  font-weight: 700;                     /* 700 = lisible sans “gonfler” le texte */
+  letter-spacing: .2px;
+  text-transform: none;
+  line-height: 1.1;                     /* évite l’écrasement vertical */
 }
+
+/* Option mobile : un poil plus compact si besoin */
+@media (max-width: 420px){
+  #gate-overlay .gate-card .gate-cta{
+    font-size: 18px;
+  }
+}
+
  
     </style>
   </head>
