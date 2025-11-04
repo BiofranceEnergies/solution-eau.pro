@@ -1008,21 +1008,31 @@
     line-height: 1.4;
   }
 }
-/* ===== CTA overlay : taille de police plus lisible ===== */
+/* CTA overlay – lisibilité et présence renforcées */
 #gate-overlay .gate-card .gate-cta{
-  font-size: clamp(18px, 2.2vw, 22px);  /* + grand sur desktop, reste propre sur mobile */
-  font-weight: 700;                     /* 700 = lisible sans “gonfler” le texte */
-  letter-spacing: .2px;
-  text-transform: none;
-  line-height: 1.1;                     /* évite l’écrasement vertical */
+  font-size: clamp(19px, 2.6vw, 24px); /* + lisible sur desktop */
+  font-weight: 800;
+  height: clamp(52px, 6vw, 58px);
+  padding-inline: 22px;
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
 
-/* Option mobile : un poil plus compact si besoin */
-@media (max-width: 420px){
-  #gate-overlay .gate-card .gate-cta{
-    font-size: 18px;
-  }
+/* États interactifs cohérents */
+#gate-overlay .gate-card .gate-cta:hover{
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(11,79,191,.28), inset 0 2px 4px rgba(255,255,255,.08);
 }
+#gate-overlay .gate-card .gate-cta:active{
+  transform: translateY(0);
+  filter: brightness(1.02);
+}
+#gate-overlay .gate-card .gate-cta:focus-visible{
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}
+
 
  
     </style>
