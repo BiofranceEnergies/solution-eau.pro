@@ -977,7 +977,38 @@
 @media print{
   #gate-overlay{ display:none !important; }
 }
-  
+
+ /* ===== Fix lisibilité cartes coût sur mobile ===== */
+@media (max-width: 720px){
+  #rc-cards .rc-card{
+    align-items: center !important;     /* au lieu de flex-end */
+    justify-content: center; 
+    flex-direction: column;             /* empile icône, valeur, texte */
+    text-align: center;
+    padding: 16px 18px;
+  }
+  #rc-cards .rc-card__icon{
+    flex-basis: auto;
+    margin: 2px 0 6px;
+  }
+  #rc-cards .rc-card__body{
+    display: block; 
+    max-width: 92%;
+    margin: 0 auto;
+  }
+  #rc-cards .rc-card__value{
+    font-size: clamp(22px, 7.8vw, 34px);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  #rc-cards .rc-card__text{
+    white-space: normal;          /* wrap classique */
+    overflow-wrap: anywhere;      /* casse si mot trop long */
+    word-break: break-word;       /* sécurité */
+    line-height: 1.4;
+  }
+}
+     
     </style>
   </head>
   <body>
