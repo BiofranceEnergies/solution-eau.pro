@@ -1,3 +1,12 @@
+// DEBUG
+document.addEventListener('DOMContentLoaded', ()=>{
+  const b=document.createElement('div');
+  b.textContent='JS 50 OK';
+  Object.assign(b.style,{position:'fixed',left:'12px',bottom:'12px',
+    padding:'6px 10px',background:'#60a5fa',color:'#021126',
+    fontWeight:'900',borderRadius:'8px',zIndex:99999});
+  document.body.appendChild(b);
+});
 /* ==========================================================================
    creadou37ok.js — LP Adoucisseur (Solution-Eau.pro)
    - Simulateur (calculs simples et robustes)
