@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Adoucisseur d’eau – Votre étude en ligne</title>
+<meta name="description" content="Estimez vos économies avec un adoucisseur d’eau installé par un pro. Étude 100 % en ligne : Économies, Dimensionnement, Prix." />
+
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp" imagesizes="100vw" />
+
+<style>
+/* ========= Variables ========= */
+:root{
+  --maxw:1200px;
+  --hero-h-desktop:94vh; --hero-h-mobile:98vh;
+  --ink:#f1f5f9; --muted:#cce8ff;
+  --border:rgba(255,255,255,.28); --glass:rgba(255,255,255,.1);
+  --glass-head:rgba(15,23,42,.98);
+  --cta-grad-top:#0b4fbf; --cta-grad-bot:#0a2e70; --cta-text:#fff;
+  --brand:var(--cta-grad-top,#0b4fbf); --brand-ink:#0f172a;
+  --costw:880px;
+}
+@media (max-width:900px){ :root{ --costw:680px; } }
+@media (max-width:600px){ :root{ --costw:min(92vw,560px); } }
+
+/* ========= Reset + body ========= */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#0b1220;color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+
+/* Skip */
+.skip-link{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:16px;top:16px;padding:10px 14px;background:#111827;color:#fff;border-radius:8px;z-index:9999}
+
+/* ========= Logo ========= */
+.logo-header{position:absolute;top:24px;left:24px;z-index:10;display:block}
+.logo-header img{height:70px;width:auto;display:block}
+@media (max-width:900px){ .logo-header{top:16px;left:16px}.logo-header img{height:48px} }
+@media (max-width:560px){ .logo-header{top:calc(8px + env(safe-area-inset-top));left:12px} .logo-header img{height:36px} }
+
+/* ========= Hero ========= */
+.hero{position:relative;isolation:isolate;overflow:hidden;height:var(--hero-h-desktop);min-height:700px;display:flex;align-items:center}
+@media (max-width:900px){ .hero{height:var(--hero-h-mobile);min-height:640px} }
+.hero__img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 50%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,165,233,.28) 0,rgba(14,165,233,.18) 40%,rgba(0,0,0,.42) 100%);mix-blend-mode:soft-light}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,0) 78%,rgba(0,0,0,.78) 100%)}
+.hero__inner{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+@media (max-width:1100px){ .hero__inner{gap:24px} }
+@media (max-width:900px){ .hero__inner{grid-template-columns:1fr;gap:20px} }
+
+.hero__copy{max-width:680px;position:relative;z-index:1;padding-top:0}
+@media (max-height:680px){ .hero__copy{padding-top:72px} }
+.hero__intro{font-size:clamp(16px,1.6vw,20px);color:#e0f2fe;font-weight:700;margin-bottom:16px;text-shadow:0 1px 3px rgba(0,0,0,.45);text-wrap:balance}
+.hero__copy h1{font-size:clamp(34px,4vw,52px);line-height:1.15;font-weight:800;margin:12px 0 14px;letter-spacing:-.3px;text-wrap:balance;text-shadow:0 2px 8px rgba(0,0,0,.35);max-width:680px;color:#f8fafc}
+.hero__copy h1 em{font-style:normal;color:var(--cta-grad-top)}
+.hero__copy .lead{font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:#e2e8f0;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.35);margin-top:14px}
+.hero__copy::after{content:"";position:absolute;left:-8px;right:-8px;top:-8px;height:340px;background:linear-gradient(to bottom,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 100%);filter:blur(10px);border-radius:10px;z-index:-1;pointer-events:none}
+
+/* ========= Carte formulaire ========= */
+.card{position:relative;width:456px;max-width:95vw;margin-right:2vw;background:rgba(10,15,25,.92);border:1px solid var(--border);border-radius:22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 18px 60px rgba(0,0,0,.55),0 6px 16px rgba(0,0,0,.35);overflow:hidden;z-index:2;align-self:center;margin-top:4vh;transform:translateY(10px)}
+.card::before{content:"";position:absolute;inset:-48px;z-index:-1;background:radial-gradient(320px 260px at 62% 18%,rgba(0,0,0,.62),transparent 72%);pointer-events:none}
+@media (max-width:900px){ .card{margin:0 auto;max-width:640px;width:100%;background:#0b1220;transform:none}.card::before{display:none} }
+.card__head{text-align:center;padding:24px 22px 18px;background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(11,18,32,.98));border-bottom:1px solid rgba(255,255,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.card__head .t1{display:block;font-weight:800;font-size:1.34rem;color:#fff;letter-spacing:.1px;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.card__head .t2{display:block;font-size:1.08rem;color:#fff;opacity:.98;margin-top:2px}
+.card__body{padding:24px 20px 20px}
+.field{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.field label{font-weight:700;color:var(--ink);font-size:15px}
+.sel{flex:1;min-height:48px;padding:10px 12px;background:rgba(255,255,255,.08);color:#f8fafc;border:1px solid var(--border);border-radius:12px;outline:0;font-weight:600}
+.sel option{color:#111827;background:#fff}
+.sel:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.36)}
+.sel:focus{border-color:rgba(255,255,255,.55);box-shadow:0 0 0 4px rgba(59,130,246,.38)}
+.chk{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink)}
+.chk input{width:18px;height:18px;position:relative;top:1px}
+.field.is-inline{justify-content:flex-start;gap:10px}
+.cta{display:block;width:100%;margin-top:12px;height:56px;border-radius:18px;border:1px solid rgba(255,255,255,.25);background:linear-gradient(180deg,var(--cta-grad-top),var(--cta-grad-bot));color:var(--cta-text);font-weight:800;font-size:1.02rem;box-shadow:0 16px 36px rgba(11,63,145,.55),inset 0 2px 4px rgba(255,255,255,.08);cursor:pointer;transition:transform .15s ease,filter .15s ease}
+.cta:hover{filter:brightness(1.06);transform:translateY(-2px)}
+.cta:active{transform:translateY(0);filter:brightness(1.02)}
+.cta:focus-visible{outline:2px solid #93c5fd;outline-offset:3px}
+@media (max-width:520px){ .field{flex-direction:column;align-items:stretch} .field label{min-width:unset} }
+
+/* ========= Sections (Steps / Benefits / Process / Metrics) ========= */
+.steps,.process{background:#fff;padding:80px 20px;color:#0f172a}
+.benefits,.metrics{background:#f8fbff;padding:80px 20px;color:#0f172a;border-top:1px solid #eef2f7}
+.steps__inner,.benefits__inner,.process__inner,.metrics__inner{max-width:1100px;margin:0 auto;text-align:center}
+.steps h2,.benefits h2,.process h2,.metrics h2{font-size:clamp(26px,4.2vw,44px);line-height:1.15;font-weight:900;margin-bottom:10px}
+.steps p.subtitle,.process .subtitle,.metrics .subtitle{color:#64748b;margin-bottom:36px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:980px){ .sgrid{grid-template-columns:1fr;gap:16px} }
+.scard{background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 8px 22px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.04);padding:28px 26px;text-align:center;display:flex;flex-direction:column}
+.sbullet{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--cta-grad-top),var(--cta-grad-bot));color:#fff;font-weight:900;font-size:20px}
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media (max-width:1100px){ .bgrid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:720px){ .bgrid{grid-template-columns:1fr} }
+.bcard{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:24px 22px;text-align:left;box-shadow:0 10px 28px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.04);display:flex;flex-direction:column}
+.bicon{width:48px;height:48px;display:grid;place-items:center;border-radius:12px;background:#e8f2ff;margin-bottom:12px}
+.prow{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:12px}
+@media (max-width:980px){ .prow{grid-template-columns:1fr;gap:18px} }
+.pstep{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:26px 22px;text-align:center;box-shadow:0 10px 28px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.04)}
+.pline{position:relative;height:76px;margin:0 auto 22px;max-width:880px;background:linear-gradient(90deg,#e6f0fb,#e6f0fb);mask:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);border-radius:999px}
+.pnode{position:absolute;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#0b84ee;color:#fff;font-weight:800;box-shadow:0 6px 18px rgba(11,132,238,.25),inset 0 2px 4px rgba(255,255,255,.25)}
+.pnode.n1{left:16%}.pnode.n2{left:50%}.pnode.n3{left:84%}
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+@media (max-width:1200px){ .mgrid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){ .mgrid{grid-template-columns:1fr} }
+.mcard{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:24px 22px;box-shadow:0 10px 28px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.04)}
+.mvalue{font-size:clamp(28px,4vw,44px);font-weight:900;color:#0b84ee;line-height:1;margin:6px 0 4px}
+
+/* ========= Témoignages ========= */
+.testi{background:#fff;border-top:1px solid #eef2f7;padding:80px 20px;color:#0f172a}
+.testi__inner{max-width:1100px;margin:0 auto;text-align:center}
+.testi h2{font-size:clamp(28px,4.2vw,44px);line-height:1.15;font-weight:900;margin-bottom:8px}
+.testi__rating{display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:28px;color:#64748b;font-weight:700}
+.testi__stars{display:inline-flex;gap:4px;align-items:center}
+.testi__stars svg{width:18px;height:18px}
+.testi__stars svg path{fill:var(--cta-grad-top)}
+.testi__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:980px){ .testi__grid{grid-template-columns:1fr} }
+.tcard{background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 10px 28px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.04);padding:24px 22px;text-align:left}
+.tcard__top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.avatar{width:56px;height:56px;border-radius:50%;background:#ffe9cc;color:#111827;font-weight:800;font-size:18px;display:grid;place-items:center}
+.tcard__stars{margin:8px 0 10px;display:flex;gap:4px}
+
+/* ========= Utilitaires form ========= */
+fieldset{border:0;padding:0;margin:0;min-inline-size:unset}
+legend{padding:0;margin:0}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ========= FAQ ========= */
+.faq{background:#f8fbff;border-top:1px solid #eef2f7;padding:80px 20px;color:#0f172a}
+.faq__inner{max-width:1100px;margin:0 auto}
+.faq h2{text-align:center;font-size:clamp(28px,4.2vw,44px);line-height:1.15;font-weight:900;margin-bottom:6px}
+.faq__list{display:grid;gap:14px;max-width:920px;margin:26px auto 0;padding:0 4px}
+.faq__item{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 6px 18px rgba(2,6,23,.06),0 1px 4px rgba(2,6,23,.04);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq__item.is-open{border-color:rgba(11,79,191,.35);box-shadow:0 8px 20px rgba(11,79,191,.1),0 2px 6px rgba(2,6,23,.06)}
+.faq__btn{position:relative;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 44px 20px 24px;background:#fff;border:0;border-bottom:1px solid #e5e7eb;font-weight:800;font-size:1.05rem;cursor:pointer;color:var(--brand-ink)}
+.faq__btn:hover{color:var(--brand);background:linear-gradient(180deg,#f9fbff,#fff)}
+.faq__btn[aria-expanded="true"]{color:var(--brand);background:linear-gradient(180deg,#f0f6ff,#fff)}
+.faq__btn::after{content:"";position:absolute;right:16px;top:50%;width:18px;height:18px;transform:translateY(-50%);opacity:.65;transition:transform .2s,opacity .2s;background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M8 10l4 4 4-4' stroke='%230b4fbf' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>")}
+.faq__btn:hover::after{opacity:1}
+.faq__btn[aria-expanded="true"]::after{transform:translateY(-50%) rotate(180deg)}
+.faq__panel{max-height:0;overflow:hidden;padding:0 24px;transition:max-height .25s,padding .2s;background:linear-gradient(180deg,#fff,#f9fbff)}
+.faq__item.is-open .faq__panel{padding:16px 24px 20px}
+.faq__content{padding:16px 20px 20px;color:#475569;line-height:1.55}
+
+/* ========= Mentions ========= */
+#mentions-popup{display:none;position:fixed;bottom:60px;left:50%;transform:translateX(-50%);width:340px;max-width:95vw;background:#fff;color:#111827;border-radius:13px;box-shadow:0 8px 32px rgba(0,0,0,.15);padding:18px 20px 12px;z-index:10000;font-size:13px;line-height:1.7;border:1px solid #e5e7eb}
+#close-mentions{position:absolute;top:6px;right:12px;background:none;color:#111827;border:none;font-size:18px;font-weight:bold;cursor:pointer;padding:0}
+
+/* ========= Footer CTA + téléphone ========= */
+.footer-cta{background:linear-gradient(180deg,#0b4fbf,#0a2e70);color:#fff;padding:48px 20px}
+.footer-cta__inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.footer-cta__left{flex:0 0 340px;display:flex;align-items:center;justify-content:center}
+.footer-cta__img{max-width:100%;height:auto;display:block;filter:drop-shadow(0 6px 16px rgba(0,0,0,.25))}
+.footer-cta__right{flex:1;min-width:260px;text-align:left}
+.footer-cta__right h2{font-size:clamp(20px,2.6vw,28px);margin-bottom:10px;font-weight:800}
+.footer-cta__right p{font-size:16px;margin-bottom:18px;line-height:1.55}
+.footer-cta__right .cta{display:inline-block;background:linear-gradient(180deg,#0b4fbf,#0a2e70);color:#fff;font-weight:700;padding:14px 22px;border-radius:14px;text-decoration:none;box-shadow:0 8px 22px rgba(6,182,212,.25);transition:filter .25s}
+.footer-cta__right .cta:hover{filter:brightness(1.1)}
+.footer-legal{text-align:center;margin-top:32px;font-size:13px;color:rgba(255,255,255,.8)}
+.footer-legal span{cursor:pointer}
+@media (max-width:760px){ .footer-cta__inner{flex-direction:column;text-align:center;gap:24px}.footer-cta__right{text-align:center} }
+
+.footer-contact-glow{text-align:center;margin:18px 0 6px}
+.footer-contact-glow .cta-call{position:relative;display:inline-block;padding:10px 20px;color:#fff;text-decoration:none;font-weight:600;letter-spacing:.2px;border-radius:40px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);overflow:hidden;transition:transform .25s,box-shadow .25s,background .25s}
+.footer-contact-glow.orbit .cta-call::before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:conic-gradient(from 0deg,rgba(33,112,255,0) 0,rgba(33,112,255,.55) 90deg,rgba(33,112,255,0) 180deg,rgba(33,112,255,.45) 270deg,rgba(33,112,255,0) 360deg);filter:blur(10px);opacity:.55;animation:orbitSpin 6s linear infinite;z-index:0}
+.footer-contact-glow.orbit .cta-call::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06));backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:1}
+.footer-contact-glow .cta-call>*{position:relative;z-index:2}
+.footer-contact-glow .cta-call:hover{background:rgba(255,255,255,.12);box-shadow:0 10px 28px rgba(11,79,191,.35);transform:translateY(-1px)}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@media (max-width:600px){ .footer-contact-glow .cta-call{font-size:15px;padding:9px 16px} }
+
+/* ========= Bloc Résultats (recap + cards) ========= */
+#recap{background:#fff;color:#0f172a;padding:16px;border:1px solid #e5e7eb;border-radius:12px;max-width:1100px;margin:24px auto 72px;display:none;position:relative}
+.rc{background:#0b4fbf;color:#fff;border-radius:12px;padding:26px 22px;text-align:center;max-width:var(--costw);width:100%;margin:28px auto;box-shadow:0 8px 18px rgba(10,30,80,.12);display:none}
+.rc__inner{display:flex;flex-direction:column;align-items:center;gap:16px}
+.rc__title{font-size:1.4rem;font-weight:600}
+.rc__row{font-size:3rem;font-weight:700;line-height:1}
+#rc-cards{display:flex;flex-direction:column;gap:18px;max-width:var(--costw);margin:32px auto 0;padding:0}
+#rc-cards .rc-card{display:flex;align-items:flex-end;justify-content:center;gap:14px;background:#1353C9;color:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(10,30,80,.12);width:100%}
+#rc-cards .rc-card__icon{flex:0 0 30px;display:flex;align-items:center;justify-content:center}
+#rc-cards .rc-card__icon svg{width:26px;height:26px}
+#rc-cards .rc-card__body{display:grid;row-gap:6px;justify-items:center;text-align:center}
+#rc-cards .rc-card__value{font-size:clamp(26px,3.5vw,36px);line-height:1.15}
+#rc-cards .rc-card__text{line-height:1.4;opacity:.95}
+@media (max-width:720px){
+  #rc-cards .rc-card{align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:16px 18px}
+  #rc-cards .rc-card__icon{flex-basis:auto;margin:2px 0 6px}
+  #rc-cards .rc-card__value{font-size:clamp(22px,7.8vw,34px);margin-bottom:6px}
+}
+#recap h2,#recap-content{display:none!important}
+.slogan-sep{width:clamp(200px,55%,480px);height:4px;background:#0b4fbf;border-radius:999px;margin:12px auto 26px}
+#rc-slogan{text-align:center;font-size:1.6rem;line-height:1.35;font-weight:900;color:#0a3ebf;margin:30px auto 24px;max-width:780px}
+
+/* ========= Bloc Produit ========= */
+.prod{background:#fff;margin:36px auto 10px;padding:40px 20px 10px}
+.prod__inner{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:26px;align-items:center}
+.prod__img{width:100%;height:auto;display:block;max-width:340px;object-fit:contain;margin: -6px auto 0}
+.prod__title{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:clamp(20px,2.1vw,28px);font-weight:900;color:#0f172a;margin:0 0 10px;letter-spacing:-.2px;line-height:1.22}
+.prod__specs{list-style:none;margin:0 0 14px;padding:0;display:grid;row-gap:8px}
+.prod__specs li{color:#0f172a;line-height:1.45;position:relative;padding-left:16px}
+.prod__specs li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:#0b4fbf;transform:translateY(-50%)}
+.prod__price{display:inline-flex;align-items:baseline;gap:8px;padding:10px 14px;background:#eaf2ff;border:1px solid #cfe0ff;border-radius:12px;box-shadow:0 6px 16px rgba(11,63,145,.08);font-weight:700}
+.prod__amount{font-weight:800;font-size:clamp(22px,3.6vw,32px);line-height:1}
+@media (max-width:900px){ .prod__inner{grid-template-columns:1fr;gap:18px} .prod__img{max-height:300px} }
+
+/* ========= Bloc Autofinancement ========= */
+.autofin{background:#fff;max-width:var(--maxw);margin:24px auto 44px;padding:0 20px 90px;text-align:center}
+@media (max-width:860px){ .autofin{padding-bottom:70px} }
+.autofin__line{font-weight:800;font-size:clamp(20px,2vw,26px);line-height:1.25;color:#0f172a}
+.autofin__line+.autofin__line{margin-top:4px}
+.autofin .v{color:var(--cta-grad-top)}
+.fin-card{border:1px solid #e5e7eb;border-radius:14px;padding:24px 26px;max-width:760px;margin:24px auto 0;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.fin-tag{display:inline-block;font-weight:800;font-size:.9rem;color:#0b4fbf;background:#eaf2ff;border:1px solid #d6e6ff;padding:6px 10px;border-radius:999px;margin:0 0 12px}
+.fin-list{display:grid;grid-template-columns:1fr auto;gap:12px 22px;text-align:left;align-items:center}
+.fin-list dt{color:#0f172a;font-weight:700;line-height:1.35}
+.fin-list dd{margin:0;font-weight:800;color:var(--cta-grad-top);line-height:1.35}
+@media (max-width:560px){ .fin-list{grid-template-columns:1fr} .fin-list dd{text-align:left} }
+.fin-legal{margin-top:14px;font-size:13px;color:#64748b}
+
+/* ========= Promo 2025 ========= */
+.promo2025{position:relative;background:linear-gradient(180deg,#f9fafc 0,#f2f4f7 100%);border-radius:30px;box-shadow:0 18px 42px rgba(15,23,42,.06);padding:clamp(56px,6vw,84px) 22px;margin:48px auto 110px;max-width:960px;text-align:center;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.promo2025::before{content:"";position:absolute;inset:-28px;background:radial-gradient(circle at center,rgba(33,112,255,.18) 0,rgba(33,112,255,.10) 32%,rgba(33,112,255,.04) 54%,transparent 72%);opacity:.9;z-index:0}
+.promo2025:hover{transform:translateY(-4px);box-shadow:0 22px 46px rgba(15,23,42,.08)}
+.promo2025__inner{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.promo2025__emoji{font-size:54px;margin:12px 0 10px}
+.promo2025__badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.65);backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(15,23,42,.06),inset 0 0 0 1px rgba(11,79,191,.12);font-size:12px;font-weight:600;color:#0b4fbf;margin:0 auto 10px;position:relative}
+.promo2025__badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#0b4fbf;box-shadow:0 0 0 4px rgba(11,79,191,.12)}
+.promo2025__text{font-size:clamp(22px,2.4vw,26px);letter-spacing:-.2px;color:#0f172a;font-weight:500}
+.promo2025__text strong{color:#0b4fbf;font-weight:800}
+.promo2025__sub{font-size:clamp(13px,1.35vw,14px);color:#6b7a90;margin-top:12px}
+@media (max-width:640px){ .promo2025{padding:52px 18px;margin:42px auto 96px}.promo2025__emoji{font-size:48px} .promo2025__badge{font-size:11px;padding:5px 9px} }
+
+/* ========= Overlay résultats ========= */
+#gate-overlay{position:absolute;left:0;right:0;bottom:0;z-index:50;display:none;pointer-events:auto}
+#gate-overlay.is-visible{display:block}
+.gate-dim{position:absolute;inset:0;background:rgba(255,255,255,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.gate-card{position:sticky;top:min(18vh,140px);margin:24px auto;max-width:720px;background:#0b1220;color:#fff;border-radius:16px;border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 48px rgba(0,0,0,.28);padding:22px 20px}
+.gate-card__title{font-weight:800;font-size:clamp(18px,2.4vw,22px);margin-bottom:6px;text-align:center}
+.gate-card__sub{color:#cbd5e1;text-align:center;line-height:1.45;margin-bottom:14px}
+.gate-bullets{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;color:#e2e8f0;font-weight:600;margin:6px 0 12px}
+.gate-form{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.gate-form .full{grid-column:1/-1}
+.gate-input{width:100%;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;padding:0 12px;font-weight:600}
+.gate-cta{height:clamp(52px,6vw,58px);border-radius:14px;border:1px solid rgba(255,255,255,.28);background:linear-gradient(180deg,var(--cta-grad-top),var(--cta-grad-bot));color:#fff;font-weight:800;cursor:pointer;font-size:clamp(19px,2.6vw,24px);line-height:1.1;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.gate-cta:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 10px 24px rgba(11,79,191,.28),inset 0 2px 4px rgba(255,255,255,.08)}
+.gate-cta:active{transform:translateY(0);filter:brightness(1.02)}
+.gate-cta:focus-visible{outline:2px solid #93c5fd;outline-offset:3px}
+.gate-consent{font-size:12px;color:#cbd5e1;text-align:center;margin-top:8px}
+@media (max-width:700px){ .gate-card{top:10vh}.gate-form{grid-template-columns:1fr} }
+
+/* Impression : jamais d’overlay */
+@media print{ #gate-overlay{display:none!important} }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<header id="hero" class="hero" aria-label="Haut de page adoucisseur d’eau">
+  <div class="logo-header" role="img" aria-label="Solution Eau Pro">
+    <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/LOGO%20SEP2.webp" alt="Solution Eau Pro" />
+  </div>
+
+  <img class="hero__img" src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/73662e00d6a2835c42e89f3296e3301141a52285/fond%20haut%20de%20page%20adou.webp" alt="" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" sizes="100vw" />
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="hero__intro">Dites adieu au calcaire, redécouvrez une eau pure et douce.</p>
+      <h1><em>Adoucisseur d’eau</em> installé par un professionnel local</h1>
+      <p class="lead">Étude rapide, prix clair et installation garantie constructeur.</p>
+    </div>
+
+    <section id="lead-form" role="region" aria-labelledby="formTitle" class="card">
+      <header class="card__head">
+        <h2 id="formTitle" class="t1">Votre étude 100 % en ligne&nbsp;:</h2>
+        <p class="t2">Économies • Dimensionnement • Appareil • Prix</p>
+      </header>
+      <div class="card__body">
+        <form id="form-estimation" action="#" onsubmit="return false" novalidate>
+          <fieldset>
+            <legend class="sr-only">Paramètres de votre foyer</legend>
+
+            <div class="field">
+              <label for="foyer">Taille du foyer</label>
+              <select id="foyer" name="foyer" class="sel" required>
+                <option value="" disabled selected hidden>Choisir…</option>
+                <option value="1-2">1 à 2 personnes</option>
+                <option value="3-4">3 à 4 personnes</option>
+                <option value="5+">5 personnes ou plus</option>
+              </select>
+            </div>
+
+            <div class="field is-inline">
+              <label for="peau">Confort</label>
+              <label class="chk">
+                <input id="peau" name="peau_seche" type="checkbox" value="1" />
+                Peau sèche / rêche
+              </label>
+            </div>
+          </fieldset>
+
+          <button class="cta" type="submit">Calculer mon gain</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</header>
+
+<!-- ========= BLOC RÉSULTATS ========= -->
+<section id="recap">
+  <!-- Résumé coût calcaire -->
+  <section id="resume-cout" class="rc" aria-label="Résumé coût du calcaire" style="display:none">
+    <div class="rc__inner">
+      <div class="rc__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="46" cy="18" r="16" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+          <path d="M45 7.5c-3.3 0-6 2.7-6 6h-2v3h2v1h-2v3h2c0 3.3 2.7 6 6 6 1.5 0 3-.6 4.1-1.5v-3.4c-1 .9-2.2 1.5-3.6 1.5-1.9 0-3.4-1.1-3.9-2.6h5.5v-3h-6c.1-.2.1-.5.1-.7v-.6h5.9v-3h-5.2c.6-1.5 2-2.6 3.7-2.6 1.3 0 2.6.6 3.5 1.4V9c-1.2-.9-2.7-1.5-4.1-1.5z" fill="#ffffff"/>
+          <path d="M6 40c6 0 11.5 1 17 1h9.5c2.2 0 4.4-.5 6.3-1.6l3.7-2.1c1.5-.8 3.3-.8 4.8.1 1.9 1.2 2.1 3.7.4 5.2l-6.9 5.7c-2.5 2.1-5.6 3.2-8.8 3.2H23.5c-3.1 0-6.2.7-9 2l-1.8.9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M31 41c2.1-.2 3.9-1.1 5.4-2.7 1.1-1.1 2.7-1.6 4.2-1.2" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M6 44c3.2 0 6.4.4 9.4 1.3" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="rc__content">
+        <h3 class="rc__title">Le calcaire vous coûte chaque année…</h3>
+        <div class="rc__row"><span class="rc__value" id="rc-annual">0 €</span></div>
+        <div class="rc__sub">Soit <strong id="rc-10ans">0 €</strong> sur 10 ans</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overlay de résultats -->
+  <div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-dim" aria-hidden="true"></div>
+    <div class="gate-card">
+      <h3 id="gate-title" class="gate-card__title">Passez du calcul à la solution.</h3>
+      <p class="gate-card__sub">Visualisez votre installation complète, son coût réel et le financement adapté à votre foyer — avec remise immédiate (jusqu’au 31/12/2025).</p>
+      <div class="gate-bullets" aria-hidden="true"><span>🔒 Données protégées</span><span>⚡ Affichage immédiat</span></div>
+      <form id="gate-form" class="gate-form" novalidate>
+        <input class="gate-input" type="email" id="gate-email" name="email" placeholder="Votre email (facultatif)">
+        <input class="gate-input" type="tel" id="gate-phone" name="phone" placeholder="Téléphone (obligatoire)" required>
+        <button type="submit" class="gate-cta full">Afficher mes résultats détaillés</button>
+      </form>
+      <p class="gate-consent">En validant, vous acceptez d’être contacté uniquement par SMS pour votre étude. Un SMS de confirmation vous sera envoyé.</p>
+    </div>
+  </div>
+
+  <!-- Cartes coûts -->
+  <section id="rc-cards" class="rc-cards" aria-label="Détail du coût annuel">
+    <article class="rc-card">
+      <div class="rc-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M39 10h4M38 14h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M20 10h8l1 3v4h-10v-4l1-3Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M23 10v-2a2 2 0 0 1 2-2h2v4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="17" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/><rect x="8" y="20" width="8" height="17" rx="2" stroke="#fff" stroke-width="2"/><path d="M10 20v-3h4v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="rc-card__body">
+        <div class="rc-card__value"><span id="rc-val-prod">0</span> €</div>
+        <div class="rc-card__text">Surconsommation de produits d’entretien</div>
+      </div>
+    </article>
+    <article class="rc-card">
+      <div class="rc-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4a10 10 0 0 1 6 18v6h-12v-6a10 10 0 0 1 6-18Z" stroke="#fff" stroke-width="2"/><path d="M20 40h8v4h-8z" fill="#fff"/></svg>
+      </div>
+      <div class="rc-card__body">
+        <div class="rc-card__value"><span id="rc-val-energie">0</span> €</div>
+        <div class="rc-card__text">Surconsommation d’énergie (eau entartrée)</div>
+      </div>
+    </article>
+    <article class="rc-card">
+      <div class="rc-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="6" stroke="#fff" stroke-width="2"/><path d="M24 6v4M24 38v4M6 24h4M38 24h4M12 12l3 3M33 33l3 3M12 36l3-3M33 15l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="rc-card__body">
+        <div class="rc-card__value"><span id="rc-val-materiel">0</span> €</div>
+        <div class="rc-card__text">Dégradation du matériel / canalisations</div>
+      </div>
+    </article>
+  </section>
+
+  <p id="rc-slogan">L’adoucisseur <strong>Solution Eau Pro</strong><br>la solution anti-calcaire pour une eau plus douce qui allège votre budget.</p>
+  <div class="slogan-sep" role="presentation" aria-hidden="true"></div>
+
+  <!-- Produit -->
+  <section id="prod" class="prod" aria-label="Votre adoucisseur recommandé" style="display:none">
+    <div class="prod__inner">
+      <div>
+        <img class="prod__img" src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d225be165d82d1a79a704e583120eb2813ff6932/neaqua%20vague%20fond%20t.webp" alt="Adoucisseur d’eau — modèle recommandé" loading="lazy" />
+      </div>
+      <div>
+        <h3 class="prod__title">Adoucisseur d’eau <span id="prod-capacite">15 L</span></h3>
+        <ul class="prod__specs">
+          <li>Vanne <span id="prod-modele">5600 XT électronique</span></li>
+          <li>Régénération volumétrique</li>
+          <li>Résine haut rendement</li>
+          <li>Porte-filtre 25 µm</li>
+          <li>Installation & mise en service incluses</li>
+        </ul>
+        <div class="prod__price"><span class="prod__amount" id="prod-prix"></span> TTC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Autofinancement -->
+  <section id="autofin" class="autofin" aria-label="Comparatif économies / financement" style="display:none">
+    <p class="autofin__line">Plutôt que de perdre <span id="af-total" class="v">—</span> / an à cause du calcaire,</p>
+    <p class="autofin__line">investissez-les dans votre confort.</p>
+
+    <div class="fin-card" aria-label="Financement (facultatif)">
+      <div class="fin-tag" aria-hidden="true">Financement possible (facultatif)</div>
+      <dl class="fin-list" role="list">
+        <dt>Prix installé</dt><dd><span id="fin-capital">—</span> TTC</dd>
+        <dt>Mensualité (hors assurance)</dt><dd><span id="fin-mensu">—</span> € / mois</dd>
+        <dt>Durée</dt><dd><span id="fin-duree">—</span> mois</dd>
+        <dt>TAEG</dt><dd><span id="fin-taeg">—</span> %</dd>
+        <dt>Montant total dû (hors assurance)</dt><dd><span id="fin-total">—</span> €</dd>
+      </dl>
+      <p class="fin-legal">Financement <strong>facultatif</strong>. Assurance emprunteur facultative non incluse. Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</p>
+    </div>
+  </section>
+
+  <!-- Promo -->
+  <section class="promo2025" aria-label="Offre spéciale limitée">
+    <div class="promo2025__inner">
+      <div class="promo2025__badge" aria-label="Offre limitée">Offre limitée</div>
+      <p class="promo2025__emoji" aria-hidden="true">🎁</p>
+      <p class="promo2025__text"><strong>280 € offerts</strong> jusqu’au <strong>31 décembre 2025</strong></p>
+      <p class="promo2025__sub">Offre valable pour toute étude validée avant cette date.</p>
+    </div>
+  </section>
+
+  <h2>Résultats (brut)</h2>
+  <div id="recap-content" style="white-space:pre-line;font-family:system-ui,-apple-system,Segoe UI,Roboto;line-height:1.5;"></div>
+</section>
+<!-- ========= /BLOC RÉSULTATS ========= -->
+
+<main id="main" tabindex="-1">
+  <!-- Steps -->
+  <section id="steps" class="steps" aria-labelledby="stepsTitle" data-hide-after-sim="1">
+    <div class="steps__inner">
+      <h2 id="stepsTitle">Simulateur en ligne : simple, précis et sans engagement</h2>
+      <p class="subtitle">Votre estimation complète en 3 étapes simples</p>
+      <div class="sgrid">
+        <article class="scard"><div class="sbullet" aria-hidden="true">01</div><h3>Votre estimation sur mesure</h3><p>Quelques infos sur votre foyer et vos usages d’eau, rien de superflu.</p></article>
+        <article class="scard"><div class="sbullet" aria-hidden="true">02</div><h3>Vos économies calculées</h3><p>Montant annuel estimé + projection à 10 ans, en toute transparence.</p></article>
+        <article class="scard"><div class="sbullet" aria-hidden="true">03</div><h3>Étude sans engagement</h3><p>Visualisez votre installation complète, son prix, et le financement possible.</p></article>
+      </div>
+      <p class="steps__note" style="font-weight:800;color:#0f172a;font-size:1.4rem">Vous obtenez l’essentiel : chiffrage, bénéfices, et conditions de pose.</p>
+      <div class="steps__check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#22c55e"></circle><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="benefits" aria-labelledby="benefitsTitle" data-hide-after-sim="1">
+    <div class="benefits__inner">
+      <h2 id="benefitsTitle">Des résultats visibles dès les premières semaines</h2>
+      <p class="lead" style="margin-bottom:24px">Réduisez le calcaire, protégez vos appareils et profitez du confort d’une eau douce au quotidien.</p>
+      <div class="bgrid">
+        <article class="bcard"><div class="bicon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h12m4 0-6 6-3-3-7 7" stroke="#0b4fbf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Économies garanties</h3><p>Réduisez jusqu’à 40&nbsp;% vos dépenses d’entretien et économisez 18&nbsp;% d’énergie grâce à une eau sans tartre.</p></article>
+        <article class="bcard"><div class="bicon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 12l2-2-2-2m6 8 2-2-2-2m4-8-1.5 3L10 8l3-1.5L14 3z" stroke="#0b4fbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Confort au quotidien</h3><p>Eau plus douce, linge plus souple, vaisselle brillante sans traces.</p></article>
+        <article class="bcard"><div class="bicon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z" stroke="#0b4fbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Bien-être &amp; santé</h3><p>Peau plus douce, cheveux préservés, moins d’irritations au quotidien.</p></article>
+        <article class="bcard"><div class="bicon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19c8 0 14-6 14-14-6 0-14 6-14 14z" stroke="#0b4fbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Écologie &amp; durabilité</h3><p>Prolongez la durée de vie de vos appareils jusqu’à 3&nbsp;fois.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="process" aria-labelledby="processTitle" data-hide-after-sim="1">
+    <div class="process__inner">
+      <h2 id="processTitle">Comment ça marche&nbsp;?</h2>
+      <p class="subtitle">Un accompagnement simple et professionnel, en 3 étapes.</p>
+      <div class="pline" aria-hidden="true"><span class="pnode n1">1</span><span class="pnode n2">2</span><span class="pnode n3">3</span></div>
+      <div class="prow">
+        <article class="pstep"><div class="bicon" aria-hidden="true"></div><h3>Analyse de votre eau</h3><p>Mesure de la dureté, diagnostic précis et recommandation.</p></article>
+        <article class="pstep"><div class="bicon" aria-hidden="true"></div><h3>Installation rapide &amp; pro</h3><p>Pose par technicien agréé, sans travaux lourds.</p></article>
+        <article class="pstep"><div class="bicon" aria-hidden="true"></div><h3>Confort au quotidien</h3><p>Appareils protégés, entretien simplifié.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics -->
+  <section id="metrics" class="metrics" aria-labelledby="metricsTitle" data-hide-after-sim="1">
+    <div class="metrics__inner">
+      <h2 id="metricsTitle">Des économies concrètes &amp; mesurables</h2>
+      <p class="subtitle">Un retour sur investissement en moins de 5 ans.</p>
+      <div class="mgrid">
+        <article class="mcard"><div class="mvalue">40%</div><h3>Économies sur les produits</h3><p>Réduction des dépenses en détergents et savons.</p></article>
+        <article class="mcard"><div class="mvalue">18%</div><h3>Économies d’énergie</h3><p>Par mm de tartre évité sur les appareils chauffant l’eau.</p></article>
+        <article class="mcard"><div class="mvalue">3x</div><h3>Durée de vie prolongée</h3><p>Vos équipements durent jusqu’à 3 fois plus longtemps.</p></article>
+        <article class="mcard"><div class="mvalue">100%</div><h3>Protection garantie</h3><p>Élimination du calcaire dans vos canalisations.</p></article>
+        <article class="mcard"><div class="mvalue">600€</div><h3>Économies annuelles</h3><p>Moyenne pour une famille de 4 personnes.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
+  <section id="testi" class="testi" aria-labelledby="testiTitle" data-hide-after-sim="1">
+    <div class="testi__inner">
+      <h2 id="testiTitle">Ils ont utilisé notre simulateur</h2>
+      <div class="testi__rating" aria-label="Note moyenne">
+        <span class="testi__stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <defs><linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0"><stop offset="75%" stop-color="var(--cta-grad-top)"/><stop offset="75%" stop-color="transparent"/></linearGradient></defs>
+            <path fill="url(#halfStar)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/>
+          </svg>
+        </span>
+        <span><strong>4,8 / 5</strong> — extraits d’avis clients récents (12 derniers mois)</span>
+      </div>
+      <div class="testi__grid">
+        <article class="tcard" aria-label="Avis client">
+          <div class="tcard__top"><div class="avatar" aria-hidden="true">JT</div><div><div class="tcard__name">Jérôme T.</div><div class="tcard__loc">Rambouillet (78) · 07/2025</div></div></div>
+          <div class="tcard__stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          </div>
+          <p class="tcard__quote">“J’ai fait la simulation un soir, <em>résultat immédiat</em> : économies et coût d’installation en 1 minute.”</p>
+        </article>
+        <article class="tcard" aria-label="Avis client">
+          <div class="tcard__top"><div class="avatar" aria-hidden="true">CR</div><div><div class="tcard__name">Claire R.</div><div class="tcard__loc">Maule (78) · 05/2025</div></div></div>
+          <div class="tcard__stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+            <svg viewBox="0 0 24 24"><defs><linearGradient id="halfStarJT" x1="0" x2="1"><stop offset="50%" stop-color="var(--cta-grad-top)"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path fill="url(#halfStarJT)" d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          </div>
+          <p class="tcard__quote">“Devis clair, pose rapide. Linge plus souple, moins de produits.”</p>
+        </article>
+        <article class="tcard" aria-label="Avis client">
+          <div class="tcard__top"><div class="avatar" aria-hidden="true">NV</div><div><div class="tcard__name">Nadine V.</div><div class="tcard__loc">Le Perray-en-Yvelines (78) · 06/2025</div></div></div>
+          <div class="tcard__stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg><svg viewBox="0 0 24 24" fill="var(--cta-grad-top)"><path d="M12 17.3 5.8 21l1.2-7-5-4.8 6.9-1L12 2l3.1 6.2 6.9 1-5 4.8 1.2 7z"/></svg>
+          </div>
+          <p class="tcard__quote">“Analyse de l’eau, pose, et fini les traces sur la paroi de douche.”</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup Mentions -->
+  <div id="mentions-popup" role="dialog" aria-modal="true" aria-labelledby="mentions-title">
+    <button id="close-mentions" type="button" aria-label="Fermer">&times;</button>
+    <strong id="mentions-title">Mentions légales :</strong><br>
+    Solution Eau Pro webmaster marque de Biofrance Énergies<br>
+    SIRET : 422 231 928 00025<br>
+    Adresse : 4 rue du Pont Saint Jean, 27530 Ézy-sur-Eure<br>
+    Contact : solutioneaupro@gmail.com<br>
+    Hébergeur : GitHub Pages, 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>
+    Données personnelles : Les informations saisies sont utilisées uniquement pour traiter votre demande. Aucun démarchage ni revente.<br>
+    RGPD : Vous pouvez demander la suppression de vos données à tout moment par simple email.
+  </div>
+</main>
+
+<footer class="footer-cta" aria-labelledby="footerTitle">
+  <div class="footer-cta__inner">
+    <div class="footer-cta__left">
+      <img src="https://raw.githubusercontent.com/BiofranceEnergies/biofrance-images/d7b8d505509e7dffe108d879ad5b25b19b1f39b1/camion%20%20poseur%20SEP.webp" alt="Camion Solution Eau Pro avec technicien installateur" class="footer-cta__img" loading="lazy" />
+    </div>
+    <div class="footer-cta__right">
+      <h2 id="footerTitle">Un installateur proche de chez vous, prêt à intervenir</h2>
+      <p>Pose rapide, mise en service incluse et suivi client garanti.</p>
+      <a href="#lead-form" class="cta">💧 Je fais ma simulation sans engagement</a>
+    </div>
+  </div>
+
+  <div class="footer-contact-glow orbit">
+    <a href="tel:0648893480" class="cta-call"><span>📞 Conseiller local :</span> <strong>06 48 89 34 80</strong></a>
+  </div>
+
+  <div class="footer-legal"><span id="mentions-legales-link">Mentions légales</span></div>
+</footer>
+
+<!-- ========= Scripts ========= -->
+<script>
+/* FAQ toggle (ouverture 1er item) */
+(function(){
+  function setPanelHeight(panel){
+    if(!panel) return;
+    panel.style.maxHeight="0px";
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const h=panel.scrollHeight; panel.style.maxHeight=h+"px";
+      const onEnd=e=>{ if(e.propertyName!=="max-height")return; panel.style.maxHeight="none"; panel.removeEventListener("transitionend",onEnd); };
+      panel.addEventListener("transitionend",onEnd);
+    }));
+  }
+  function closePanel(panel){
+    if(!panel) return;
+    if(getComputedStyle(panel).maxHeight==="none"){ panel.style.maxHeight=panel.scrollHeight+"px"; void panel.offsetHeight; }
+    panel.style.maxHeight="0px";
+  }
+  function openItem(btn){
+    const panel=btn.nextElementSibling;
+    document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(b=>{
+      if(b!==btn){ b.setAttribute("aria-expanded","false"); closePanel(b.nextElementSibling); b.closest(".faq__item")?.classList.remove("is-open"); }
+    });
+    btn.setAttribute("aria-expanded","true");
+    btn.closest(".faq__item")?.classList.add("is-open");
+    setPanelHeight(panel);
+  }
+  document.addEventListener("click",e=>{
+    const btn=e.target.closest(".faq__btn"); if(!btn) return;
+    const isOpen=btn.getAttribute("aria-expanded")==="true";
+    const panel=btn.nextElementSibling; const it=btn.closest(".faq__item");
+    if(isOpen){ btn.setAttribute("aria-expanded","false"); it?.classList.remove("is-open"); closePanel(panel); }
+    else openItem(btn);
+  });
+  window.addEventListener("load",()=>{ const first=document.querySelector(".faq__btn"); if(first) openItem(first); });
+  window.addEventListener("resize",()=>{ document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=> setPanelHeight(btn.nextElementSibling)); });
+  document.fonts?.ready.then(()=>{ document.querySelectorAll('.faq__btn[aria-expanded="true"]').forEach(btn=> setPanelHeight(btn.nextElementSibling)); });
+})();
+</script>
+
+<script>
+/* Mentions légales */
+document.addEventListener("DOMContentLoaded",function(){
+  const link=document.getElementById("mentions-legales-link");
+  const popup=document.getElementById("mentions-popup");
+  const close=document.getElementById("close-mentions");
+  if(!popup||!close) return;
+  function openPopup(e){ if(e) e.preventDefault(); popup.style.display="block"; close.focus(); }
+  function closePopup(e){ if(e) e.preventDefault(); popup.style.display="none"; }
+  if(link) link.addEventListener("click",openPopup);
+  close.addEventListener("click",closePopup);
+  document.addEventListener("keydown",(ev)=>{ if(ev.key==="Escape"&&popup.style.display==="block") closePopup(); });
+});
+</script>
+
+<script>
+/* Calcul + affichage */
+document.addEventListener("DOMContentLoaded",function(){
+  const form=document.getElementById("form-estimation");
+  if(!form) return;
+  form.addEventListener("submit",function(ev){
+    ev.preventDefault();
+
+    const DUREE_MOIS=84, TAEG_PCT=5.96;
+    const financeTable={2200:{mensu:31.93,total:2682.08},2400:{mensu:34.84,total:2925.76},2600:{mensu:37.74,total:3169.68}};
+
+    const foyerVal=(document.getElementById("foyer")?.value||"").trim();
+    const n = foyerVal==="1-2"?2 : foyerVal==="3-4"?4 : foyerVal==="5+"?5 : 0;
+    const peau=!!document.getElementById("peau")?.checked;
+    if(!n){ alert("Sélectionnez la taille du foyer."); document.getElementById("foyer")?.focus(); return; }
+
+    const PRIX_KWH=0.27, ECS_KWH_PP=800, TAUX_GAIN_ECS=0.10;
+    const DEPENSE_PROD_PP=220, TAUX_ECO_PROD=peau?0.45:0.35;
+    const SAVE_MAT_FOYER=80;
+
+    const baseProduits=n*DEPENSE_PROD_PP;
+    const sProd=Math.round(baseProduits*TAUX_ECO_PROD);
+    const sEnergie=Math.round(n*ECS_KWH_PP*PRIX_KWH*TAUX_GAIN_ECS);
+    const sMateriel=SAVE_MAT_FOYER;
+    const total=sProd+sEnergie+sMateriel;
+
+    const r=1.05, years=10;
+    const sommeGeo=(Math.pow(r,years)-1)/(r-1);
+    const total10=Math.round(sProd*10 + sMateriel*10 + sEnergie*sommeGeo);
+
+    const recap=document.getElementById("recap"); if(recap) recap.style.display="block";
+    const rc=document.getElementById('resume-cout'), rcAnnual=document.getElementById('rc-annual'), rc10=document.getElementById('rc-10ans');
+    if(rc&&rcAnnual&&rc10){ rcAnnual.textContent=`${total.toLocaleString("fr-FR")} €`; rc10.textContent=`${total10.toLocaleString("fr-FR")} €`; rc.style.display="block"; }
+    const valeurs=[sProd,sEnergie,sMateriel];
+    ['rc-val-prod','rc-val-energie','rc-val-materiel'].forEach((id,i)=>{ const el=document.getElementById(id); if(el) el.textContent=Math.round(valeurs[i]).toLocaleString("fr-FR"); });
+
+    let modele,tarif;
+    if(n<=2){ modele="Adoucisseur d’eau 10 L de résine"; tarif=2200; }
+    else if(n<=4){ modele="Adoucisseur d’eau 15 L de résine"; tarif=2400; }
+    else{ modele="Adoucisseur d’eau 20 L de résine"; tarif=2600; }
+
+    const prod=document.getElementById('prod');
+    if(prod){
+      prod.style.display='block';
+      const capSpan=document.getElementById('prod-capacite');
+      const modSpan=document.getElementById('prod-modele');
+      const prixSpan=document.getElementById('prod-prix');
+      if(capSpan) capSpan.textContent=(modele.match(/\d+\s?L/)?.[0]||"");
+      if(modSpan) modSpan.textContent="Fleck (volumétrique)";
+      if(prixSpan) prixSpan.textContent=tarif.toLocaleString("fr-FR")+" €";
+    }
+
+    const af=document.getElementById('autofin');
+    if(af){
+      const afTotal=document.getElementById('af-total');
+      if(afTotal) afTotal.textContent=total.toLocaleString("fr-FR")+" €";
+
+      const fin=financeTable[tarif];
+      const elCap=document.getElementById('fin-capital');
+      const elMen=document.getElementById('fin-mensu');
+      const elDur=document.getElementById('fin-duree');
+      const elT=document.getElementById('fin-taeg');
+      const elTot=document.getElementById('fin-total');
+      if(fin && elCap && elMen && elDur && elT && elTot){
+        const fmt2={minimumFractionDigits:2,maximumFractionDigits:2};
+        elCap.textContent=tarif.toLocaleString("fr-FR");
+        elMen.textContent=fin.mensu.toLocaleString("fr-FR",fmt2);
+        elDur.textContent=String(DUREE_MOIS);
+        elT.textContent=TAEG_PCT.toLocaleString("fr-FR",fmt2);
+        elTot.textContent=fin.total.toLocaleString("fr-FR",fmt2);
+      }
+      af.style.display="block";
+    }
+
+    const out=document.getElementById("recap-content");
+    if(out){
+      const fin=financeTable[tarif], fmt2={minimumFractionDigits:2,maximumFractionDigits:2};
+      const finBloc=fin?`\nFinancement (facultatif) :\nPour ${tarif.toLocaleString("fr-FR")} €\nMensualité : ${fin.mensu.toLocaleString("fr-FR",fmt2)} € (Hors assurance facultative)\nDurée : 84 mois\nTAEG : ${TAEG_PCT.toLocaleString("fr-FR",fmt2)}%\nMontant total dû : ${fin.total.toLocaleString("fr-FR",fmt2)} €\n\nUn crédit vous engage et doit être remboursé.\n`:"";
+      out.textContent=
+        `Taille du foyer : ${foyerVal} (≈ ${n} pers)\nPeau sèche : ${peau?"Oui":"Non"}\nModèle recommandé : ${modele}\nPrix installé : ${tarif.toLocaleString("fr-FR")} € TTC\n\n`+
+        `Économies Produits : ${sProd.toLocaleString("fr-FR")} € / an\nÉconomies Énergie  : ${sEnergie.toLocaleString("fr-FR")} € / an\nEntretien/Matériel : ${sMateriel.toLocaleString("fr-FR")} € / an\n`+
+        `--------------------------------------------\nTOTAL estimé       : ${total.toLocaleString("fr-FR")} € / an\nProjection 10 ans  : ${total10.toLocaleString("fr-FR")} €\n`+finBloc+
+        `\nNos estimations sont basées sur des moyennes nationales.`;
+    }
+
+    document.querySelectorAll('[data-hide-after-sim="1"]').forEach(el=>{ el.style.display='none'; });
+    recap?.scrollIntoView({behavior:"smooth",block:"start"});
+
+    try{
+      if(!localStorage.getItem("overlayResultsUnlocked") && typeof window.__initOverlayResults==="function"){
+        window.__initOverlayResults();
+      }
+    }catch(e){}
+  });
+});
+</script>
+
+<script>
+/* Overlay résultats : positionnement + déverrouillage (tel FR) */
+(function(){
+  if(location.search.includes('lock=test')){
+    localStorage.removeItem('overlayResultsUnlocked');
+    console.log('%c🔁 Mode test : overlay réinitialisé','color:#0bf;font-weight:bold;');
+  }
+  const STORAGE_KEY="overlayResultsUnlocked";
+  const isUnlocked=()=>{ try{return localStorage.getItem(STORAGE_KEY)==="1"}catch(e){return false} };
+  const setUnlocked=()=>{ try{localStorage.setItem(STORAGE_KEY,"1")}catch(e){} };
+  const px=n=>(Math.max(0,Math.round(n))+"px");
+
+  function placeOverlay(){
+    const recap=document.getElementById("recap");
+    const first=document.getElementById("resume-cout");
+    const gate=document.getElementById("gate-overlay");
+    if(!recap||!first||!gate) return;
+    const rect=first.getBoundingClientRect();
+    const recRect=recap.getBoundingClientRect();
+    gate.style.top=px(rect.bottom - recRect.top);
+  }
+  function showOverlay(){ const gate=document.getElementById("gate-overlay"); if(!gate) return; placeOverlay(); gate.classList.add("is-visible"); }
+  function hideOverlay(){ document.getElementById("gate-overlay")?.classList.remove("is-visible"); }
+
+  function phoneValid(tel){
+    if(!tel) return false;
+    const v=tel.replace(/[^\d+]/g,"").replace(/^(\+33)/,"0");
+    return /^0\d{9}$/.test(v);
+  }
+  function formatFR(val){
+    if(!val) return "";
+    let d=val.replace(/[^\d+]/g,"").replace(/^\+33/,"0").replace(/\D/g,"");
+    d=d.slice(0,10);
+    return d.replace(/(\d{2})(?=\d)/g,"$1 ").trim();
+  }
+
+  function initGate(){
+    const gate=document.getElementById("gate-overlay");
+    const recap=document.getElementById("recap");
+    const first=document.getElementById("resume-cout");
+    if(!gate||!recap||!first) return;
+
+    if(isUnlocked()){ hideOverlay(); return; }
+    showOverlay();
+
+    const form=document.getElementById("gate-form");
+    const phone=document.getElementById("gate-phone");
+    try{
+      phone.setAttribute("inputmode","tel");
+      phone.setAttribute("autocomplete","tel");
+      phone.setAttribute("maxlength","14");
+      phone.placeholder="06 12 34 56 78";
+    }catch(e){}
+
+    function onPhoneInput(e){
+      const el=e.target;
+      const old=el.value; const pos=el.selectionStart||0;
+      const before=old.slice(0,pos).replace(/\D/g,"");
+      const next=formatFR(old);
+      let idx=0,count=0;
+      while(idx<next.length && count<before.length){ if(/\d/.test(next[idx])) count++; idx++; }
+      el.value=next; try{ el.setSelectionRange(idx,idx); }catch(_){}
+    }
+    phone.addEventListener("input",onPhoneInput);
+    phone.addEventListener("blur",()=>{ phone.value=formatFR(phone.value); });
+
+    if(form && phone){
+      form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        if(!phoneValid(phone.value)){
+          phone.focus();
+          phone.setCustomValidity("Numéro invalide (FR, 10 chiffres).");
+          phone.reportValidity();
+          setTimeout(()=>phone.setCustomValidity(""),2000);
+          return;
+        }
+        setUnlocked(); hideOverlay();
+        (document.getElementById("rc-cards")||document.getElementById("prod")||recap)?.scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    }
+
+    window.addEventListener("resize",placeOverlay);
+    setTimeout(placeOverlay,50);
+    setTimeout(placeOverlay,250);
+  }
+  window.__initOverlayResults=initGate;
+})();
+</script>
+
+<!-- ========= Envoi Sheets (simu + unlock) ========= -->
+<script>
+(function(){
+  "use strict";
+  const ENDPOINT="https://script.google.com/macros/s/AKfycbyHYz40LwNcC0lYeymn_93CLK-LBfObF6reZPSjWLH4QDlzUb4dnkfpIkg1lWCTtTwL/exec";
+  const SOURCE="LP Adoucisseur";
+
+  function getUtmParams(){
+    const p=new URLSearchParams(location.search);
+    return {utm_source:p.get("utm_source")||"",utm_campaign:p.get("utm_campaign")||"",utm_term:p.get("utm_term")||""};
+  }
+  function commonMeta(){ return {pageUrl:location.href,ua:navigator.userAgent||""}; }
+
+  function computeSnapshot(){
+    const foyerVal=(document.getElementById("foyer")?.value||"").trim();
+    const n=foyerVal==="1-2"?2:foyerVal==="3-4"?4:foyerVal==="5+"?5:0;
+    const peau=!!document.getElementById("peau")?.checked;
+    if(!n) return null;
+
+    const PRIX_KWH=0.27,ECS_KWH_PP=800,TAUX_GAIN_ECS=0.10;
+    const DEPENSE_PROD_PP=220,TAUX_ECO_PROD=peau?0.45:0.35;
+    const SAVE_MAT_FOYER=80;
+
+    const sProd=Math.round((n*DEPENSE_PROD_PP)*TAUX_ECO_PROD);
+    const sEnergie=Math.round(n*ECS_KWH_PP*PRIX_KWH*TAUX_GAIN_ECS);
+    const sMateriel=SAVE_MAT_FOYER;
+    const total=sProd+sEnergie+sMateriel;
+
+    const r=1.05,years=10;
+    const sommeGeo=(Math.pow(r,years)-1)/(r-1);
+    const total10=Math.round(sProd*10 + sMateriel*10 + sEnergie*sommeGeo);
+
+    let modele,tarif;
+    if(n<=2){ modele="Adoucisseur d’eau 10 L de résine"; tarif=2200; }
+    else if(n<=4){ modele="Adoucisseur d’eau 15 L de résine"; tarif=2400; }
+    else { modele="Adoucisseur d’eau 20 L de résine"; tarif=2600; }
+
+    return {foyerVal,peau,annual:total,tenYears:total10,model:modele,price:tarif};
+  }
+
+  async function postLead(payload){
+    try{
+      const fd=new FormData();
+      fd.append("phase",payload.phase||"simu");
+      fd.append("source",SOURCE);
+      fd.append("foyer",payload.foyer??"");
+      fd.append("peau_seche",payload.peau_seche??"");
+      fd.append("annual",payload.annual??"");
+      fd.append("tenYears",payload.tenYears??"");
+      fd.append("model",payload.model??"");
+      fd.append("price",payload.price??"");
+      fd.append("email",payload.email??"");
+      fd.append("phone",payload.phone??"");
+      fd.append("pageUrl",payload.pageUrl??"");
+      fd.append("ua",payload.ua??"");
+      fd.append("utm_source",payload.utm_source??"");
+      fd.append("utm_campaign",payload.utm_campaign??"");
+      fd.append("utm_term",payload.utm_term??"");
+      await fetch(ENDPOINT,{method:"POST",body:fd,mode:"no-cors"});
+    }catch(err){ console.warn("⚠️ Envoi Sheets échoué:",err); }
+  }
+
+  document.addEventListener("DOMContentLoaded",function(){
+    const form=document.getElementById("form-estimation");
+    if(form){
+      form.addEventListener("submit",function(){
+        setTimeout(()=>{
+          const snap=computeSnapshot(); if(!snap) return;
+          const utm=getUtmParams(); const meta=commonMeta();
+          postLead({phase:"simu",foyer:snap.foyerVal,peau_seche:snap.peau?"1":"0",annual:String(snap.annual),tenYears:String(snap.tenYears),model:snap.model,price:String(snap.price),email:"",phone:"",...meta,...utm});
+        },0);
+      });
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded",function(){
+    const gform=document.getElementById("gate-form");
+    if(gform){
+      gform.addEventListener("submit",function(){
+        setTimeout(()=>{
+          const snap=computeSnapshot(); if(!snap) return;
+          const email=(document.getElementById("gate-email")?.value||"").trim();
+          const phone=(document.getElementById("gate-phone")?.value||"").trim();
+          const utm=getUtmParams(); const meta=commonMeta();
+          postLead({phase:"unlock",foyer:snap.foyerVal,peau_seche:snap.peau?"1":"0",annual:String(snap.annual),tenYears:String(snap.tenYears),model:snap.model,price:String(snap.price),email,phone,...meta,...utm});
+        },0);
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
