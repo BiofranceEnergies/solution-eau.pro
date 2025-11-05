@@ -1,0 +1,38 @@
+/* Règle 1 (originale) */
+.prod__price {
+  background: #f0f4ff; 
+  padding: 6px 12px;
+  /* ...etc... */
+}
+
+/* Règle 2 (patch respiration) */
+.prod__price{
+  display: inline-flex;
+  padding: 8px 14px; /* Annule le padding d'avant */
+}
+
+/* Règle 3 (patch 1) */
+.prod__price{
+  background: #f3f7ff !important;  /* Annule le fond d'avant */
+  border: 1px solid #dbe7ff !important;
+  padding: 8px 12px !important; /* Annule le padding d'avant */
+  font-weight: 700 !important;
+}
+
+/* Règle 4 (patch V2) */
+.prod__price{
+  background: #eef5ff !important; /* Et ça annule encore... */
+  border: 1px solid #d6e6ff !important;
+  box-shadow: 0 4px 12px rgba(11,79,191,.08) !important;
+  padding: 8px 14px !important; /* Et encore... */
+  /* ...etc... */
+}
+
+/* Règle 5 (patch Finition) */
+.prod__price{
+  display: inline-flex;
+  gap: 8px;
+  padding: 10px 14px; /* La valeur FINALE */
+  background: #eaf2ff; /* La valeur FINALE */
+  /* ...etc... */
+}
