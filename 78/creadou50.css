@@ -2314,4 +2314,104 @@ legend {
     font-size: 15px;
     padding: 9px 16px;
   }
+
+  /* =================================================================
+       [[REPERE: STYLES BANDEAU DE CONSENTEMENT (AJOUTÉ)]]
+       ================================================================= */
+
+.consent-banner {
+    /* Positionnement clé pour ne pas désorganiser la page */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* Style et Z-index */
+    background-color: rgba(11, 18, 32, 0.98); 
+    color: #fff;
+    padding: 20px;
+    z-index: 99999; 
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    /* Mise en page interne (Flex par défaut) */
+    display: none; /* Le JS le rendra visible */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Style ajouté au body par JS pour bloquer le scroll quand le bandeau est visible */
+body.has-consent-banner {
+    overflow: hidden;
+}
+
+/* Mise en page du contenu du bandeau */
+.consent-inner {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    align-items: center;
+    gap: 15px 30px;
+}
+
+.consent-text {
+    flex: 1 1 500px; 
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #e2e8f0;
+    text-align: left;
+}
+
+.consent-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Réutilisation de vos styles existants pour les boutons */
+.consent-buttons .cta {
+    min-width: 140px;
+    height: 44px;
+    margin: 0; /* Annuler la marge des .cta par défaut */
+    font-size: 0.95rem;
+}
+
+.consent-buttons .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    height: 44px;
+    min-width: 140px;
+    box-shadow: none;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 600px) {
+    .consent-banner {
+        padding: 18px 12px;
+    }
+    .consent-inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .consent-text {
+        text-align: center;
+    }
+    .consent-buttons {
+        flex-direction: row;
+        width: 100%;
+        max-width: 320px;
+        justify-content: space-between;
+    }
+    .consent-buttons button {
+        flex: 1 1 48%; 
+        min-height: 48px;
+    }
+}
 }
