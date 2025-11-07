@@ -1348,46 +1348,6 @@ legend {
   line-height: 1.55;
 }
 .prod__price {
-  background: #f0f4ff;
-  border-radius: 8px;
-  display: inline-block;
-  padding: 6px 12px;
-  margin-top: 10px;
-  font-weight: 700;
-  color: #0b4fbf;
-}
-@media (max-width: 860px) {
-  .prod__inner {
-    margin-top: 12px;
-    align-items: center;
-  }
-  .prod__img {
-    max-height: 300px;
-    object-fit: contain;
-  }
-  .prod__title {
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-  .prod__price {
-    display: block;
-    margin: 14px auto 0;
-  }
-}
-.prod__title {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(20px, 2.8vw, 28px);
-  font-weight: 900;
-  color: #0f172a;
-  margin-bottom: 10px;
-  letter-spacing: -0.3px;
-}
-.prod__specs li {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 0.95rem;
-  color: #1e293b;
-}
-.prod__price {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 800;
   letter-spacing: -0.2px;
