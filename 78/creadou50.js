@@ -1,3 +1,91 @@
+// ===============================================
+// LOGIQUE DE CONSENTEMENT RGPD (À AJOUTER AU DÉBUT DE adou.js)
+// Gère l'affichage du bandeau et le chargement des traceurs.
+// ===============================================
+
+(function () {
+    const CONSENT_BANNER_ID = "consent-banner";
+    const STORAGE_KEY = "user_cookie_consent";
+    // Si vous utilisez le script AW-11242044118 (Google Adwords)
+    const TRACKING_ID = "AW-11242044118"; 
+
+    function getConsent() {
+        try {
+            return localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function setConsent(choice) {
+        try {
+            localStorage.setItem(STORAGE_KEY, choice);
+        } catch (e) {}
+        hideBanner();
+        
+        // Si accepté, charge les scripts de suivi
+        if (choice === 'accepted') {
+            loadThirdPartyScripts();
+        }
+    }
+
+    function showBanner() {
+        const banner = document.getElementById(CONSENT_BANNER_ID);
+        if (banner) {
+            // Utilise 'flex' pour le CSS et ajoute la classe de blocage de scroll
+            banner.style.display = 'flex'; 
+            document.body.classList.add('has-consent-banner'); 
+        }
+    }
+
+    function hideBanner() {
+        const banner = document.getElementById(CONSENT_BANNER_ID);
+        if (banner) {
+            banner.style.display = 'none';
+            document.body.classList.remove('has-consent-banner');
+        }
+    }
+
+    // Initialisation des scripts de suivi (UNiquement après acceptation)
+    function loadThirdPartyScripts() {
+        // Cette fonction doit contenir la configuration de TOUS vos traceurs non essentiels
+        
+        // 1. Déclenchement de Google Adwords (AW)
+        if (typeof window.gtag === 'function') {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', TRACKING_ID);
+            console.log("✅ Scripts de suivi tiers chargés (Consentement donné)");
+        }
+        
+        // 2. Ajoutez ici tout autre code de suivi (ex: Facebook Pixel, Google Analytics non-anonyme, etc.)
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const consent = getConsent();
+        const acceptBtn = document.getElementById('consent-accept');
+        const rejectBtn = document.getElementById('consent-reject');
+
+        if (consent === 'accepted') {
+            loadThirdPartyScripts();
+        } else if (!consent) {
+            // Si pas de choix enregistré, afficher le bandeau
+            showBanner();
+        }
+        
+        // Ajout des écouteurs d'événements
+        acceptBtn?.addEventListener('click', () => setConsent('accepted'));
+        rejectBtn?.addEventListener('click', () => setConsent('rejected'));
+    });
+})();
+
+// ===============================================
+// VOTRE CODE EXISTANT COMMENCE ICI (FAQ, CALCUL, ETC.)
+// ===============================================
+// (Laissez le reste de votre adou.js tel quel)
+
+
 // ========= FAQ TOGGLE =========
 (function () {
   function setPanelHeight(panel) {
