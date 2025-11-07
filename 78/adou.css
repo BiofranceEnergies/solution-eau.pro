@@ -2320,30 +2320,38 @@ legend {
        [[REPERE: STYLES BANDEAU DE CONSENTEMENT (AJOUTÉ)]]
        ================================================================= */
 
-/* Container du bandeau (fixé en bas) */
+/* 1. Assure la position fixe et un Z-INDEX très élevé */
 .consent-banner {
-    /* Clé pour éviter la désorganisation : position: fixed */
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    background-color: rgba(11, 18, 32, 0.95);
+    background-color: rgba(11, 18, 32, 0.98); /* 98% pour l'opacité */
     color: #fff;
     padding: 20px;
-    z-index: 10000; 
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
-    /* Géré par JS, mais positionnement Flex par défaut pour le centrage */
+    z-index: 99999; /* Z-index très haut pour être certain */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    /* Affichage initial masqué, mais on utilise flex pour le centrage */
     display: none; 
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-/* Style ajouté au body par JS pour bloquer le scroll quand le bandeau est visible */
+/* 2. Corrige le flux de page et masque le scroll */
 body.has-consent-banner {
     overflow: hidden;
+    /* Correction: Ajoute une marge au body pour compenser la hauteur du bandeau */
+    /* La hauteur réelle sera calculée par JS pour être parfaite, mais ceci est une sécurité CSS */
+    margin-bottom: 80px; 
 }
+@media (max-width: 600px) {
+    body.has-consent-banner {
+        margin-bottom: 150px; /* Plus d'espace sur mobile car les boutons s'empilent */
+    }
+}
+
 
 /* Contenu intérieur centré et organisé */
 .consent-inner {
@@ -2361,7 +2369,7 @@ body.has-consent-banner {
     font-size: 1rem;
     line-height: 1.4;
     color: #e2e8f0;
-    text-align: left; /* Aligner le texte à gauche sur les grands écrans */
+    text-align: left;
 }
 
 .consent-buttons {
@@ -2379,12 +2387,14 @@ body.has-consent-banner {
     margin: 0;
     font-size: 0.95rem;
     border-radius: 12px;
+    /* Assure que les styles CTA sont prioritaires */
+    box-shadow: var(--cta-shadow, 0 10px 20px rgba(11, 63, 145, 0.4)); 
 }
 
 /* Bouton 'Tout refuser' */
 .consent-buttons .btn-secondary {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: #fff;
     padding: 10px 20px;
     border-radius: 12px;
@@ -2394,7 +2404,7 @@ body.has-consent-banner {
     height: 44px;
     min-width: 140px;
     transition: background-color 0.2s ease, border-color 0.2s ease;
-    box-shadow: none; /* Retirer l'ombre par défaut du CTA */
+    box-shadow: none; 
 }
 .consent-buttons .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -2415,12 +2425,13 @@ body.has-consent-banner {
         font-size: 0.9rem;
     }
     .consent-buttons {
-        flex-direction: column;
+        flex-direction: row; /* Laisser les boutons côte à côte en bas, mais les forcer à 100% de largeur */
         width: 100%;
         max-width: 320px;
+        justify-content: space-between;
     }
     .consent-buttons button {
-        width: 100%;
+        flex: 1 1 48%; /* Partager l'espace sur mobile */
         min-height: 48px;
     }
 }
