@@ -2321,11 +2321,12 @@ legend {
 
 .consent-banner {
     /* Positionnement clé pour ne pas désorganiser la page */
-    position: fixed; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    position: fixed !important; /* Force la position fixe */
+    bottom: 0 !important;       /* Force le placement en bas */
+    left: 0 !important;         /* Assure le placement à gauche */
+    right: 0 !important;        /* Assure le placement à droite */
+    width: 100% !important;     /* Assure la largeur totale */
+    z-index: 99999 !important;  /* Assure qu'il est au-dessus de tout */
     /* Style et Z-index */
     background-color: rgba(11, 18, 32, 0.98); 
     color: #fff;
