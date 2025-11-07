@@ -2319,14 +2319,12 @@ legend {
        [[REPERE: STYLES BANDEAU DE CONSENTEMENT (AJOUTÉ)]]
        ================================================================= */
 
-.consent-banner {
-    /* Positionnement clé pour ne pas désorganiser la page */
-    position: fixed !important; /* Force la position fixe */
-    bottom: 0 !important;       /* Force le placement en bas */
-    left: 0 !important;         /* Assure le placement à gauche */
-    right: 0 !important;        /* Assure le placement à droite */
-    width: 100% !important;     /* Assure la largeur totale */
-    z-index: 99999 !important;  /* Assure qu'il est au-dessus de tout */
+#consent-banner { /* Cible l'ID de manière très spécifique */
+    position: fixed !important; 
+    bottom: 0 !important;       
+    left: 0 !important;         
+    right: 0 !important;        
+    z-index: 99999 !important;
     /* Style et Z-index */
     background-color: rgba(11, 18, 32, 0.98); 
     color: #fff;
