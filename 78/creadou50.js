@@ -32,7 +32,7 @@
     function showBanner() {
         const banner = document.getElementById(CONSENT_BANNER_ID);
         if (banner) {
-            // Utilise 'flex' (défini dans le CSS) et ajoute la classe de blocage de scroll
+            // Utilise 'flex' pour le CSS (bandeau fixe en bas) et ajoute la classe de blocage de scroll
             banner.style.display = 'flex'; 
             document.body.classList.add('has-consent-banner'); 
         }
