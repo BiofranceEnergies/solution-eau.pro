@@ -2322,24 +2322,25 @@ legend {
 
 /* Container du bandeau (fixé en bas) */
 .consent-banner {
+    /* Clé pour éviter la désorganisation : position: fixed */
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(11, 18, 32, 0.95); /* Reprend la couleur de fond de page (dark) avec transparence */
+    width: 100%;
+    background-color: rgba(11, 18, 32, 0.95);
     color: #fff;
     padding: 20px;
-    z-index: 10000; /* Assurez-vous qu'il est au-dessus de tout */
+    z-index: 10000; 
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
-    display: none; /* Masqué par défaut, géré par JS */
-    /* Mise en page interne pour aligner le contenu */
-    display: flex; /* Utilisé pour le centrage, mais doit être activé par JS */
+    /* Géré par JS, mais positionnement Flex par défaut pour le centrage */
+    display: none; 
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-/* Styles pour le body lorsque le bandeau est visible (pour bloquer le scroll) */
+/* Style ajouté au body par JS pour bloquer le scroll quand le bandeau est visible */
 body.has-consent-banner {
     overflow: hidden;
 }
@@ -2350,16 +2351,17 @@ body.has-consent-banner {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centre les éléments si pas assez larges */
+    justify-content: space-between; 
     align-items: center;
     gap: 15px 30px;
 }
 
 .consent-text {
-    flex: 1 1 500px; /* Prend de la place pour le texte */
+    flex: 1 1 500px; 
     font-size: 1rem;
     line-height: 1.4;
     color: #e2e8f0;
+    text-align: left; /* Aligner le texte à gauche sur les grands écrans */
 }
 
 .consent-buttons {
@@ -2367,8 +2369,6 @@ body.has-consent-banner {
     gap: 10px;
     flex-shrink: 0;
 }
-
-/* Styles spécifiques aux boutons du bandeau (utilise les classes existantes cta et btn-secondary) */
 
 /* Bouton 'Tout accepter' (utilise .cta) */
 .consent-buttons .cta {
@@ -2383,7 +2383,6 @@ body.has-consent-banner {
 
 /* Bouton 'Tout refuser' */
 .consent-buttons .btn-secondary {
-    /* Style basé sur un bouton secondaire sombre (similaire à l'exemple précédent) */
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
@@ -2395,6 +2394,7 @@ body.has-consent-banner {
     height: 44px;
     min-width: 140px;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: none; /* Retirer l'ombre par défaut du CTA */
 }
 .consent-buttons .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
