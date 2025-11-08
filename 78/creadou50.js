@@ -599,3 +599,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 })();
+/* =======================================================
+   BANDEAU COOKIES
+   ======================================================= */
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("cookie-accept");
+  const declineBtn = document.getElementById("cookie-decline");
+
+  if (!localStorage.getItem("cookieChoice")) {
+    setTimeout(() => banner.classList.add("show"), 500);
+  }
+
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("cookieChoice", "accepted");
+    banner.classList.remove("show");
+    setTimeout(() => banner.classList.add("hidden"), 400);
+    if (typeof gtag === "function") {
+      gtag('event', 'cookie_accept', { event_category: 'Consentement' });
+    }
+  });
+
+  declineBtn.addEventListener("click", () => {
+    localStorage.setItem("cookieChoice", "declined");
+    banner.classList.remove("show");
+    setTimeout(() => banner.classList.add("hidden"), 400);
+  });
+});
