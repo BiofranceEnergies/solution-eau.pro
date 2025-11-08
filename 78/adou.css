@@ -2315,3 +2315,63 @@ legend {
     padding: 9px 16px;
   }
 }
+/* ===== Bloc image + texte (focus-adou) ===== */
+#focus-adou {
+  padding: 40px 16px;
+  background: transparent; /* garde ton fond actuel */
+}
+
+#focus-adou .split__inner {
+  max-width: 1100px;        /* même largeur que tes autres sections */
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr; /* mobile : pile */
+  align-items: center;
+}
+
+/* Colonne image */
+#focus-adou .split__media {
+  display: grid;
+  place-items: center;
+}
+
+#focus-adou .split__media img {
+  width: min(520px, 92vw);  /* plafond desktop 520px, mobile s’adapte */
+  max-height: 520px;        /* évite l’effet “immense” */
+  height: auto;             /* conserve le ratio 944x1300 */
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.35));
+}
+
+/* Colonne texte */
+#focus-adou .split__content h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+  line-height: 1.15;
+}
+
+#focus-adou .split__content .lead {
+  margin: 0 0 12px;
+  opacity: .9;
+}
+
+#focus-adou .bullets {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+#focus-adou .cta {
+  display: inline-block;
+}
+
+/* Desktop : 2 colonnes */
+@media (min-width: 960px) {
+  #focus-adou .split__inner {
+    grid-template-columns: 520px 1fr; /* image gauche (plafond 520px) + texte */
+    gap: 36px;
+  }
+}
+
