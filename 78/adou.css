@@ -733,3 +733,22 @@ legend { padding: 0; margin: 0; }
 @media (min-width: 960px) {
   #focus-adou .split__inner { grid-template-columns: 520px 1fr; gap: 36px; }
 }
+/* --- Centrage parfait du libellé du CTA --- */
+.cta{
+  display: flex;               /* au lieu de block */
+  align-items: center;         /* centre vertical */
+  justify-content: center;     /* centre horizontal (utile si width:100%) */
+  min-height: 56px;            /* remplace height fixe */
+  height: auto;
+  padding: 14px 18px;          /* assure le confort vertical */
+  line-height: 1;              /* évite le décalage de baseline */
+}
+
+/* Si tu as une icône/emoji à gauche, on fixe sa hauteur et l’espacement */
+.cta > svg, .cta > img, .cta > i {
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 8px;
+  flex: 0 0 auto;
+}
