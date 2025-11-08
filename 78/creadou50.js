@@ -608,7 +608,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const declineBtn = document.getElementById("cookie-decline");
 
   if (!localStorage.getItem("cookieChoice")) {
-    setTimeout(() => banner.classList.add("show"), 500);
+    setTimeout(() => {
+      banner.classList.remove("hidden");   // <-- indispensable
+      banner.classList.add("show");
+    }, 300);
   }
 
   acceptBtn.addEventListener("click", () => {
@@ -626,3 +629,4 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => banner.classList.add("hidden"), 400);
   });
 });
+
