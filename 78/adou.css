@@ -752,3 +752,20 @@ legend { padding: 0; margin: 0; }
   margin-right: 8px;
   flex: 0 0 auto;
 }
+/* --- Nom du produit : NOVAQUA --- */
+#focus-adou .product-name {
+  text-align: center;                /* centré */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;            /* espacement typique des marques */
+  color: #0b84ee;                    /* bleu premium */
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  text-transform: uppercase;
+  margin-bottom: 10px;               /* espace avant le titre */
+  opacity: 0.9;
+}
+@media (min-width: 960px) {
+  #focus-adou .product-name {
+    text-align: left;                /* aligné au texte sur desktop */
+  }
+}
