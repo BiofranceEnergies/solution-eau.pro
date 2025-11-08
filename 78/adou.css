@@ -769,3 +769,6 @@ legend { padding: 0; margin: 0; }
     text-align: left;                /* aligné au texte sur desktop */
   }
 }
+/* Masquer le bloc produit quand les résultats sont affichés et à l’impression */
+body.results-visible #focus-adou { display: none !important; }
+@media print { #focus-adou { display: none !important; } }
