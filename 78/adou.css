@@ -804,4 +804,91 @@ body.results-visible #focus-adou { display: none !important; }
   /* Aide au debug (non activée par défaut) */
   .debug-outline * { outline: 1px dashed rgba(0,0,0,.15); }
 }
+/* =======================
+   FINITIONS PREMIUM 2025
+   ======================= */
+
+/* 1) Cartes (steps/benefits/process/metrics/testi) : lift subtil au survol */
+.scard, .bcard, .pstep, .mcard, .tcard {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.scard:hover, .bcard:hover, .pstep:hover, .mcard:hover, .tcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(2,6,23,.10), 0 4px 10px rgba(2,6,23,.06);
+  border-color: rgba(11,79,191,.20);
+}
+
+/* 2) Boutons CTA : glow doux + “lumière glissante” */
+.cta {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(11,79,191,.28);
+}
+.cta::after {
+  content:"";
+  position:absolute; inset:0;
+  transform: translateX(-100%);
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 50%, transparent 100%);
+  transition: transform .6s ease;
+  pointer-events:none;
+}
+.cta:hover::after { transform: translateX(100%); }
+
+/* 3) Pastilles / numéros : rendu “poli” (process) */
+.pnode{
+  background: radial-gradient(circle at 30% 30%, #3b82f6 0%, #0b4fbf 70%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 6px 18px rgba(11,132,238,.35);
+}
+.pline{
+  background: linear-gradient(90deg,#e6f0fb 0,#e9f3ff 50%,#e6f0fb 100%);
+  box-shadow: inset 0 0 14px rgba(0,0,0,.06);
+}
+
+/* 4) Icônes des bénéfices/cartes : bleu de marque plus présent */
+.bicon, .picon, .micon {
+  background: #e7f1ff;
+}
+.testi__stars svg path, .tcard__stars svg path { fill: var(--cta-grad-top); }
+
+/* 5) Chiffres (metrics) : impact visuel sans agressivité */
+.mvalue {
+  text-shadow: 0 0 18px rgba(59,130,246,.18);
+}
+
+/* 6) FAQ : effet d’ouverture + survol plus lisible */
+.faq__item { transition: border-color .2s, box-shadow .2s, transform .2s; }
+.faq__item.is-open { transform: translateY(-2px); }
+.faq__btn { transition: background .2s, color .2s; }
+
+/* 7) Carte formulaire (hero) : contour subtil pour mieux “décoller” du fond */
+.card { box-shadow: 0 18px 60px rgba(0,0,0,.55), 0 6px 16px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06); }
+
+/* 8) Bas de page : profondeur par dégradé radial + ancrage visuel du camion */
+.footer-cta{
+  background: radial-gradient(ellipse at 35% 50%, #0a57cf 0%, #0b4fbf 40%, #0a2e70 100%);
+}
+.footer-cta__left{ position: relative; }
+.footer-cta__left::after{
+  content:""; position:absolute; left:8%; right:18%; bottom:-6px; height:18px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.35), rgba(0,0,0,0));
+  filter: blur(6px);
+}
+
+/* 9) Bouton téléphone (footer) : micro “pulse” discret autour de l’icône */
+.footer-contact-glow .cta-call {
+  will-change: transform, box-shadow;
+}
+.footer-contact-glow .cta-call:hover {
+  box-shadow: 0 12px 28px rgba(11,79,191,.35);
+}
+
+/* 10) Accessibilité : réduit les animations si demandé par l’utilisateur */
+@media (prefers-reduced-motion: reduce){
+  * { transition: none !important; animation: none !important; }
+}
+
 /* ===== FIN APPENDS ===== */
