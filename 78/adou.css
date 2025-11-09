@@ -772,3 +772,36 @@ legend { padding: 0; margin: 0; }
 /* Masquer le bloc produit quand les résultats sont affichés et à l’impression */
 body.results-visible #focus-adou { display: none !important; }
 @media print { #focus-adou { display: none !important; } }
+
+/* =========================
+   APPENDS — tracking & hotfix
+   (aucun impact visuel par défaut)
+   ========================= */
+@layer tracking {
+  /* Utilitaires techniques — non utilisés par défaut */
+  .is-hidden { display: none !important; }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* Bloquer le scroll quand on ouvre un overlay (ajouté par JS sur <body>) */
+  .__lock-scroll { overflow: hidden !important; }
+  body.overlay-open { overflow: hidden !important; }
+
+  /* Masquer des blocs tant que le consentement n’est pas donné */
+  [data-consent="denied"] .tags,
+  [data-consent="pending"] .tags { display: none !important; }
+
+  /* Impression : masquer volontairement certains éléments (si on leur ajoute .no-print) */
+  .no-print { }
+  @media print { .no-print { display: none !important; } }
+
+  /* Aide au debug (non activée par défaut) */
+  .debug-outline * { outline: 1px dashed rgba(0,0,0,.15); }
+}
+/* ===== FIN APPENDS ===== */
