@@ -599,55 +599,67 @@ loading="lazy"
   });
 })();
 </script>
-<!-- Sticky CTA mobile -->
-<div id="sticky-cta-wrap" class="sticky-cta" role="region" aria-label="Action rapide mobile">
-  <a href="#simulateur" class="cta cta--sticky" id="sticky-cta">💧 Simuler mon prix</a>
-</div>
 <!-- Script de comportement sticky -->
 <script>
 (function () {
   const wrap = document.getElementById('sticky-cta-wrap');
   const btn  = document.getElementById('sticky-cta');
+  const target = document.getElementById('simulateur') || document.querySelector('.card');
   if (!wrap || !btn) return;
 
-  const target = document.getElementById('simulateur') || document.querySelector('.card');
-  const hide = () => wrap.classList.add('is-hidden');
-  const show = () => wrap.classList.remove('is-hidden');
+  // Masqué par défaut au chargement
+  wrap.classList.add('is-hidden');
 
+  // Contexte mobile uniquement
   const mq = window.matchMedia('(max-width: 760px)');
-  const syncMQ = () => { if (!mq.matches) { hide(); } }
-  syncMQ();
-  mq.addEventListener?.('change', syncMQ);
+  const gate = document.getElementById('gate-overlay');
+  const body = document.body;
 
+  // États qui doivent forcer le masquage
+  const overlayUp = () =>
+    body.classList.contains('overlay-open') ||
+    body.classList.contains('results-visible') ||
+    !!(gate && gate.classList.contains('is-visible'));
+
+  const show = () => wrap.classList.remove('is-hidden');
+  const hide = () => wrap.classList.add('is-hidden');
+
+  // Décision centrale
+  const decide = (inView = false) => {
+    if (!mq.matches || overlayUp()) return hide(); // pas mobile ou overlay/résultats: caché
+    if (inView) return hide();                     // simulateur visible: caché
+    show();                                        // sinon: visible
+  };
+
+  // Observer la visibilité du simulateur
   if (target && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && e.intersectionRatio > 0.35) hide();
-        else if (mq.matches) show();
-      });
-    }, { threshold: [0, 0.35, 1] });
+      const e = entries[0];
+      const inView = !!(e && e.isIntersecting && e.intersectionRatio > 0.35);
+      decide(inView);
+    }, { threshold: [0, 0.35, 0.6, 1] });
     io.observe(target);
   } else {
+    // Fallback scroll
     const onScroll = () => {
-      if (!mq.matches || !target) { hide(); return; }
-      const r = target.getBoundingClientRect();
+      if (!mq.matches) return hide();
       const vh = window.innerHeight || document.documentElement.clientHeight;
+      const r = target ? target.getBoundingClientRect() : { top: 1e9, bottom: -1e9 };
       const inView = r.top < vh * 0.65 && r.bottom > vh * 0.35;
-      inView ? hide() : show();
+      decide(inView);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  const gate = document.getElementById('gate-overlay');
-  const body = document.body;
-  const toggleByState = () => {
-    const overlayVisible = !!(gate && gate.classList.contains('is-visible'));
-    const bodyOverlay = body.classList.contains('overlay-open');
-    if (overlayVisible || bodyOverlay) hide();
-  };
-  new MutationObserver(toggleByState).observe(body, { attributes: true, attributeFilter: ['class'] });
+  // Réagir aux changements de classes du body (overlay / résultats)
+  const mo = new MutationObserver(() => decide(false));
+  mo.observe(body, { attributes: true, attributeFilter: ['class'] });
 
+  // Premier passage
+  decide(false);
+
+  // Scroll doux vers le simulateur
   btn.addEventListener('click', (e) => {
     const t = document.getElementById('simulateur') || document.querySelector('.card');
     if (t) {
@@ -657,5 +669,6 @@ loading="lazy"
   });
 })();
 </script>
+
 </body>
 </html>
