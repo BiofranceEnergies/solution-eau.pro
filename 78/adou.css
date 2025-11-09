@@ -944,3 +944,7 @@ body.results-visible #focus-adou { display: none !important; }
 @media print{
   .sticky-cta { display: none !important; }
 }
+/* Masquer le sticky CTA quand les résultats sont affichés */
+body.results-visible .sticky-cta {
+  display: none !important;
+}
