@@ -608,15 +608,15 @@ loading="lazy"
   const target = document.getElementById('simulateur') || document.querySelector('.card');
   if (!wrap || !btn) return;
 
-  // Masqué par défaut au chargement
+  // Masqué par défaut
   wrap.classList.add('is-hidden');
 
-  // Contexte mobile uniquement
-  const mq = window.matchMedia('(max-width: 760px)');
+  // *** Mobile = max-width: 900px ***
+  const mq = window.matchMedia('(max-width: 900px)');
   const gate = document.getElementById('gate-overlay');
   const body = document.body;
 
-  // États qui doivent forcer le masquage
+  // États qui forcent le masquage
   const overlayUp = () =>
     body.classList.contains('overlay-open') ||
     body.classList.contains('results-visible') ||
@@ -627,9 +627,9 @@ loading="lazy"
 
   // Décision centrale
   const decide = (inView = false) => {
-    if (!mq.matches || overlayUp()) return hide(); // pas mobile ou overlay/résultats: caché
-    if (inView) return hide();                     // simulateur visible: caché
-    show();                                        // sinon: visible
+    if (!mq.matches || overlayUp()) return hide(); // pas mobile / overlay / résultats => caché
+    if (inView) return hide();                     // simulateur à l'écran => caché
+    show();                                        // sinon => visible
   };
 
   // Observer la visibilité du simulateur
@@ -653,7 +653,7 @@ loading="lazy"
     onScroll();
   }
 
-  // Réagir aux changements de classes du body (overlay / résultats)
+  // Surveiller les changements de classes du body (overlay/résultats)
   const mo = new MutationObserver(() => decide(false));
   mo.observe(body, { attributes: true, attributeFilter: ['class'] });
 
@@ -670,6 +670,7 @@ loading="lazy"
   });
 })();
 </script>
+
 
 </body>
 </html>
