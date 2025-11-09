@@ -948,3 +948,15 @@ body.results-visible #focus-adou { display: none !important; }
 body.results-visible .sticky-cta {
   display: none !important;
 }
+/* Masquer le sticky quand un overlay est ouvert OU quand les résultats sont visibles */
+body.overlay-open .sticky-cta,
+body.results-visible .sticky-cta {
+  display: none !important;
+}
+
+/* Bonus si le navigateur supporte :has(), on masque aussi selon l’état du gate */
+@supports(selector(body:has(#gate-overlay.is-visible))) {
+  body:has(#gate-overlay.is-visible) .sticky-cta {
+    display: none !important;
+  }
+}
