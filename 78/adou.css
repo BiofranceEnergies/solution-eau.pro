@@ -625,3 +625,11 @@ body.results-visible #focus-adou { display: none !important; }
 @media (max-height: 640px) and (max-width: 960px) {
   #focus-adou .split__media img { max-height: 420px; }
 }
+
+/* =================================================================
+   [[RETROCOMPAT – neutralisation du style fortuit sur <strong> dans la promo]]
+   ================================================================= */
+.footer-cta__right p strong {
+  color: inherit !important;
+  font-weight: 700 !important;
+}
