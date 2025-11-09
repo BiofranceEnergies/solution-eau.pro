@@ -893,48 +893,5 @@ body.results-visible #focus-adou { display: none !important; }
 
 /* ===== FIN APPENDS ===== */
 /* ===========================
-/* --- Sticky CTA : état par défaut et portée mobile --- */
-.sticky-cta{
-  position: fixed;
-  left: 0; right: 0;
-  bottom: clamp(8px, env(safe-area-inset-bottom) + 8px, 22px);
-  z-index: 9998;
-  display: block;
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: opacity .3s ease, transform .3s ease;
-}
-.sticky-cta .cta--sticky{
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 52px; padding: 12px 18px;
-  border-radius: 16px; border: 1px solid rgba(255,255,255,.25);
-  background: linear-gradient(180deg, var(--cta-grad-top), var(--cta-grad-bot));
-  color: var(--cta-text); font-weight: 800; text-decoration: none;
-  box-shadow: 0 12px 28px rgba(11,63,145,.35), inset 0 2px 4px rgba(255,255,255,.08);
-  pointer-events: auto;
-}
-.sticky-cta.is-hidden{
-  opacity: 0; transform: translateY(20px); pointer-events: none;
-}
-.sticky-cta:not(.is-hidden){
-  opacity: 1; transform: translateY(0);
-}
 
-/* Mobile uniquement */
-@media (max-width: 1024px){
-  .sticky-cta { display: block; }
-}
-@media (min-width: 1025px){
-  .sticky-cta { display: none !important; }
-}
-
-/* Masquer si overlay ou résultats */
-body.overlay-open .sticky-cta,
-body.results-visible .sticky-cta { display: none !important; }
-
-/* Bonus : si :has() dispo, masque quand le gate est visible */
-@supports(selector(body:has(#gate-overlay.is-visible))) {
-  body:has(#gate-overlay.is-visible) .sticky-cta { display: none !important; }
-}
 
