@@ -600,71 +600,7 @@ loading="lazy"
   });
 })();
 </script>
-<!-- Script de comportement sticky (version simple & robuste) -->
-<script>
-(function () {
-  const wrap   = document.getElementById('sticky-cta-wrap');
-  const btn    = document.getElementById('sticky-cta');
-  const target = document.getElementById('simulateur') || document.querySelector('.card');
-  if (!wrap || !btn || !target) return;
 
-  // Masqué par défaut
-  wrap.classList.add('is-hidden');
-
-  // Mobile jusqu'à 1024px
-  const mq = window.matchMedia('(max-width: 1024px)');
-  const gate = document.getElementById('gate-overlay');
-  const body = document.body;
-
-  const overlayUp = () =>
-    body.classList.contains('overlay-open') ||
-    body.classList.contains('results-visible') ||
-    !!(gate && gate.classList.contains('is-visible'));
-
-  const show = () => wrap.classList.remove('is-hidden');
-  const hide = () => wrap.classList.add('is-hidden');
-
-  // Test de visibilité du simulateur (strict, sans IO)
-  function isSimulatorInView() {
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    const r  = target.getBoundingClientRect();
-    // "visible" si une bande centrale (~20% à 80% de l'écran) croise la section
-    const bandTop = vh * 0.2;
-    const bandBot = vh * 0.8;
-    return (r.top < bandBot) && (r.bottom > bandTop);
-  }
-
-  function decide() {
-    // hors mobile -> caché
-    if (!mq.matches) return hide();
-    // overlay / résultats -> caché
-    if (overlayUp()) return hide();
-    // simulateur visible -> caché
-    if (isSimulatorInView()) return hide();
-
-    // sinon -> visible
-    show();
-  }
-
-  // Écoutes
-  ['scroll', 'resize', 'orientationchange'].forEach(evt =>
-    window.addEventListener(evt, decide, { passive: true })
-  );
-  mq.addEventListener?.('change', decide);
-
-  // Surveille les classes du body
-  new MutationObserver(decide).observe(body, { attributes: true, attributeFilter: ['class'] });
-
-  // Premier passage
-  decide();
-
-  // Scroll doux vers le simulateur
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-})();
-</script>
 
 
 </body>
