@@ -922,10 +922,10 @@ body.results-visible #focus-adou { display: none !important; }
 }
 
 /* Mobile uniquement */
-@media (max-width: 900px){
+@media (max-width: 1024px){
   .sticky-cta { display: block; }
 }
-@media (min-width: 901px){
+@media (min-width: 1025px){
   .sticky-cta { display: none !important; }
 }
 
