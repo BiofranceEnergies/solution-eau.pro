@@ -893,9 +893,7 @@ body.results-visible #focus-adou { display: none !important; }
 
 /* ===== FIN APPENDS ===== */
 /* ===========================
-   STICKY CTA — MOBILE ONLY
-   =========================== */
-
+/* --- Sticky CTA : état par défaut et portée mobile --- */
 .sticky-cta{
   position: fixed;
   left: 0; right: 0;
@@ -907,56 +905,36 @@ body.results-visible #focus-adou { display: none !important; }
   pointer-events: none;
   transition: opacity .3s ease, transform .3s ease;
 }
-
-
 .sticky-cta .cta--sticky{
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  width: min(92vw, 520px);
-  min-height: 54px; padding: 12px 18px; border-radius: 18px;
-
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 12px 18px;
+  border-radius: 16px; border: 1px solid rgba(255,255,255,.25);
   background: linear-gradient(180deg, var(--cta-grad-top), var(--cta-grad-bot));
-  color: var(--cta-text); font-weight: 800; border: 1px solid rgba(255,255,255,.25);
-
-  box-shadow: 0 12px 28px rgba(11,79,191,.35), 0 2px 8px rgba(0,0,0,.25);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-
-  margin: 0 auto;
+  color: var(--cta-text); font-weight: 800; text-decoration: none;
+  box-shadow: 0 12px 28px rgba(11,63,145,.35), inset 0 2px 4px rgba(255,255,255,.08);
   pointer-events: auto;
 }
-
 .sticky-cta.is-hidden{
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .2s ease, transform .2s ease;
+  opacity: 0; transform: translateY(20px); pointer-events: none;
 }
-
 .sticky-cta:not(.is-hidden){
-  display: block;
   opacity: 1; transform: translateY(0);
-  transition: opacity .2s ease, transform .2s ease;
 }
 
 /* Mobile uniquement */
-@media (max-width: 760px){
+@media (max-width: 900px){
   .sticky-cta { display: block; }
 }
-
-/* Impression : toujours masqué */
-@media print{
+@media (min-width: 901px){
   .sticky-cta { display: none !important; }
 }
-/* Masquer le sticky CTA quand les résultats sont affichés */
-body.results-visible .sticky-cta {
-  display: none !important;
-}
-/* Masquer le sticky quand un overlay est ouvert OU quand les résultats sont visibles */
+
+/* Masquer si overlay ou résultats */
 body.overlay-open .sticky-cta,
-body.results-visible .sticky-cta {
-  display: none !important;
+body.results-visible .sticky-cta { display: none !important; }
+
+/* Bonus : si :has() dispo, masque quand le gate est visible */
+@supports(selector(body:has(#gate-overlay.is-visible))) {
+  body:has(#gate-overlay.is-visible) .sticky-cta { display: none !important; }
 }
 
-/* Bonus si le navigateur supporte :has(), on masque aussi selon l’état du gate */
-@supports(selector(body:has(#gate-overlay.is-visible))) {
-  body:has(#gate-overlay.is-visible) .sticky-cta {
-    display: none !important;
-  }
-}
