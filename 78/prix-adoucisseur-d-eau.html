@@ -76,7 +76,7 @@
   }
   </script>
 </head>
-
+  
 <body>
 <a href="#main" class="skip-link">Aller au contenu</a>
 <header id="hero" class="hero" aria-label="Haut de page adoucisseur d’eau">
@@ -558,5 +558,43 @@ loading="lazy"
 <div class="footer-legal"><span id="mentions-legales-link">Mentions légales</span></div>
 </footer>
 <script src="adou.js" defer></script>
+<!-- Tracking conversion Google Ads -->
+<script>
+(function () {
+  if (window.__convLeadSent) return;
+  window.__convLeadSent = false;
+
+  function sendLeadConversion() {
+    if (window.__convLeadSent) return;
+    window.__convLeadSent = true;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-11242044118/DO1tCKLg97sbENb1z_Ap',
+        'value': 1.0,
+        'currency': 'EUR'
+      });
+      console.log('✅ Conversion Google Ads (Lead) envoyée');
+    }
+  }
+
+  document.addEventListener('LeadSaved', function (e) {
+    if (e && e.detail && e.detail.ok === true) sendLeadConversion();
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('gate-form');
+    var phone = document.getElementById('gate-phone');
+    if (!form || !phone) return;
+
+    form.addEventListener('submit', function () {
+      var tel = (phone.value || '').replace(/\D+/g, '');
+      if (tel.length >= 10) {
+        setTimeout(sendLeadConversion, 600);
+      }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
